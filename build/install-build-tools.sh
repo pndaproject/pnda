@@ -105,6 +105,7 @@ pip install cm-api==8.0.0
 pip install shyaml==0.4.1
 pip install nose==1.3.7
 pip install mock==2.0.0
+pip install pylint==1.6.4
 
 # nodejs build tools
 #
