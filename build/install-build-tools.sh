@@ -106,6 +106,9 @@ pip install shyaml==0.4.1
 pip install nose==1.3.7
 pip install mock==2.0.0
 pip install pylint==1.6.4
+pip install python-swiftclient==3.1.0
+pip install tornado-cors==0.6.0
+pip install boto==2.40.0
 
 # nodejs build tools
 #
