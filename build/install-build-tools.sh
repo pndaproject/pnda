@@ -15,7 +15,8 @@
 #
 #   This script checks for and installs dependencies required to build PNDA on a Ubuntu 14.04 system.
 #   For other systems, please refer to the installation instructions of the respective technologies.
-
+#
+#   JAVA_MIRROR - define this environment variable to download the Java JDK from an alternative location
 
 # Many Hadoop unit test tools depend on being able to correctly resolve the host to an address.
 # Make sure the result of running hostname is present in the /etc/hosts file
@@ -36,7 +37,12 @@ echo "Dependency check: Java JDK 1.8.0_74"
 
 if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_74" ]]; then
     echo "WARN: Unable to find JDK 1.8.0_74, going to download it and set JAVA_HOME relative to ${PWD}"
-    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.tar.gz
+    if [[ -z ${JAVA_MIRROR} ]]; then
+        JAVA_URL="http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.tar.gz"
+    else
+        JAVA_URL=${JAVA_MIRROR}
+    fi  
+    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" ${JAVA_URL}
     tar zxf jdk-8u74-linux-x64.tar.gz --no-same-owner
     export JAVA_HOME=${PWD}/jdk1.8.0_74
     export PATH=$JAVA_HOME/bin:${PATH}
@@ -51,6 +57,8 @@ if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_74" ]]; then
 else
     echo "Java found at ${JAVA_HOME}"
 fi
+
+[[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_74" ]] && exit -1
 
 # apt-get packages required to carry out builds and tests
 #
