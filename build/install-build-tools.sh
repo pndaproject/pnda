@@ -109,6 +109,7 @@ pip install starbase==0.3.2
 pip install happybase==0.9
 pip install pyhs2==0.6.0
 pip install pywebhdfs==0.4.0
+pip install PyHDFS==0.1.2
 pip install cm-api==8.0.0
 pip install shyaml==0.4.1
 pip install nose==1.3.7
@@ -116,6 +117,7 @@ pip install mock==2.0.0
 pip install pylint==1.6.4
 pip install python-swiftclient==3.1.0
 pip install tornado-cors==0.6.0
+pip install Tornado-JSON==1.2.2
 pip install boto==2.40.0
 
 # nodejs build tools
