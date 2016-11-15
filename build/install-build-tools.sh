@@ -17,6 +17,8 @@
 #   For other systems, please refer to the installation instructions of the respective technologies.
 
 
+SPARK_VERSION='1.6.0'
+
 # Many Hadoop unit test tools depend on being able to correctly resolve the host to an address.
 # Make sure the result of running hostname is present in the /etc/hosts file
 #
@@ -113,9 +115,9 @@ npm install -g grunt
 
 # Apache Spark
 #
-wget http://archive.apache.org/dist/spark/spark-1.5.0/spark-1.5.0-bin-hadoop2.6.tgz
-tar zxf spark-1.5.0-bin-hadoop2.6.tgz
-export SPARK_HOME=${PWD}/spark-1.5.0-bin-hadoop2.6
+wget http://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
+tar zxf spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
+export SPARK_HOME=${PWD}/spark-${SPARK_VERSION}-bin-hadoop2.6
 
 # Finish up with advice to the user
 #
