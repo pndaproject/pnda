@@ -119,6 +119,12 @@ pip install python-swiftclient==3.1.0
 pip install tornado-cors==0.6.0
 pip install Tornado-JSON==1.2.2
 pip install boto==2.40.0
+pip install setuptools==28.8.0 --upgrade
+pip install impyla==0.13.8
+pip install eventlet==0.19.0
+pip install kazoo==2.2.1
+pip install avro==1.8.1
+pip install kafka-python==0.9.4
 
 # nodejs build tools
 #
