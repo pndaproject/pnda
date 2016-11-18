@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # 
 #   Copyright (c) 2016 Cisco and/or its affiliates.
 #   This software is licensed to you under the terms of the Apache License, Version 2.0
@@ -72,7 +72,7 @@ apt-get install -y python-dev \
                    gcc \
                    git \
                    nodejs \
-                   npm=1.3.10~dfsg-1 \
+                   npm \
                    curl \
                    python-setuptools \
                    apt-transport-https \
@@ -138,9 +138,19 @@ pip install kazoo==2.2.1
 pip install avro==1.8.1
 pip install kafka-python==0.9.4
 
-# nodejs build tools
-#
-npm install -g grunt
+# grunt-cli needs to be installed globally
+
+[[ -e ~/tmp ]] && TMP_EXISTS=true
+
+npm install -g grunt-cli
+
+# The installation of grunt-cli leaves behind a ~/tmp directory owned by the invoker of the command. This is
+# used by subsequent builds using grunt. This can cause problems if the installation is run as sudo and 
+# subsequent builds are run as non-privileged users. Therefore, we set it to rwxrwxrwx access here if and only
+# if it didn't already exist. If the user already had a ~/tmp directory the access permissions are left alone.
+if [[ -z ${TMP_EXISTS} ]] && [[ -e ~/tmp ]]; then
+    chmod -R 777 ~/tmp
+fi
 
 # Apache Spark
 #
