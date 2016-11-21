@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # 
 #   Copyright (c) 2016 Cisco and/or its affiliates.
 #   This software is licensed to you under the terms of the Apache License, Version 2.0
@@ -29,7 +29,7 @@ if [[ -z $(grep `hostname` /etc/hosts) ]]; then
     echo "ERROR: The host on which you perform builds must be able to properly resolve itself in order to run Hadoop unit tests"
     echo "Please add the following entry to /etc/hosts"
     HOST=`hostname`
-    echo "127.0.0.1 ${HOST}"
+    echo "127.0.1.1 ${HOST}"
     exit -1
 fi
 
@@ -43,7 +43,7 @@ if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_74" ]]; then
         JAVA_URL="http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.tar.gz"
     else
         JAVA_URL=${JAVA_MIRROR}
-    fi  
+    fi
     wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" ${JAVA_URL}
     tar zxf jdk-8u74-linux-x64.tar.gz --no-same-owner
     export JAVA_HOME=${PWD}/jdk1.8.0_74
@@ -67,7 +67,17 @@ fi
 echo "Dependency check: apt-get packages"
 
 apt-get update -y
-apt-get install -y python-dev libsasl2-dev gcc git nodejs npm=1.3.10~dfsg-1 gradle=1.4-2ubuntu1 curl python-setuptools apt-transport-https python-pip
+apt-get install -y python-dev \
+                   libsasl2-dev \
+                   gcc \
+                   git \
+                   nodejs \
+                   npm=1.3.10~dfsg-1 \
+                   curl \
+                   python-setuptools \
+                   apt-transport-https \
+                   python-pip \
+                   libaio1 # Needed for Gobblin
 
 if [ ! -f /usr/bin/node ]; then
         echo " WARN: Missing /usr/bin/node, creating link"

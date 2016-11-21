@@ -96,7 +96,7 @@ if [[ ${MODE} == "BOM" ]]; then
             bom_error
         fi
     done < ${ARG}
-    
+
 elif [[ ${MODE} == "RELEASE" ]] || [[ ${MODE} == "BRANCH" ]]; then
     if [[ -z ${ARG} ]]; then
         invocation_error
@@ -161,7 +161,7 @@ do
     fi
     mkdir -p build-${project}
     cp ${UPSTREAM_BUILDS}/build-${project}.sh build-${project}/
-    cd build-${project}    
+    cd build-${project}
     ./build-${project}.sh ${MODE} ${VERSION}
     [[ $? -ne 0 ]] && build_error
     cd ..
