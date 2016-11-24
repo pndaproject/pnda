@@ -114,7 +114,7 @@ function prereq_error {
 }
 
 echo -n "git: "
-if [[ $(git --version 2>&1) == *"git version 1"* ]]; then
+if [[ $(git --version 2>&1) == *"git version"* ]]; then
     echo "OK"
 else
     prereq_error
