@@ -138,6 +138,7 @@ pip install eventlet==0.19.0
 pip install kazoo==2.2.1
 pip install avro==1.8.1
 pip install kafka-python==0.9.4
+pip install prettytable==0.7.2
 
 # grunt-cli needs to be installed globally
 
