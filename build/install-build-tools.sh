@@ -73,6 +73,7 @@ apt-get install -y python-dev \
                    git \
                    nodejs \
                    npm \
+                   bc \
                    curl \
                    python-setuptools \
                    apt-transport-https \
