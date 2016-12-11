@@ -1,15 +1,25 @@
-# PNDA X.Y
-This is a template, please enter descriptive text here.
+# PNDA 3.3
+
+PNDA release 3.3 contains a number of improvements and bug fixes.
+
+### New Hadoop version, including Spark 1.6
+
+We've moved forward to CDH 5.9 which includes Spark 1.6 alongside many other bugs fixes and improvements. See the [Spark release notes](http://spark.apache.org/releases/spark-release-1-6-0.html) for more details on Spark 1.6 and refer to the [Cloudera site](https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_rn_new_in_cdh_59.html) for details of other changes.
+
+### New build system
+
+Based on feedback we've completely rewritten the build system for PNDA, please refer to the new [pnda](https://github.com/pndaproject/pnda) repository for details.
+
+### Robustness, scaling, upgrades & tuning
+
+This release also introduces a number of other core improvements such as anti-affinity hints for OpenStack provisioning that ensures that HA services are properly distributed across compute nodes, better fail fast behaviour in the Salt provisioning process, improvements to support for scaling and upgrades, and more. Please refer to the Change Log below and the notes in the individual repositories for more details.
+
 ### Version Matrix
  
 |Repository|Version|Date|
 |---|---|---|
 |[example-applications](#example-applications)|0.2.0|12 Dec 2016|
-|[example-jupyter-notebooks](#example-jupyter-notebooks)|0.1.1|09 Sep 2016|
 |[example-kafka-clients](#example-kafka-clients)|0.2.1|12 Dec 2016|
-|[example-kafka-spark-opentsdb-app](#example-kafka-spark-opentsdb-app)|0.1.1|07 Sep 2016|
-|[example-spark-batch](#example-spark-batch)|0.1.0|01 Jul 2016|
-|[example-spark-streaming](#example-spark-streaming)|0.1.0|01 Jul 2016|
 |[gobblin](#gobblin)|0.1.2|12 Dec 2016|
 |[platform-console-backend](#platform-console-backend)|0.2.3|12 Dec 2016|
 |[platform-console-frontend](#platform-console-frontend)|0.1.3|12 Dec 2016|
@@ -26,7 +36,6 @@ This is a template, please enter descriptive text here.
 |[pnda-dib-elements](#pnda-dib-elements)|0.1.2|12 Dec 2016|
 |[pnda-guide](#pnda-guide)|0.1.5|12 Dec 2016|
 |[pnda-heat-templates](#pnda-heat-templates)|1.1.0|12 Dec 2016|
-|[pnda-package-server-docker](#pnda-package-server-docker)|0.1.1|21 Oct 2016|
 |[prod-logstash-codec-avro](#prod-logstash-codec-avro)|0.2.0|09 Sep 2016|
  
 ### Change Log
@@ -40,22 +49,10 @@ This is a template, please enter descriptive text here.
 - Change Kafka version to 0.10.0.1
 - Pin assembly plugin to version 2.6
 - Update assembly.xml file to add the id xml tag
- 
-#### [example-jupyter-notebooks](https://github.com/pndaproject/example-jupyter-notebooks)
-- Unchanged in this PNDA release
- 
+
 #### [example-kafka-clients](https://github.com/pndaproject/example-kafka-clients)
 ##### Changed
 - Put parsing of the extra magic number behind the 'useextra' flag
- 
-#### [example-kafka-spark-opentsdb-app](https://github.com/pndaproject/example-kafka-spark-opentsdb-app)
-- Unchanged in this PNDA release
- 
-#### [example-spark-batch](https://github.com/pndaproject/example-spark-batch)
-- Unchanged in this PNDA release
- 
-#### [example-spark-streaming](https://github.com/pndaproject/example-spark-streaming)
-- Unchanged in this PNDA release
  
 #### [gobblin](https://github.com/pndaproject/gobblin)
 ##### Added
@@ -179,12 +176,11 @@ This is a template, please enter descriptive text here.
 - Specify Anaconda mirror in PNDA YAML and make example mirror URIs consistent
  
 ##### Fixed
-- Move pnda_restart role to correct grain PNDA-2250
 - Update doc to match new Cloudera version 5.9.0
 - PNDA-2474: Execute PR volume logic conditionally 
  
 #### [pnda-package-server-docker](https://github.com/pndaproject/pnda-package-server-docker)
-- Unchanged in this PNDA release
+- Deprecated. Please see the [pnda](https://github.com/pndaproject/pnda) repository
  
 #### [prod-logstash-codec-avro](https://github.com/pndaproject/prod-logstash-codec-avro)
 - Unchanged in this PNDA release
