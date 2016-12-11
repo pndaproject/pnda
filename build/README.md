@@ -37,12 +37,11 @@ Your environment is now ready to build PNDA.
 
 ## Building PNDA
 
-The script ```build-pnda.sh``` is invoked as superuser. 
+The script ```build-pnda.sh``` is invoked as a non-privileged user. 
 
 For example
 
 ```sh
-sudo su
 cd pnda
 ./build.sh RELEASE release/3.2
 ```
