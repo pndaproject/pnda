@@ -140,10 +140,10 @@ for repo in ${!bom[@]}
 do
     git clone --branch ${bom[${repo}]} https://github.com/pndaproject/${repo}.git
     cd ${repo}
-    if [[ ${MODE} != "BRANCH" ]]; then
+    if [[ ${MODE} == "RELEASE" ]]; then
         VERSION=$(git describe --abbrev=0 --tags)
     else
-        VERSION=${ARG}
+        VERSION=${bom[${repo}]}
     fi
     ./build.sh ${VERSION}
     [[ $? -ne 0 ]] && build_error

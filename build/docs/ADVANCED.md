@@ -8,7 +8,7 @@ It is possible to use build-pnda.sh to build PNDA components & upstream projects
 - The file must contain one entry for each PNDA component
 - The file must contain one entry for each upstream project
 - The version can be any valid tag or branch specifier
-- PNDA components are built with the version specifier set to corresponding component release (e.g. 0.1.2)
+- PNDA components are built with the version specifier set to the version specified in the BOM file (e.g. develop, 0.1.2, etc)
 - Upstream projects are built with the version specifier set as follows:
  - By default, the version specified is interpreted as a tag or branch on pndaproject/platform-salt that references the upstream project
  - Optionally, the version can be specified in the form UPSTREAM(version). This is interpreted as a tag or branch on the upstream project
@@ -50,12 +50,12 @@ More complex BOM specifying various component versions, PNDA release versions an
 
 ```sh
        platform-console-backend 0.1.0
-       platform-console-frontend master
-       platform-data-mgmnt release/3.2
+       platform-console-frontend develop
+       platform-data-mgmnt develop
        platform-deployment-manager 0.1.0
        platform-libraries develop
        platform-package-repository 0.1.2
-       platform-testing release/3.1
+       platform-testing develop
        gobblin 0.1.0
        kafkamanager UPSTREAM(1.3.2.4)
 ```
