@@ -63,7 +63,6 @@ More complex BOM specifying various component versions, PNDA release versions an
 Invocation example.
 
 ```sh
-sudo su
 cd pnda
 ./build-pnda.sh BOM bomfile
 ```
