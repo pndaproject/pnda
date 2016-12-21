@@ -96,7 +96,7 @@ if [[ ${MODE} == "BOM" ]]; then
             bom_error
         fi
     done < ${ARG}
-    
+
 elif [[ ${MODE} == "RELEASE" ]] || [[ ${MODE} == "BRANCH" ]]; then
     if [[ -z ${ARG} ]]; then
         invocation_error
@@ -114,7 +114,7 @@ function prereq_error {
 }
 
 echo -n "git: "
-if [[ $(git --version 2>&1) == *"git version 1"* ]]; then
+if [[ $(git --version 2>&1) == *"git version"* ]]; then
     echo "OK"
 else
     prereq_error
@@ -140,10 +140,10 @@ for repo in ${!bom[@]}
 do
     git clone --branch ${bom[${repo}]} https://github.com/pndaproject/${repo}.git
     cd ${repo}
-    if [[ ${MODE} != "BRANCH" ]]; then
+    if [[ ${MODE} == "RELEASE" ]]; then
         VERSION=$(git describe --abbrev=0 --tags)
     else
-        VERSION=${ARG}
+        VERSION=${bom[${repo}]}
     fi
     ./build.sh ${VERSION}
     [[ $? -ne 0 ]] && build_error
@@ -161,7 +161,7 @@ do
     fi
     mkdir -p build-${project}
     cp ${UPSTREAM_BUILDS}/build-${project}.sh build-${project}/
-    cd build-${project}    
+    cd build-${project}
     ./build-${project}.sh ${MODE} ${VERSION}
     [[ $? -ne 0 ]] && build_error
     cd ..

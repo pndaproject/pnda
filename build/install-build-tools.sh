@@ -15,7 +15,10 @@
 #
 #   This script checks for and installs dependencies required to build PNDA on a Ubuntu 14.04 system.
 #   For other systems, please refer to the installation instructions of the respective technologies.
+#
+#   JAVA_MIRROR - define this environment variable to download the Java JDK from an alternative location
 
+SPARK_VERSION='1.6.0'
 
 # Many Hadoop unit test tools depend on being able to correctly resolve the host to an address.
 # Make sure the result of running hostname is present in the /etc/hosts file
@@ -26,7 +29,7 @@ if [[ -z $(grep `hostname` /etc/hosts) ]]; then
     echo "ERROR: The host on which you perform builds must be able to properly resolve itself in order to run Hadoop unit tests"
     echo "Please add the following entry to /etc/hosts"
     HOST=`hostname`
-    echo "127.0.0.1 ${HOST}"
+    echo "127.0.1.1 ${HOST}"
     exit -1
 fi
 
@@ -36,7 +39,12 @@ echo "Dependency check: Java JDK 1.8.0_74"
 
 if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_74" ]]; then
     echo "WARN: Unable to find JDK 1.8.0_74, going to download it and set JAVA_HOME relative to ${PWD}"
-    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.tar.gz
+    if [[ -z ${JAVA_MIRROR} ]]; then
+        JAVA_URL="http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.tar.gz"
+    else
+        JAVA_URL=${JAVA_MIRROR}
+    fi
+    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" ${JAVA_URL}
     tar zxf jdk-8u74-linux-x64.tar.gz --no-same-owner
     export JAVA_HOME=${PWD}/jdk1.8.0_74
     export PATH=$JAVA_HOME/bin:${PATH}
@@ -52,12 +60,25 @@ else
     echo "Java found at ${JAVA_HOME}"
 fi
 
+[[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_74" ]] && exit -1
+
 # apt-get packages required to carry out builds and tests
 #
 echo "Dependency check: apt-get packages"
 
 apt-get update -y
-apt-get install -y python-dev libsasl2-dev gcc git nodejs npm=1.3.10~dfsg-1 gradle=1.4-2ubuntu1 curl python-setuptools apt-transport-https python-pip
+apt-get install -y python-dev \
+                   libsasl2-dev \
+                   gcc \
+                   git \
+                   nodejs \
+                   npm \
+                   bc \
+                   curl \
+                   python-setuptools \
+                   apt-transport-https \
+                   python-pip \
+                   libaio1 # Needed for Gobblin
 
 if [ ! -f /usr/bin/node ]; then
         echo " WARN: Missing /usr/bin/node, creating link"
@@ -101,20 +122,43 @@ pip install starbase==0.3.2
 pip install happybase==0.9
 pip install pyhs2==0.6.0
 pip install pywebhdfs==0.4.0
+pip install PyHDFS==0.1.2
 pip install cm-api==8.0.0
 pip install shyaml==0.4.1
 pip install nose==1.3.7
 pip install mock==2.0.0
+pip install pylint==1.6.4
+pip install python-swiftclient==3.1.0
+pip install tornado-cors==0.6.0
+pip install Tornado-JSON==1.2.2
+pip install boto==2.40.0
+pip install setuptools==28.8.0 --upgrade
+pip install impyla==0.13.8
+pip install eventlet==0.19.0
+pip install kazoo==2.2.1
+pip install avro==1.8.1
+pip install kafka-python==0.9.4
+pip install prettytable==0.7.2
 
-# nodejs build tools
-#
-npm install -g grunt
+# grunt-cli needs to be installed globally
+
+[[ -e ~/tmp ]] && TMP_EXISTS=true
+
+npm install -g grunt-cli
+
+# The installation of grunt-cli leaves behind a ~/tmp directory owned by the invoker of the command. This is
+# used by subsequent builds using grunt. This can cause problems if the installation is run as sudo and 
+# subsequent builds are run as non-privileged users. Therefore, we set it to rwxrwxrwx access here if and only
+# if it didn't already exist. If the user already had a ~/tmp directory the access permissions are left alone.
+if [[ -z ${TMP_EXISTS} ]] && [[ -e ~/tmp ]]; then
+    chmod -R 777 ~/tmp
+fi
 
 # Apache Spark
 #
-wget http://archive.apache.org/dist/spark/spark-1.5.0/spark-1.5.0-bin-hadoop2.6.tgz
-tar zxf spark-1.5.0-bin-hadoop2.6.tgz
-export SPARK_HOME=${PWD}/spark-1.5.0-bin-hadoop2.6
+wget http://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
+tar zxf spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
+export SPARK_HOME=${PWD}/spark-${SPARK_VERSION}-bin-hadoop2.6
 
 # Finish up with advice to the user
 #
