@@ -144,7 +144,7 @@ Please refer to the CHANGELOGs for a full list of fixes, changes and additions.
 - Updated producer instructions
  
 ##### Fixed
-- Paths in platformlibs examples
+- PNDA-2553: Paths in platformlibs examples
  
 #### [pnda-heat-templates](https://github.com/pndaproject/pnda-heat-templates)
 ##### Changed
