@@ -1,14 +1,24 @@
 # PNDA 3.4
 
-PNDA release 3.4 have a lot of internal fixes and improvments. The new awaited feature is that you can now create an ElasticSearch cluster as part of a PNDA cluster.
+PNDA release 3.4 contains a number of improvements and bug fixes. 
 
-**Warning:** The ElasticSearch cluster feature is only available for AWS deployments at the moment. ElasticSearch cluster deployment on Openstack will come on the next release.
+### ElasticSearch and Logstash clusters
 
-* deployment-manager stores application packages in HDFS instead of HBASE
-* the console display more informations about deployment-manager errors
-* python components are executed in their own virtualenv in order to avoid library conflicts; for example components using old happybase version won't be upset by new versions and will continue using the exact same old version
-* gobblin is run as user 'pnda' instead of 'gobblin', the files created in HDFS are now owned by 'pnda:pnda' instead of 'gobblin:pnda'
-* heat and aws installers are configurable to enable the creation of an ElasticSearch cluster
+The main additional feature is that you can now create an ElasticSearch cluster as part of a PNDA cluster.
+
+Right now, this feature is only available for AWS deployments. We're working on support for OpenStack and this will appear in a future release.
+
+### Dependency management
+
+All Python components are now executed in their own virtualenv in order to avoid library conflicts and all dependencies are explicitly pinned to specific versions. This means that different roles on a particular node can have similar dependencies at different versions and the provisioning process is insulated from unexpected upstream package changes, something which has proved problematic in the past.
+
+### General improvements
+
+* Deployment manager stores application packages in HDFS instead of HBASE
+* The console displays more information about deployment manager errors
+* Gobblin is run as user 'pnda' instead of 'gobblin', the files created in HDFS are now owned by 'pnda:pnda' instead of 'gobblin:pnda'
+
+Please refer to the CHANGELOGs for a full list of fixes, changes and additions.
 
 ### Version Matrix
  
