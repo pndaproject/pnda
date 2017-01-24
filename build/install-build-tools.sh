@@ -119,7 +119,7 @@ fi
 #
 pip install spur==0.3.12
 pip install starbase==0.3.2
-pip install happybase==0.9
+pip install happybase==1.0.0
 pip install pyhs2==0.6.0
 pip install pywebhdfs==0.4.0
 pip install PyHDFS==0.1.2
