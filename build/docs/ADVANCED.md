@@ -29,6 +29,7 @@ It is possible to use build-pnda.sh to build PNDA components & upstream projects
 |Upstream Projects|
 |---|
 |kafkamanager|
+|jupyterproxy|
 
 #### Examples
 
@@ -44,9 +45,10 @@ Simple BOM specifying a list of component versions and upstream project kafkaman
        platform-testing 0.1.0
        gobblin 0.1.0
        kafkamanager release/3.1
+       jupyterproxy release/3.1
 ```
 
-More complex BOM specifying various component versions, PNDA release versions and explicitly referencing a particular upstream version of the upstream project, kafkamanager.
+More complex BOM specifying various component versions, PNDA release versions and explicitly referencing particular upstream versions of the upstream projects.
 
 ```sh
        platform-console-backend 0.1.0
@@ -58,6 +60,7 @@ More complex BOM specifying various component versions, PNDA release versions an
        platform-testing develop
        gobblin 0.1.0
        kafkamanager UPSTREAM(1.3.2.4)
+       jupyterproxy UPSTREAM(1.3.1)
 ```
 
 Invocation example.
