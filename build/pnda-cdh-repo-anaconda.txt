@@ -1,0 +1,5 @@
+https://repo.continuum.io/pkgs/misc/parcels/Anaconda-4.0.0-el7.parcel
+https://repo.continuum.io/pkgs/misc/parcels/Anaconda-4.0.0-el7.parcel.sha
+https://repo.continuum.io/pkgs/misc/parcels/Anaconda-4.0.0-trusty.parcel
+https://repo.continuum.io/pkgs/misc/parcels/Anaconda-4.0.0-trusty.parcel.sha
+https://repo.continuum.io/pkgs/misc/parcels/manifest.json

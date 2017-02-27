@@ -22,6 +22,11 @@ MIRROR_OUTPUT=/var/pnda/mirror
 #   apt-get update
 
 DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
+STATIC_FILE_LIST=$(<pnda-static-file-dependencies.txt)
+CLOUDERA_REPO_FILE_LIST=$(<pnda-cdh-repo-cloudera.txt)
+ANACONDA_REPO_FILE_LIST=$(<pnda-cdh-repo-anaconda.txt)
+RPM_PACKAGE_LIST=$(<pnda-rpm-package-dependencies.txt)
+DEB_PACKAGE_LIST=$(<pnda-deb-package-dependencies.txt)
 
 if [ "x$DISTRO" == "xrhel" ]; then
     RPM_REPO_DIR=$MIRROR_OUTPUT/rpms
@@ -35,8 +40,6 @@ if [ "x$DISTRO" == "xrhel" ]; then
     SALT_REPO=https://repo.saltstack.com/yum/redhat/7/x86_64/archive/2015.8.11
     SALT_REPO_KEY=https://repo.saltstack.com/yum/redhat/7/x86_64/archive/2015.8.11/SALTSTACK-GPG-KEY.pub
     SALT_REPO_KEY2=http://repo.saltstack.com/yum/redhat/7/x86_64/2015.8/base/RPM-GPG-KEY-CentOS-7
-
-    RPM_PACKAGE_LIST=$(<pnda-rpm-package-dependencies.txt)
 
     yum install -y $RPM_EPEL
     yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
@@ -53,11 +56,11 @@ if [ "x$DISTRO" == "xrhel" ]; then
     mkdir -p $RPM_REPO_DIR
 
     cp /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release $RPM_REPO_DIR
-    curl $MY_SQL_REPO_KEY > $RPM_REPO_DIR/RPM-GPG-KEY-mysql
-    curl $CLOUDERA_MANAGER_REPO_KEY > $RPM_REPO_DIR/RPM-GPG-KEY-cloudera
-    curl https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7 > $RPM_REPO_DIR/RPM-GPG-KEY-EPEL-7
-    curl $SALT_REPO_KEY > $RPM_REPO_DIR/SALTSTACK-GPG-KEY.pub
-    curl $SALT_REPO_KEY2 > $RPM_REPO_DIR/RPM-GPG-KEY-CentOS-7
+    curl -L $MY_SQL_REPO_KEY > $RPM_REPO_DIR/RPM-GPG-KEY-mysql
+    curl -L $CLOUDERA_MANAGER_REPO_KEY > $RPM_REPO_DIR/RPM-GPG-KEY-cloudera
+    curl -L https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7 > $RPM_REPO_DIR/RPM-GPG-KEY-EPEL-7
+    curl -L $SALT_REPO_KEY > $RPM_REPO_DIR/SALTSTACK-GPG-KEY.pub
+    curl -L $SALT_REPO_KEY2 > $RPM_REPO_DIR/RPM-GPG-KEY-CentOS-7
 
     #TODO yumdownloader doesn't always seem to download the full set of packages, for instance if git is installed, it won't download perl
     # packages correctly maybe because git already installed them. repotrack is meant to be better but I couldn't get that working.
@@ -67,8 +70,6 @@ if [ "x$DISTRO" == "xrhel" ]; then
 elif [ "x$DISTRO" == "xubuntu" ]; then
     export DEBIAN_FRONTEND=noninteractive
     DEB_REPO_DIR=$MIRROR_OUTPUT/debs
-
-    DEB_PACKAGE_LIST=$(<pnda-deb-package-dependencies.txt)
 
     cat > /etc/apt/sources.list.d/cloudera-manager.list <<EOF
     deb [arch=amd64] https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/ trusty-cm5.9.0 contrib
@@ -115,3 +116,30 @@ EOF
     gpg --clearsign -o InRelease Release
     gpg -abs -o Release.gpg Release
 fi
+
+STATIC_FILE_DIR=$MIRROR_OUTPUT/misc
+mkdir -p $STATIC_FILE_DIR
+cd $STATIC_FILE_DIR
+echo "$STATIC_FILE_LIST" | while read STATIC_FILE
+do
+    echo $STATIC_FILE
+    curl -L -O -J $STATIC_FILE
+done
+
+CLOUDERA_REPO_FILE_DIR=$MIRROR_OUTPUT/cloudera_repo
+mkdir -p $CLOUDERA_REPO_FILE_DIR
+cd $CLOUDERA_REPO_FILE_DIR
+echo "$CLOUDERA_REPO_FILE_LIST" | while read CLOUDERA_REPO_FILE
+do
+    echo $CLOUDERA_REPO_FILE
+    curl -L -O -J $CLOUDERA_REPO_FILE
+done
+
+ANACONDA_REPO_FILE_DIR=$MIRROR_OUTPUT/anaconda_repo
+mkdir -p $ANACONDA_REPO_FILE_DIR
+cd $ANACONDA_REPO_FILE_DIR
+echo "$ANACONDA_REPO_FILE_LIST" | while read ANACONDA_REPO_FILE
+do
+    echo $ANACONDA_REPO_FILE
+    curl -L -O -J $ANACONDA_REPO_FILE
+done
