@@ -28,13 +28,14 @@ yum install -y createrepo
 rm -rf $RPM_REPO_DIR
 mkdir -p $RPM_REPO_DIR
 
+cd $RPM_REPO_DIR
+cp /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL $RPM_REPO_DIR
+cp /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 $RPM_REPO_DIR
 cp /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release $RPM_REPO_DIR
-curl -L $MY_SQL_REPO_KEY > $RPM_REPO_DIR/RPM-GPG-KEY-mysql
-curl -L $CLOUDERA_MANAGER_REPO_KEY > $RPM_REPO_DIR/RPM-GPG-KEY-cloudera
-curl -L https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7 > $RPM_REPO_DIR/RPM-GPG-KEY-EPEL-7
-curl -L $SALT_REPO_KEY > $RPM_REPO_DIR/SALTSTACK-GPG-KEY.pub
-curl -L $SALT_REPO_KEY2 > $RPM_REPO_DIR/RPM-GPG-KEY-CentOS-7
-cp /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL $RPM_REPO_DIR/NODESOURCE-GPG-SIGNING-KEY-EL
+curl -L -O -J $MY_SQL_REPO_KEY
+curl -L -O -J $CLOUDERA_MANAGER_REPO_KEY
+curl -L -O -J $SALT_REPO_KEY
+curl -L -O -J $SALT_REPO_KEY2
 
 #TODO yumdownloader doesn't always seem to download the full set of packages, for instance if git is installed, it won't download perl
 # packages correctly maybe because git already installed them. repotrack is meant to be better but I couldn't get that working.
