@@ -3,6 +3,10 @@ Grab all python requirements file from pndaproject
 
 Uses github3 to interact with the GitHub API v3
 pip install github3.py
+
+
+WARNING: in case of tpl files from platform-salt, replace the context variable
+         with the right name/URL 
 """
 
 import re

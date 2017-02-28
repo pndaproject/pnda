@@ -10,8 +10,9 @@ from os import listdir
 from os.path import isfile, join
 
 def main():
-    package_path="./packages"
-    requirements_path="./requirements"
+
+    package_path=os.environ['MIRROR_OUTPUT']+"/packages"
+    requirements_path=os.environ['PYTHON_REQ_DIR']
     requirements_path_py2=requirements_path+"/python-2"
     requirements_path_py3=requirements_path+"/python-3"
     # init directory
