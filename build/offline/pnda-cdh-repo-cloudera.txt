@@ -1,0 +1,5 @@
+https://archive.cloudera.com/cdh5/parcels/5.9.0/CDH-5.9.0-1.cdh5.9.0.p0.23-el7.parcel
+https://archive.cloudera.com/cdh5/parcels/5.9.0/CDH-5.9.0-1.cdh5.9.0.p0.23-el7.parcel.sha1
+https://archive.cloudera.com/cdh5/parcels/5.9.0/CDH-5.9.0-1.cdh5.9.0.p0.23-trusty.parcel
+https://archive.cloudera.com/cdh5/parcels/5.9.0/CDH-5.9.0-1.cdh5.9.0.p0.23-trusty.parcel.sha1
+https://archive.cloudera.com/cdh5/parcels/5.9.0/manifest.json
