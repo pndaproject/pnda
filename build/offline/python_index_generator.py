@@ -10,8 +10,8 @@ from os import listdir
 from os.path import isfile, join
 
 def main():
-    simple_path="./simple"
-    package_path="./packages"
+    simple_path=os.environ['MIRROR_OUTPUT']+"/simple"
+    package_path=os.environ['MIRROR_OUTPUT']+"/packages"
     package_list = {}
     # init directory
     if not os.path.exists(simple_path):

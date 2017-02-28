@@ -22,7 +22,7 @@ export MIRROR_OUTPUT=/var/pnda/mirror
 #   apt-get update
 
 export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
-THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ "x$DISTRO" == "xrhel" ]; then
     $THIS_DIR/create_mirror_rpm.sh
@@ -33,3 +33,4 @@ fi
 $THIS_DIR/create_mirror_misc.sh
 $THIS_DIR/create_mirror_cdh.sh
 $THIS_DIR/create_mirror_anaconda.sh
+$THIS_DIR/create_mirror_python.sh
