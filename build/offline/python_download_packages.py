@@ -6,15 +6,13 @@ import re
 import time
 import os
 import subprocess
-from os import listdir
-from os.path import isfile, join
 
 def main():
 
     package_path=os.environ['MIRROR_OUTPUT']+"/packages"
     requirements_path=os.environ['PYTHON_REQ_DIR']
-    requirements_path_py2=requirements_path+"/python-2"
-    requirements_path_py3=requirements_path+"/python-3"
+    file_py2 = open(requirements_path+"/pnda_requirements_py2.txt","r") 
+    file_py3 = open(requirements_path+"/pnda_requirements_py3.txt","r") 
     # init directory
     if not os.path.exists(package_path):
         os.makedirs(package_path)
@@ -24,18 +22,18 @@ def main():
     subprocess.call(["pip2","download","pbr","--no-binary",":all:","--process-dependency-links","-d",package_path])
     subprocess.call(["pip2","download","pip==9.0.1","--no-binary",":all:","--process-dependency-links","-d",package_path])
     subprocess.call(["pip2","download","virtualenv==15.1.0","--no-binary",":all:","--process-dependency-links","-d",package_path])
-    onlyfiles = [f for f in listdir(requirements_path_py2) if isfile(join(requirements_path_py2, f))]
-    for afile in onlyfiles:
-        subprocess.call(["pip2","download","-r",requirements_path_py2+"/"+afile,"--no-binary",":all:","--process-dependency-links","-d",package_path])
+    python_deps = (file_py2.read()).rstrip().split('\n')
+    for one_dep in python_deps:
+        subprocess.call(["pip2","download",one_dep,"--no-binary",":all:","--process-dependency-links","-d",package_path])
 
     # download python 3 libs
     subprocess.call(["pip3","download","setuptools","--only-binary=:all:","-d",package_path])
     subprocess.call(["pip3","download","pbr","--no-binary",":all:","--process-dependency-links","-d",package_path])
     subprocess.call(["pip3","download","pip==9.0.1","--no-binary",":all:","--process-dependency-links","-d",package_path])
     subprocess.call(["pip3","download","virtualenv==15.1.0","--no-binary",":all:","--process-dependency-links","-d",package_path])
-    onlyfiles = [f for f in listdir(requirements_path_py3) if isfile(join(requirements_path_py3, f))]
-    for afile in onlyfiles:
-        subprocess.call(["pip3","download","-r",requirements_path_py3+"/"+afile,"--process-dependency-links","-d",package_path])
+    python_deps = (file_py3.read()).rstrip().split('\n')
+    for one_dep in python_deps:
+        subprocess.call(["pip3","download",one_dep,"--process-dependency-links","-d",package_path])
 
 if __name__ == '__main__':
     main()
