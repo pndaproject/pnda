@@ -1,7 +1,7 @@
 # OPTIONS
 
 # MIRROR_OUTPUT: Root folder to download files to for mirroring (no trailing slash)
-MIRROR_OUTPUT=/var/pnda/mirror
+export MIRROR_OUTPUT=/var/pnda/mirror
 
 # MIRROR USAGE:
 
@@ -21,14 +21,15 @@ MIRROR_OUTPUT=/var/pnda/mirror
 #   wget -O - http://x.x.x.x/debs/pnda.gpg.key | apt-key add -
 #   apt-get update
 
-DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
+export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
+THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ "x$DISTRO" == "xrhel" ]; then
-    create_mirror_rpm.sh
+    $THIS_DIR/create_mirror_rpm.sh
 elif [ "x$DISTRO" == "xubuntu" ]; then
-    create_mirror_deb.sh
+    $THIS_DIR/create_mirror_deb.sh
 fi
 
-create_mirror_misc.sh
-create_mirror_cdh.sh
-create_mirror_anaconda.sh
+$THIS_DIR/create_mirror_misc.sh
+$THIS_DIR/create_mirror_cdh.sh
+$THIS_DIR/create_mirror_anaconda.sh
