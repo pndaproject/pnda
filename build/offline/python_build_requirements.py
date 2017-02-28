@@ -16,21 +16,17 @@ from github3 import login
 import os
 
 def main():
+
+    requirements_path=os.environ['PYTHON_REQ_DIR']
+    if not os.path.exists(requirements_path): 
+        os.makedirs(requirements_path)
+    file_py2 = open(requirements_path+"/pnda_requirements_py2.txt","w") 
+    file_py3 = open(requirements_path+"/pnda_requirements_py3.txt","w") 
     pnda_deps_py2 = {}
     pnda_deps_py3 = {}
     py3_list = ["salt/jupyter"]
     exclude_list = ["test_requirements.txt"]
-
-    requirements_path="./requirements"
-    if not os.path.exists(requirements_path): 
-        os.makedirs(requirements_path)
-    requirements_path_py2=requirements_path+"/python-2"
-    if not os.path.exists(requirements_path_py2): 
-        os.makedirs(requirements_path_py2)
-    requirements_path_py3=requirements_path+"/python-3"
-    if not os.path.exists(requirements_path_py3): 
-        os.makedirs(requirements_path_py3)
-
+   
     # put your user and token here:
     gh = login('XXXXXXX', token='XXXXXXX')
     query='filename:requirements*.txt repo:pndaproject/platform-salt '+\
@@ -63,15 +59,11 @@ def main():
             if any(py3_str in path for py3_str in py3_list):
                 print full_name + "with path "+path+" is python 3"
                 pnda_deps = pnda_deps_py3
-                file = open(requirements_path_py3+"/"+str(i)+"-"+name,"w")
-                file.write(r.text)
-                file.close
+                file = file_py3
             else:
                 print full_name + "with path "+path+" is python 2"
                 pnda_deps = pnda_deps_py2
-                file = open(requirements_path_py2+"/"+str(i)+"-"+name,"w")
-                file.write(r.text)
-                file.close 
+                file = file_py2
 
             for one_dep in python_deps:
                 one_dep_tab = one_dep.split("==")
@@ -81,10 +73,13 @@ def main():
                         if version != one_dep_tab[1]:
                             print "WARNING on "+one_dep+" : already having version "+version+" for "+one_dep_tab[0]
                             pnda_deps[one_dep_tab[0]]=one_dep_tab[1]
+                            file.write(one_dep+'\n')
                     else:
                         pnda_deps[one_dep_tab[0]]=one_dep_tab[1]
+                        file.write(one_dep+'\n')
                 else:
                     print "WARNING on "+one_dep+" missing version"
-
+    file_py2.close()
+    file_py3.close() 
 if __name__ == '__main__':
     main()

@@ -1,3 +1,0 @@
-cm-api==14.0.0
-pexpect==4.2.1
-ptyprocess==0.5.1

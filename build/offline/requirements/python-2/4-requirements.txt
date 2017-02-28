@@ -1,4 +1,0 @@
-avro==1.8.1
-kafka-python==0.9.5
-kazoo==2.2.1
-six==1.10.0

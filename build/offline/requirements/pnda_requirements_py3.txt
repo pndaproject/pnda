@@ -34,3 +34,12 @@ tornado==4.4.2
 traitlets==4.3.1
 wcwidth==0.1.7
 widgetsnbextension==1.2.6
+alembic==0.8.9
+jupyterhub==0.7.0
+Mako==1.0.6
+pamela==0.3.0
+python-editor==1.0.3
+requests==2.12.4
+SQLAlchemy==1.1.4
+https://github.com/klyr/jupyter-spark/releases/download/0.3.0-patch/jupyter-spark-0.3.0-patch.tar.gz
+lxml==3.6.4

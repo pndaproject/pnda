@@ -1,5 +1,0 @@
-cm-api==14.0.0
-pywebhdfs==0.4.1
-requests==2.12.4
-six==1.10.0
-spur==0.3.20
