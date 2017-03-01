@@ -10,8 +10,8 @@ from os import listdir
 from os.path import isfile, join
 
 def main():
-    simple_path=os.environ['MIRROR_OUTPUT']+"/simple"
-    package_path=os.environ['MIRROR_OUTPUT']+"/packages"
+    simple_path=os.environ['MIRROR_OUTPUT']+"/mirror_python/simple"
+    package_path=os.environ['MIRROR_OUTPUT']+"/mirror_python/packages"
     package_list = {}
     # init directory
     if not os.path.exists(simple_path):
@@ -51,7 +51,7 @@ def main():
             package_list[package_name]=""
 
         package_list[package_name] = package_list[package_name]+ \
-            '<a href="/'+package_path+'/'+afile+'#md5='+md5sum+'">'+afile+'</a><br>'
+            '<a href="../../packages'+'/'+afile+'#md5='+md5sum+'">'+afile+'</a><br>'
 
     for package_name,links in package_list.items():
         str_package='<html><head><title>Links for '+package_name+'</title></head>' + \

@@ -1,6 +1,6 @@
 RPM_PACKAGE_LIST=$(<pnda-rpm-package-dependencies.txt)
 
-RPM_REPO_DIR=$MIRROR_OUTPUT/rpms
+RPM_REPO_DIR=$MIRROR_OUTPUT/mirror_rpm
 RPM_EXTRAS=rhui-REGION-rhel-server-extras
 RPM_OPTIONAL=rhui-REGION-rhel-server-optional
 RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm

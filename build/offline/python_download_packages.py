@@ -9,7 +9,7 @@ import subprocess
 
 def main():
 
-    package_path=os.environ['MIRROR_OUTPUT']+"/packages"
+    package_path=os.environ['MIRROR_OUTPUT']+"/mirror_python/packages"
     requirements_path=os.environ['PYTHON_REQ_DIR']
     file_py2 = open(requirements_path+"/pnda_requirements_py2.txt","r") 
     file_py3 = open(requirements_path+"/pnda_requirements_py3.txt","r") 
