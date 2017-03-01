@@ -1,7 +1,7 @@
 # OPTIONS
 
 # MIRROR_OUTPUT: Root folder to download files to for mirroring (no trailing slash)
-export MIRROR_OUTPUT=/var/pnda/mirror
+export MIRROR_OUTPUT=mirror-dist
 
 # MIRROR USAGE:
 
