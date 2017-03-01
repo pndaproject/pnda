@@ -1,7 +1,7 @@
 DEB_PACKAGE_LIST=$(<pnda-deb-package-dependencies.txt)
 
 export DEBIAN_FRONTEND=noninteractive
-DEB_REPO_DIR=$MIRROR_OUTPUT/debs
+DEB_REPO_DIR=$MIRROR_OUTPUT/mirror_deb
 
 echo 'deb [arch=amd64] https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/ trusty-cm5.9.0 contrib' > /etc/apt/sources.list.d/cloudera-manager.list
 curl -L 'https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/archive.key' | apt-key add -

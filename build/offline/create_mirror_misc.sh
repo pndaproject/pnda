@@ -1,6 +1,6 @@
 STATIC_FILE_LIST=$(<pnda-static-file-dependencies.txt)
 
-STATIC_FILE_DIR=$MIRROR_OUTPUT/misc
+STATIC_FILE_DIR=$MIRROR_OUTPUT/mirror_misc
 mkdir -p $STATIC_FILE_DIR
 cd $STATIC_FILE_DIR
 echo "$STATIC_FILE_LIST" | while read STATIC_FILE
