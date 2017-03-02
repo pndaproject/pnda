@@ -117,28 +117,28 @@ fi
 
 # Python pip libraries used in builds and tests
 #
-pip install spur==0.3.12
-pip install starbase==0.3.2
-pip install happybase==1.0.0
-pip install pyhs2==0.6.0
-pip install pywebhdfs==0.4.0
-pip install PyHDFS==0.1.2
-pip install cm-api==8.0.0
-pip install shyaml==0.4.1
-pip install nose==1.3.7
-pip install mock==2.0.0
-pip install pylint==1.6.4
-pip install python-swiftclient==3.1.0
-pip install tornado-cors==0.6.0
-pip install Tornado-JSON==1.2.2
-pip install boto==2.40.0
-pip install setuptools==28.8.0 --upgrade
-pip install impyla==0.13.8
-pip install eventlet==0.19.0
-pip install kazoo==2.2.1
-pip install avro==1.8.1
-pip install kafka-python==0.9.4
-pip install prettytable==0.7.2
+pip2 install spur==0.3.12
+pip2 install starbase==0.3.2
+pip2 install happybase==1.0.0
+pip2 install pyhs2==0.6.0
+pip2 install pywebhdfs==0.4.0
+pip2 install PyHDFS==0.1.2
+pip2 install cm-api==8.0.0
+pip2 install shyaml==0.4.1
+pip2 install nose==1.3.7
+pip2 install mock==2.0.0
+pip2 install pylint==1.6.4
+pip2 install python-swiftclient==3.1.0
+pip2 install tornado-cors==0.6.0
+pip2 install Tornado-JSON==1.2.2
+pip2 install boto==2.40.0
+pip2 install setuptools==28.8.0 --upgrade
+pip2 install impyla==0.13.8
+pip2 install eventlet==0.19.0
+pip2 install kazoo==2.2.1
+pip2 install avro==1.8.1
+pip2 install kafka-python==0.9.4
+pip2 install prettytable==0.7.2
 
 # grunt-cli needs to be installed globally
 
