@@ -1,3 +1,4 @@
+#!/bin/bash -v
 CLOUDERA_REPO_FILE_LIST=$(<pnda-cdh-repo-cloudera.txt)
 
 CLOUDERA_REPO_FILE_DIR=$MIRROR_OUTPUT/mirror_cloudera

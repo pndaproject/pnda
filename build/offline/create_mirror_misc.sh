@@ -1,3 +1,4 @@
+#!/bin/bash -v
 STATIC_FILE_LIST=$(<pnda-static-file-dependencies.txt)
 
 STATIC_FILE_DIR=$MIRROR_OUTPUT/mirror_misc

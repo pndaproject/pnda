@@ -1,3 +1,4 @@
+#!/bin/bash -v
 RPM_PACKAGE_LIST=$(<pnda-rpm-package-dependencies.txt)
 
 RPM_REPO_DIR=$MIRROR_OUTPUT/mirror_rpm

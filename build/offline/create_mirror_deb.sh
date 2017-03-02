@@ -1,3 +1,4 @@
+#!/bin/bash -v
 DEB_PACKAGE_LIST=$(<pnda-deb-package-dependencies.txt)
 
 export DEBIAN_FRONTEND=noninteractive

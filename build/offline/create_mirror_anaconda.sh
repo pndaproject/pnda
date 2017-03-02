@@ -1,3 +1,4 @@
+#!/bin/bash -v
 ANACONDA_REPO_FILE_LIST=$(<pnda-cdh-repo-anaconda.txt)
 
 ANACONDA_REPO_FILE_DIR=$MIRROR_OUTPUT/mirror_anaconda

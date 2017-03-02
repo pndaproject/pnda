@@ -1,3 +1,4 @@
+#!/bin/bash -v
 export PYTHON_REQ_DIR=$THIS_DIR/requirements
 
 if [ "x$DISTRO" == "xubuntu" ]; then
