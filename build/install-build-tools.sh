@@ -23,6 +23,8 @@ SPARK_VERSION='1.6.0'
 # Many Hadoop unit test tools depend on being able to correctly resolve the host to an address.
 # Make sure the result of running hostname is present in the /etc/hosts file
 #
+export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
+
 echo "Checking system config"
 
 if [[ -z $(grep `hostname` /etc/hosts) ]]; then
@@ -32,6 +34,11 @@ if [[ -z $(grep `hostname` /etc/hosts) ]]; then
     echo "127.0.1.1 ${HOST}"
     exit -1
 fi
+
+if [[ "${DISTRO}" == "rhel" ]]; then
+    yum install -y wget
+fi
+
 
 # Java 1.8.0_74
 #
@@ -62,12 +69,41 @@ fi
 
 [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_74" ]] && exit -1
 
-# apt-get packages required to carry out builds and tests
+# Packages required to carry out builds and tests
 #
-echo "Dependency check: apt-get packages"
+echo "Dependency check: packages"
 
-apt-get update -y
-apt-get install -y python-dev \
+if [[ "${DISTRO}" == "rhel" ]]; then
+
+    RPM_EXTRAS=rhui-REGION-rhel-server-extras
+    RPM_OPTIONAL=rhui-REGION-rhel-server-optional
+    RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    NODE_REPO=https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
+    
+    yum install -y $RPM_EPEL
+    yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
+
+    RPM_TMP=$(mktemp || bail)
+    wget -O ${RPM_TMP} ${NODE_REPO}
+    rpm -i --nosignature --force ${RPM_TMP}
+
+    yum install -y python-devel \
+                   cyrus-sasl-devel \
+                   gcc \
+                   gcc-c++ \
+                   git \
+                   nodejs \
+                   bc \
+                   curl \
+                   python-setuptools \
+                   python-devel \
+                   python2-pip \                  
+                   libaio 
+
+elif [[ "${DISTRO}" == "ubuntu" ]]; then
+
+    apt-get update -y
+    apt-get install -y python-dev \
                    libsasl2-dev \
                    gcc \
                    git \
@@ -79,6 +115,7 @@ apt-get install -y python-dev \
                    apt-transport-https \
                    python-pip \
                    libaio1 # Needed for Gobblin
+fi
 
 if [ ! -f /usr/bin/node ]; then
         echo " WARN: Missing /usr/bin/node, creating link"
@@ -89,14 +126,22 @@ fi
 # 
 echo "Dependency check: sbt"
 
-if [ ! -f /etc/apt/sources.list.d/sbt.list ]; then
+if [[ "${DISTRO}" == "rhel" ]]; then
+
+    wget -qO- https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
+    sudo yum install sbt -y
+
+elif [[ "${DISTRO}" == "ubuntu" ]]; then
+
+    if [ ! -f /etc/apt/sources.list.d/sbt.list ]; then
         echo "WARN: Unable to find sbt, going to install it"
         echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
         apt-get update -y
         apt-get install sbt -y
-else
-    echo "sbt.list found in /etc/apt/sources.list.d"
+    else
+        echo "sbt.list found in /etc/apt/sources.list.d"
+    fi
 fi
 
 # Maven 3.0.5
