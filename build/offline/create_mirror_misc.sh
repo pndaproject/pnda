@@ -1,8 +1,13 @@
 #!/bin/bash -v
-STATIC_FILE_LIST=$(<pnda-static-file-dependencies.txt)
-PLUGIN_LIST=$(<pnda-logstash-plugin-dependencies.txt)
+export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
-STATIC_FILE_DIR=$MIRROR_OUTPUT/mirror_misc
+[[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
+[[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
+
+STATIC_FILE_LIST=$(<${MIRROR_BUILD_DIR}/pnda-static-file-dependencies.txt)
+PLUGIN_LIST=$(<${MIRROR_BUILD_DIR}/pnda-logstash-plugin-dependencies.txt)
+
+STATIC_FILE_DIR=$MIRROR_OUTPUT_DIR/mirror_misc
 mkdir -p $STATIC_FILE_DIR
 cd $STATIC_FILE_DIR
 echo "$STATIC_FILE_LIST" | while read STATIC_FILE
