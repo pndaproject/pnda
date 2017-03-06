@@ -1,8 +1,13 @@
 #!/bin/bash -v
-DEB_PACKAGE_LIST=$(<pnda-deb-package-dependencies.txt)
+export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
+
+[[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
+[[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
+
+DEB_PACKAGE_LIST=$(<${MIRROR_BUILD_DIR}/pnda-deb-package-dependencies.txt)
 
 export DEBIAN_FRONTEND=noninteractive
-DEB_REPO_DIR=$MIRROR_OUTPUT/mirror_deb
+DEB_REPO_DIR=$MIRROR_OUTPUT_DIR/mirror_deb
 
 echo 'deb [arch=amd64] https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/ trusty-cm5.9.0 contrib' > /etc/apt/sources.list.d/cloudera-manager.list
 curl -L 'https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/archive.key' | apt-key add -

@@ -1,7 +1,12 @@
 #!/bin/bash -v
-ANACONDA_REPO_FILE_LIST=$(<pnda-cdh-repo-anaconda.txt)
+export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
-ANACONDA_REPO_FILE_DIR=$MIRROR_OUTPUT/mirror_anaconda
+[[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
+[[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
+
+ANACONDA_REPO_FILE_LIST=$(<${MIRROR_BUILD_DIR}/pnda-cdh-repo-anaconda.txt)
+
+ANACONDA_REPO_FILE_DIR=$MIRROR_OUTPUT_DIR/mirror_anaconda
 mkdir -p $ANACONDA_REPO_FILE_DIR
 cd $ANACONDA_REPO_FILE_DIR
 echo "$ANACONDA_REPO_FILE_LIST" | while read ANACONDA_REPO_FILE
