@@ -9,9 +9,6 @@ DEB_PACKAGE_LIST=$(<${MIRROR_BUILD_DIR}/pnda-deb-package-dependencies.txt)
 export DEBIAN_FRONTEND=noninteractive
 DEB_REPO_DIR=$MIRROR_OUTPUT_DIR/mirror_deb
 
-apt-get -y update
-apt-get -y install apt-transport-https curl dpkg-dev debfoster rng-tools
-
 echo 'deb [arch=amd64] https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/ trusty-cm5.9.0 contrib' > /etc/apt/sources.list.d/cloudera-manager.list
 curl -L 'https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/archive.key' | apt-key add -
 
@@ -20,7 +17,9 @@ curl -L 'http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2015.8.11/SALT
 
 echo 'deb [arch=amd64] https://deb.nodesource.com/node_6.x trusty main' > /etc/apt/sources.list.d/nodesource.list
 curl -L 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key' | apt-key add -
+
 apt-get -y update
+apt-get -y install apt-transport-https curl dpkg-dev debfoster rng-tools
 
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password your_password'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password your_password'
