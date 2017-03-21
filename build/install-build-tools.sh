@@ -98,9 +98,12 @@ if [[ "${DISTRO}" == "rhel" ]]; then
                    python-setuptools \
                    python-devel \
                    python2-pip \                  
-                   libaio 
+                   libaio # Needed for Gobblin
 
 elif [[ "${DISTRO}" == "ubuntu" ]]; then
+
+    echo 'deb [arch=amd64] https://deb.nodesource.com/node_6.x trusty main' > /etc/apt/sources.list.d/nodesource.list
+    curl -L 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key' | apt-key add -
 
     apt-get update -y
     apt-get install -y python-dev \
@@ -108,7 +111,6 @@ elif [[ "${DISTRO}" == "ubuntu" ]]; then
                    gcc \
                    git \
                    nodejs \
-                   npm \
                    bc \
                    curl \
                    python-setuptools \
