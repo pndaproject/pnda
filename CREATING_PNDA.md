@@ -67,13 +67,13 @@ The client machine on which these templates are located must have access to the 
 
 Acquire the [https://github.com/pndaproject/platform-salt](https://github.com/pndaproject/platform-salt) repository.
 
-### Heat
+#### Heat
 
 The machine on which this repository is located must have connectivity with the PNDA cluster being provisioned. 
 
 For example, if the repository is placed on a machine called ```pnda-client``` then the PNDA cluster being provisioned must be able to access the repository using a URI such as ```ssh://user@pnda-client:/home/user/platform-salt```. Please refer to the documentation [here](https://github.com/pndaproject/pnda-heat-templates) for details of how to configure the correct SSH key for git to use during provisioning.
 
-### AWS
+#### AWS
 
 Place the SaltStack formulas repository on the client machine alongside the templates and use the ```PLATFORM_SALT_LOCAL``` option as documented [here](https://github.com/pndaproject/pnda-aws-templates).
 
