@@ -1,61 +1,68 @@
-# Offline mirrors and indexes
+# PNDA Mirror 
 
-## Mirrors
-Use the script create.sh in order to generate all the required mirrors needed during PNDA provisioning. This script is based on pnda-deb-package-dependencies.txt for Ubuntu and pnda-rpm-package-dependencies.txt for RHEL.
+Use these tools to download the 3rd party dependencies that PNDA uses during the orchestration process. 
+
+## Quick Start
+
+To simply run the entire mirror creation process -
 
 ```sh
+sudo su
 ./create_mirror.sh
 ```
 
-## Python mirror
+Note that .deb or .rpm dependencies will be created based on the host on which the script is run. Therefore, if the intention is to create PNDA on RHEL instances for example, please use a RHEL host to create the mirror.
 
-### Requirements
-You will need python 2.7 and python 3.4 with also pip2 / pip3 version 9.0.1+ & github3 for using GitHub API:
-```sh
-sudo -i
-# Ubuntu only, already install in RHEL
-apt-get install libffi-dev
+This takes about 10 minutes to run and the output will be available in a directory named ```mirror-dist```.
 
-wget https://bootstrap.pypa.io/get-pip.py
-python get-pip.py
-pip2 install setuptools==34.2.0
-pip2 install github3.py
-apt-get install python3-pip
-easy_install3 pip==9.0.1
-pip3 install setuptools==34.2.0
-``` 
+## Mirror Modules
 
-### Build the PNDA global requirements file
-Run the following command in order to get all the requirements.txt from the pndaproject repositories. This step requires generating toekn for accessing GitHub API. See [Personal API tokens](https://github.com/blog/1509-personal-api-tokens0 and change XXXXXXX user / token in the "python_build_requirements.py" before running it:
-```sh
-vi python_build_requirements.py
-python python_build_requirements.py
+The different parts of the mirror can be created separately if required. The scripts to do this are -
+
+```
+create_mirror_deb.sh
+create_mirror_rpm.sh
+create_mirror_misc.sh
+create_mirror_python.sh
+create_mirror_anaconda.sh
+create_mirror_cdh.sh
 ```
 
-this will download all requirement files in the python-2 and python-3 requirements folder
+Note that, as above, the deb and rpm scripts are for use on Ubuntu or RHEL hosts respectively.
 
-### Download python packages
-Once you have all requirement files, run:
-```sh
-python python_download_packages.py
+Each script creates it's output in a directory named for the respective mirror type -
+
+```
+mirror_deb
+mirror_rpm
+mirror_misc
+mirror_python
+mirror_anaconda
+mirror_cloudera
 ```
 
-it will download all the packages in the packages directory ./packages by default
+## Stage on HTTP server
 
-### Genrate the pip index
-To generate all the required index in the simple directory run:
+Create an ordinary HTTP server in the target environment or identify an existing server. The server must have connectivity with the PNDA cluster being provisioned. See [these tips](https://github.com/pndaproject/pnda/blob/develop/build/docs/EXAMPLES.md) for rapidly creating an HTTP server using a number of different approaches.
 
-```sh
-python python_index_generator.py
+Next, copy the contents of ```mirror-dist``` to the document root of the HTTP server.
+
+The final directory layout should resemble the following -
+
+```
+document-root
+│
+├── mirror_anaconda
+│   ├── Anaconda-4.0.0-el7.parcel
+│   ├── etc
+│
+├── mirror_deb
+│   ├── acl_2.2.52-1_amd64.deb
+│   ├── etc
+│
+├── etc
+
+            
 ```
 
-### Move resources to the HTTP Server
-So then you just need to put this 2 folders in your HTTP server such as for example:
-```sh
-cp simple packages /var/www/html
-```
-and then, on your pnda_env, you need to specify:
-PNDA_MIRROR: http://x.x.x.x
-
-so that the pip index URL will be generated as $PNDA_MIRROR/simple
 
