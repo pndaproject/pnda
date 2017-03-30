@@ -1,9 +1,7 @@
+MySQL-python
+acl
 apr
 apr-util
-httpd-tools
-mailcap
-httpd
-acl
 at
 cloudera-manager-agent
 cloudera-manager-daemons
@@ -14,10 +12,12 @@ gcc-c++
 git
 glibc-devel
 gnuplot
+httpd
+httpd-tools
 libffi-devel
 libgsasl-devel
+mailcap
 mysql-community-server
-MySQL-python
 nginx
 nmap-ncat
 nodejs

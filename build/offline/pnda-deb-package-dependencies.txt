@@ -27,10 +27,10 @@ python-pip
 python3-dev
 python3-pip
 redis-server
-snappy
-sshfs
 salt-master
 salt-minion
+snappy
+sshfs
 unzip
 uwsgi
 uwsgi-plugin-python
