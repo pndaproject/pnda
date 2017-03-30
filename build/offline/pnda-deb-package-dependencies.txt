@@ -13,7 +13,6 @@ libapache2-mod-wsgi
 libc6-dev
 libcairo2-dev
 libffi-dev
-libffi-dev
 libmysql-java
 libsasl2-dev
 libsodium13
