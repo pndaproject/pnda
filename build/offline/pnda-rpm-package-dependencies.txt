@@ -12,6 +12,7 @@ gcc-c++
 git
 glibc-devel
 gnuplot
+graphite-api
 httpd
 httpd-tools
 libffi-devel
