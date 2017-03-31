@@ -13,7 +13,6 @@ libapache2-mod-wsgi
 libc6-dev
 libcairo2-dev
 libffi-dev
-libffi-dev
 libmysql-java
 libsasl2-dev
 libsodium13
@@ -27,10 +26,10 @@ python-pip
 python3-dev
 python3-pip
 redis-server
-snappy
-sshfs
 salt-master
 salt-minion
+snappy
+sshfs
 unzip
 uwsgi
 uwsgi-plugin-python
