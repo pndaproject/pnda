@@ -50,7 +50,6 @@ oslo.serialization==2.15.0
 oslo.utils==3.21.0
 paramiko==2.1.1
 pbr==1.10.0
-pbr==1.10.0
 pbr==2.0.0
 pexpect==4.2.1
 pip==9.0.1
