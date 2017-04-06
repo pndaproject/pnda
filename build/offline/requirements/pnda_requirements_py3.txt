@@ -2,6 +2,7 @@ backports-abc==0.5
 bleach==1.5.0
 decorator==4.0.10
 entrypoints==0.2.2
+webencodings==0.5
 html5lib==0.9999999
 ipykernel==4.5.2
 ipython==5.1.0
@@ -43,4 +44,3 @@ SQLAlchemy==1.1.4
 https://github.com/klyr/jupyter-spark/releases/download/0.3.0-patch/jupyter-spark-0.3.0-patch.tar.gz
 lxml==3.6.4
 ipywidgets==6.0.0
-webencodings==0.5
