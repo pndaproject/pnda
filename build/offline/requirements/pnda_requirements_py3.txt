@@ -23,7 +23,7 @@ jsonschema==2.6.0
 jupyter-client==4.4.0
 jupyter-client==5.0.1
 jupyter-console==5.0.0
-jupyter-console==5.0.1
+jupyter-console==5.1.0
 jupyter-core==4.2.1
 jupyter-core==4.3.0
 jupyter==1.0.0
