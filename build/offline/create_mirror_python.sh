@@ -9,6 +9,7 @@ export PYTHON_REQ_DIR=$MIRROR_BUILD_DIR/requirements
 if [ "x$DISTRO" == "xrhel" ]; then
     yum install -y libffi-devel python34-pip gcc
 elif [ "x$DISTRO" == "xubuntu" ]; then
+    apt-get -y update
     apt-get install -y libffi-dev python3-pip gcc
 fi
 
