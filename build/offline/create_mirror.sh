@@ -1,4 +1,7 @@
 #!/bin/bash -v
+
+set -e
+
 # MIRROR USAGE:
 
 # To use the rpm mirror:
