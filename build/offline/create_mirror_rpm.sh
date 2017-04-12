@@ -4,6 +4,12 @@ set -e
 
 . create_mirror_common.sh
 
+if subscription-manager version|grep -q 'This system is currently not registered'; then
+    echo "You are not running on a registered RedHat Server"
+    echo "Please read: https://access.redhat.com/solutions/253273"
+    exit 1
+fi
+
 RPM_PACKAGE_LIST=$(<${MIRROR_BUILD_DIR}/pnda-rpm-package-dependencies.txt)
 
 RPM_REPO_DIR=$MIRROR_OUTPUT_DIR/mirror_rpm
