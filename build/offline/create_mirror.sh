@@ -2,6 +2,8 @@
 
 set -e
 
+. create_mirror_common.sh
+
 # MIRROR USAGE:
 
 # To use the rpm mirror:
@@ -22,10 +24,6 @@ set -e
 
 # MIRROR_BUILD_DIR: Base directory containing mirror creation scripts 
 # MIRROR_OUTPUT_DIR: Root folder to download files to for mirroring (no trailing slash)
-export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
-
-[[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
-[[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
 
 if [ "x$DISTRO" == "xrhel" ]; then
     $MIRROR_BUILD_DIR/create_mirror_rpm.sh

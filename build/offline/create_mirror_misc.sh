@@ -2,14 +2,11 @@
 
 set -e
 
-export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
+. create_mirror_common.sh
 
 if [[ "${DISTRO}" == "ubuntu" ]]; then
     apt-get install -y apt-transport-https curl
 fi
-
-[[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
-[[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
 
 STATIC_FILE_LIST=$(<${MIRROR_BUILD_DIR}/pnda-static-file-dependencies.txt)
 PLUGIN_LIST=$(<${MIRROR_BUILD_DIR}/pnda-logstash-plugin-dependencies.txt)
