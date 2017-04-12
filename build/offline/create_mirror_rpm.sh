@@ -38,10 +38,10 @@ cd $RPM_REPO_DIR
 cp /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL $RPM_REPO_DIR
 cp /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 $RPM_REPO_DIR
 cp /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release $RPM_REPO_DIR
-curl -L -O -J $MY_SQL_REPO_KEY
-curl -L -O -J $CLOUDERA_MANAGER_REPO_KEY
-curl -L -O -J $SALT_REPO_KEY
-curl -L -O -J $SALT_REPO_KEY2
+download $MY_SQL_REPO_KEY
+download $CLOUDERA_MANAGER_REPO_KEY
+download $SALT_REPO_KEY
+download $SALT_REPO_KEY2
 
 #TODO yumdownloader doesn't always seem to download the full set of packages, for instance if git is installed, it won't download perl
 # packages correctly maybe because git already installed them. repotrack is meant to be better but I couldn't get that working.

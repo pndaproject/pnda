@@ -13,7 +13,7 @@ elif [ "x$DISTRO" == "xubuntu" ]; then
     apt-get install -y libffi-dev python3-pip gcc
 fi
 
-curl -LOJ https://bootstrap.pypa.io/get-pip.py
+download https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
 sudo pip2 install setuptools==34.2.0
 sudo pip2 install github3.py

@@ -17,7 +17,7 @@ cd $STATIC_FILE_DIR
 echo "$STATIC_FILE_LIST" | while read STATIC_FILE
 do
     echo $STATIC_FILE
-    curl -L -O -J $STATIC_FILE
+    download $STATIC_FILE
 done
 
 if [ "x$DISTRO" == "xrhel" ]; then
@@ -27,7 +27,7 @@ elif [ "x$DISTRO" == "xubuntu" ]; then
 fi
 
 cd /tmp
-curl -LOJ https://download.elastic.co/logstash/logstash/logstash-1.5.4.tar.gz
+download https://download.elastic.co/logstash/logstash/logstash-1.5.4.tar.gz
 tar zxf logstash-1.5.4.tar.gz
 rm logstash-1.5.4.tar.gz
 cd logstash-1.5.4
