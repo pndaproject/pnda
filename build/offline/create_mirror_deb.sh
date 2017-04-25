@@ -1,10 +1,13 @@
 #!/bin/bash -v
-export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
-[[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
-[[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
+set -e
+
+. create_mirror_common.sh
 
 DEB_PACKAGE_LIST=$(<${MIRROR_BUILD_DIR}/pnda-deb-package-dependencies.txt)
+
+apt-get -y update
+apt-get -y install apt-transport-https curl dpkg-dev debfoster rng-tools
 
 export DEBIAN_FRONTEND=noninteractive
 DEB_REPO_DIR=$MIRROR_OUTPUT_DIR/mirror_deb
@@ -17,9 +20,6 @@ curl -L 'http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2015.8.11/SALT
 
 echo 'deb [arch=amd64] https://deb.nodesource.com/node_6.x trusty main' > /etc/apt/sources.list.d/nodesource.list
 curl -L 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key' | apt-key add -
-
-apt-get -y update
-apt-get -y install apt-transport-https curl dpkg-dev debfoster rng-tools
 
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password your_password'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password your_password'

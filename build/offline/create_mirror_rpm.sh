@@ -1,8 +1,14 @@
 #!/bin/bash -v
-export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
-[[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
-[[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
+set -e
+
+. create_mirror_common.sh
+
+if subscription-manager version|grep -q 'This system is currently not registered'; then
+    echo "You are not running on a registered RedHat Server"
+    echo "Please read: https://access.redhat.com/solutions/253273"
+    exit 1
+fi
 
 RPM_PACKAGE_LIST=$(<${MIRROR_BUILD_DIR}/pnda-rpm-package-dependencies.txt)
 
@@ -38,10 +44,10 @@ cd $RPM_REPO_DIR
 cp /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL $RPM_REPO_DIR
 cp /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 $RPM_REPO_DIR
 cp /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release $RPM_REPO_DIR
-curl -L -O -J $MY_SQL_REPO_KEY
-curl -L -O -J $CLOUDERA_MANAGER_REPO_KEY
-curl -L -O -J $SALT_REPO_KEY
-curl -L -O -J $SALT_REPO_KEY2
+download $MY_SQL_REPO_KEY
+download $CLOUDERA_MANAGER_REPO_KEY
+download $SALT_REPO_KEY
+download $SALT_REPO_KEY2
 
 #TODO yumdownloader doesn't always seem to download the full set of packages, for instance if git is installed, it won't download perl
 # packages correctly maybe because git already installed them. repotrack is meant to be better but I couldn't get that working.

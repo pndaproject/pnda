@@ -43,7 +43,7 @@ For example
 
 ```sh
 cd pnda
-./build.sh RELEASE release/3.2
+./build-pnda.sh RELEASE release/3.2
 ```
 
 #### Build master PNDA components & upstream projects at release X
