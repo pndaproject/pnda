@@ -31,7 +31,9 @@ cd $DEB_REPO_DIR
 apt-get download $DEB_PACKAGE_LIST
 for DEB_PACKAGE in $DEB_PACKAGE_LIST
 do
-    apt-get download $(debfoster -d $DEB_PACKAGE | grep '^ ')
+	DEBP=(${DEB_PACKAGE//=/ })
+	echo "managing sub deps for $DEBP"
+    apt-get download $(debfoster -d $DEBP | grep '^ ')
 done
 
 dpkg-scanpackages . /dev/null | tee Packages | gzip > Packages.gz
