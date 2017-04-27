@@ -31,7 +31,7 @@ python34-pip
 redis
 salt-master
 salt-minion
-snappy
+snappy-devel
 sshfs
 unzip
 uwsgi
