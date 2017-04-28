@@ -2,9 +2,9 @@ acl-2.2.51-12.el7
 apr-1.4.8-3.el7
 apr-util-1.5.2-6.el7
 at-3.1.13-22.el7
-cloudera-manager-agent-5.10.0-1.cm5100.p0.85.el7
-cloudera-manager-daemons-5.10.0-1.cm5100.p0.85.el7
-cloudera-manager-server-5.10.0-1.cm5100.p0.85.el7
+cloudera-manager-agent-5.9.0-1.cm590.p0.249.el7
+cloudera-manager-daemons-5.9.0-1.cm590.p0.249.el7
+cloudera-manager-server-5.9.0-1.cm590.p0.249.el7
 cyrus-sasl-devel-2.1.26-20.el7_2
 fuse-sshfs-2.5-1.el7
 gcc-4.8.5-11.el7
