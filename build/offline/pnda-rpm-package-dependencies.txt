@@ -29,7 +29,7 @@ python34-devel-3.4.5-3.el7
 python34-pip-8.1.2-5.el7
 python-carbon-0.9.15-6.el7
 python-devel-2.7.5-48.el7
-redis-2.8.19-2.el7
+redis-3.2.3-1.el7
 salt-master-2015.8.11-1.el7
 salt-minion-2015.8.11-1.el7
 snappy-devel-1.1.0-3.el7
