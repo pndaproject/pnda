@@ -32,7 +32,7 @@ python-devel-2.7.5-48.el7
 redis-2.8.19-2.el7
 salt-master-2015.8.11-1.el7
 salt-minion-2015.8.11-1.el7
-snappy-1.1.0-3.el7
+snappy-devel-1.1.0-3.el7
 unzip-6.0-16.el7
 uwsgi-2.0.14-6.el7
 wget-1.14-13.el7
