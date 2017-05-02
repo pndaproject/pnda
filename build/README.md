@@ -68,11 +68,6 @@ From here, they can be copied to an ordinary HTTP server as part of your CICD pr
 
 Build scripts for upstream projects are found in the ```upstream-projects``` directory and are invoked automatically as part of the PNDA build process described above. At the time of writing we build one upstream project, Kafka Manager.
 
-## Offline mirrors and indexes
-
-To enable offline installation, you need to build mirrors and indexes.
-Please refer to the [notes in the offline directory](offline/README.md).
-
 
 ## Using the build products
 

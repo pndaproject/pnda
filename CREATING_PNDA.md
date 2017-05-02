@@ -16,19 +16,20 @@ Please refer to the [PNDA guide](https://github.com/pndaproject/pnda-guide/blob/
 
 ## Download packages
 
-Use the [mirror creation process](https://github.com/pndaproject/pnda/tree/develop/build/offline) to download all the 3rd party dependencies that PNDA uses during the orchestration process. 
+To enable offline installation, you need to build mirrors and indexes. Use the [mirror creation process](mirror/README.md) to download all the 3rd party dependencies that PNDA uses during the orchestration process. 
 
 These will be assembled in a directory named ```mirror-dist```.
 
 ## Build PNDA
 
-Use the [PNDA build process](https://github.com/pndaproject/pnda/tree/develop/build) to build all the PNDA packages at the required version.
+Use the [PNDA build process](build/README.md) to build all the PNDA packages at the required version.
 
 These will be assembled in a directory named ```pnda-dist```.
 
-## Create mirror
+## Stage on HTTP server
 
-Create an ordinary HTTP server in the target environment or identify an existing server. The server must have connectivity with the PNDA cluster being provisioned. See [these tips](https://github.com/pndaproject/pnda/blob/develop/build/docs/EXAMPLES.md) for rapidly creating an HTTP server using a number of different approaches.
+Create an ordinary HTTP server in the target environment or identify an existing server. The server must have connectivity with the PNDA cluster being provisioned. See [these tips](build/docs/EXAMPLES.md) for rapidly creating an HTTP server using a number of different approaches.
+.
 
 Next, copy the contents of ```mirror-dist``` and ```pnda-dist``` to the document root of the HTTP server.
 
@@ -50,8 +51,6 @@ document-root
 │   ├── etc
 │
 ├── etc
-
-            
 ```
 
 ## Acquire PNDA orchestration code
@@ -80,4 +79,3 @@ Place the SaltStack formulas repository on the client machine alongside the temp
 ## Create PNDA
 
 Once all the assets are in place, proceed with the PNDA creation instructions found in the [PNDA guide](https://github.com/pndaproject/pnda-guide/blob/develop) and the templates repositories referenced above.
-
