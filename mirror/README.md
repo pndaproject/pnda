@@ -40,26 +40,6 @@ mirror_anaconda
 mirror_cloudera
 ```
 
-## Stage on HTTP server
+## Updating the mirror
 
-Create an ordinary HTTP server in the target environment or identify an existing server. The server must have connectivity with the PNDA cluster being provisioned. See [these tips](https://github.com/pndaproject/pnda/blob/develop/build/docs/EXAMPLES.md) for rapidly creating an HTTP server using a number of different approaches.
-
-Next, copy the contents of ```mirror-dist``` to the document root of the HTTP server.
-
-The final directory layout should resemble the following -
-
-```
-document-root
-│
-├── mirror_anaconda
-│   ├── Anaconda-4.0.0-el7.parcel
-│   ├── etc
-│
-├── mirror_deb
-│   ├── acl_2.2.52-1_amd64.deb
-│   ├── etc
-│
-├── etc
-
-            
-```
+If you want to update an existing mirror with newer packages, use the update scripts in the tools folder and/or the python scripts (see [Python Mirror Maintenance](docs/PYTHON_ADVANCED.md))

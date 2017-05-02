@@ -4,7 +4,7 @@ export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
 
-export PYTHON_REQ_DIR=$MIRROR_BUILD_DIR/requirements
+export PYTHON_REQ_DIR=$MIRROR_BUILD_DIR/dependencies
 
 if [ "x$DISTRO" == "xrhel" ]; then
     yum install -y libffi-devel python34-pip gcc
@@ -21,5 +21,5 @@ sudo easy_install3 pip==9.0.1
 sudo pip3 install setuptools==34.2.0
 sudo rm get-pip.py
 
-python $MIRROR_BUILD_DIR/python_download_packages.py
-python $MIRROR_BUILD_DIR/python_index_generator.py
+python $MIRROR_BUILD_DIR/tools/python_download_packages.py
+python $MIRROR_BUILD_DIR/tools/python_index_generator.py
