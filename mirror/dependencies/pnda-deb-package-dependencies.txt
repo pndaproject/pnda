@@ -18,7 +18,6 @@ libsasl2-dev=2.1.25.dfsg1-17build1
 libsodium13=1.0.3-1
 mysql-server-5.6=5.6.33-0ubuntu0.14.04.1
 nginx=1.4.6-1ubuntu3.7
-nodejs=6.10.2-1nodesource1~trusty1
 ntp=1:4.2.6.p5+dfsg-3ubuntu2.14.04.10
 python-dev=2.7.5-5ubuntu3
 python-mysqldb=1.2.3-2ubuntu1

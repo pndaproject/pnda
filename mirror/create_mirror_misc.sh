@@ -17,8 +17,9 @@ cd $STATIC_FILE_DIR
 echo "$STATIC_FILE_LIST" | while read STATIC_FILE
 do
     echo $STATIC_FILE
-    curl -L -O -J $STATIC_FILE
+    curl -LOJ $STATIC_FILE
 done
+cat SHASUMS256.txt | grep node-v6.10.2-linux-x64.tar.gz > node-v6.10.2-linux-x64.tar.gz.sha1.txt
 
 if [ "x$DISTRO" == "xrhel" ]; then
     yum install -y java-1.7.0-openjdk

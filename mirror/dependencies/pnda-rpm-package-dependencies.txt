@@ -22,7 +22,6 @@ mysql-community-server-5.5.54-2.el7
 MySQL-python-1.2.5-1.el7
 nginx-1.10.2-1.el7
 nmap-ncat-6.40-7.el7
-nodejs-6.10.0-1nodesource.el7.centos
 ntp-4.2.6p5-25.el7_3.1
 python2-pip-8.1.2-5.el7
 python34-devel-3.4.5-3.el7
