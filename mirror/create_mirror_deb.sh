@@ -15,9 +15,6 @@ curl -L 'https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/archive.key' | 
 echo 'deb [arch=amd64] http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2015.8.11/ trusty main' > /etc/apt/sources.list.d/saltstack.list
 curl -L 'http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2015.8.11/SALTSTACK-GPG-KEY.pub' | apt-key add -
 
-echo 'deb [arch=amd64] https://deb.nodesource.com/node_6.x trusty main' > /etc/apt/sources.list.d/nodesource.list
-curl -L 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key' | apt-key add -
-
 apt-get -y update
 apt-get -y install apt-transport-https curl dpkg-dev debfoster rng-tools
 

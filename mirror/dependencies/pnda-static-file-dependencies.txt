@@ -20,3 +20,5 @@ https://github.com/klyr/jupyter-spark/releases/download/0.3.0-patch/jupyter-spar
 https://github.com/mk23/jmxproxy/releases/download/jmxproxy.3.2.0/jmxproxy-3.2.0.jar
 https://grafanarel.s3.amazonaws.com/builds/grafana-3.1.1-1470047149.x86_64.rpm
 https://grafanarel.s3.amazonaws.com/builds/grafana_3.1.1-1470047149_amd64.deb
+https://nodejs.org/download/release/v6.10.2/node-v6.10.2-linux-x64.tar.gz
+https://nodejs.org/download/release/v6.10.2/SHASUMS256.txt
