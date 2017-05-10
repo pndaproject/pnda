@@ -17,12 +17,15 @@ CLOUDERA_MANAGER_REPO_KEY=https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/RP
 SALT_REPO=https://repo.saltstack.com/yum/redhat/7/x86_64/archive/2015.8.11
 SALT_REPO_KEY=https://repo.saltstack.com/yum/redhat/7/x86_64/archive/2015.8.11/SALTSTACK-GPG-KEY.pub
 SALT_REPO_KEY2=http://repo.saltstack.com/yum/redhat/7/x86_64/2015.8/base/RPM-GPG-KEY-CentOS-7
+AMBARI_REPO=http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.5.0.3/ambari.repo
+AMBARI_REPO_KEY=http://public-repo-1.hortonworks.com/ambari/centos7/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
 
 yum install -y $RPM_EPEL || true
 yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
 yum-config-manager --add-repo $MY_SQL_REPO
 yum-config-manager --add-repo $CLOUDERA_MANAGER_REPO
 yum-config-manager --add-repo $SALT_REPO
+yum-config-manager --add-repo $AMBARI_REPO
 
 yum install -y createrepo
 rm -rf $RPM_REPO_DIR
@@ -35,6 +38,7 @@ curl -LOJ $MY_SQL_REPO_KEY
 curl -LOJ $CLOUDERA_MANAGER_REPO_KEY
 curl -LOJ $SALT_REPO_KEY
 curl -LOJ $SALT_REPO_KEY2
+curl -LOJ $AMBARI_REPO_KEY
 
 #TODO yumdownloader doesn't always seem to download the full set of packages, for instance if git is installed, it won't download perl
 # packages correctly maybe because git already installed them. repotrack is meant to be better but I couldn't get that working.

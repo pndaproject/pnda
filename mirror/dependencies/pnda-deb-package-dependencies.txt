@@ -1,4 +1,7 @@
 acl
+ambari-agent=2.5.0.3-7
+ambari-metrics-assembly=2.5.0.3-7
+ambari-server=2.5.0.3-7
 build-essential
 cloudera-manager-agent=5.9.0-1.cm590.p0.249~trusty-cm5
 cloudera-manager-daemons=5.9.0-1.cm590.p0.249~trusty-cm5
