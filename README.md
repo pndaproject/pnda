@@ -12,4 +12,6 @@ This repository holds release notes and other tools and information pertaining t
 
 ## Creating PNDA
 
-Please follow [these instructions](CREATING_PNDA.md) to create PNDA clusters in your target environment.
+This repository contains tools to [build the components of PNDA](build/README.md) and to [create the PNDA mirror](mirror/README.md).
+
+These tools are used in the process of creating PNDA. For full details of how to create PNDA, please refer to the [PNDA guide](https://github.com/pndaproject/pnda-guide).
