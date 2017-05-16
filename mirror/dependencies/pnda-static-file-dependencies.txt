@@ -18,7 +18,7 @@ https://github.com/OpenTSDB/opentsdb/releases/download/v2.2.0/opentsdb-2.2.0_all
 https://github.com/brutasse/graphite-api/releases/download/1.1.2/graphite-api_1.1.2-1447943657-ubuntu14.04_amd64.deb
 https://github.com/klyr/jupyter-spark/releases/download/0.3.0-patch/jupyter-spark-0.3.0-patch.tar.gz
 https://github.com/mk23/jmxproxy/releases/download/jmxproxy.3.2.0/jmxproxy-3.2.0.jar
-https://grafanarel.s3.amazonaws.com/builds/grafana-3.1.1-1470047149.x86_64.rpm
-https://grafanarel.s3.amazonaws.com/builds/grafana_3.1.1-1470047149_amd64.deb
-https://nodejs.org/download/release/v6.10.2/node-v6.10.2-linux-x64.tar.gz
 https://nodejs.org/download/release/v6.10.2/SHASUMS256.txt
+https://nodejs.org/download/release/v6.10.2/node-v6.10.2-linux-x64.tar.gz
+https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.2.0-1.x86_64.rpm
+https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.2.0_amd64.deb
