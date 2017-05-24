@@ -40,6 +40,19 @@
 MODE=${1}
 ARG=${2}
 
+export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
+if [[ "${DISTRO}" == "rhel" ]]; then
+  echo "Use of Red Hat software is governed by your agreement with Red Hat."
+  echo "In order to proceed, you must have a valid Red Hat subscription and software image on your system."
+
+  read -p "Do you wish to proceed? [Yes/No]  " yn
+  case $yn in
+      [Yy]* ) echo "Thanks";;
+      [Nn]* ) exit;;
+      * ) echo "Please answer yes or no.";;
+  esac
+fi
+
 function invocation_error {
     echo "Incorrect invocation, please refer to notes at head of this script"
     exit -1
