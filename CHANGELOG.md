@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - [PNDA-2880]: Pin 'sbt' to version 0.13.13
 - [PNDA-2894]: review repo org and update documentation
+- PNDA-2984: Upgrade JDK to 8u131
 
 ## [0.1.1] 2017-01-20
 ### Changed
