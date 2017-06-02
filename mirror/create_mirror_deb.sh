@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/bash -ev
 export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
@@ -30,7 +30,8 @@ for DEB_PACKAGE in $DEB_PACKAGE_LIST
 do
 	DEBP=(${DEB_PACKAGE//=/ })
 	echo "managing sub deps for $DEBP"
-    apt-get download $(debfoster -d $DEBP | grep '^ ')
+    SUB_DEP_LIST=$(debfoster -d $DEBP | grep '^ ' || true)
+    if ! [ -z "$SUB_DEP_LIST" ]; then apt-get download $SUB_DEP_LIST; fi
 done
 
 dpkg-scanpackages . /dev/null | tee Packages | gzip > Packages.gz
