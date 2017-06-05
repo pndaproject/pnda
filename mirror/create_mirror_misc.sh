@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/bash -ev
 export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 if [[ "${DISTRO}" == "ubuntu" ]]; then
