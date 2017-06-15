@@ -24,7 +24,7 @@ nginx-1.10.2-1.el7
 nmap-ncat-6.40-7.el7
 ntp-4.2.6p5-25.el7_3.1
 python2-pip-8.1.2-5.el7
-python34-devel-3.4.5-3.el7
+python34-devel-3.4.5-4.el7
 python34-pip-8.1.2-5.el7
 python-carbon-0.9.15-6.el7
 python-devel-2.7.5-48.el7

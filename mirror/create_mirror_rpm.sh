@@ -18,7 +18,7 @@ SALT_REPO=https://repo.saltstack.com/yum/redhat/7/x86_64/archive/2015.8.11
 SALT_REPO_KEY=https://repo.saltstack.com/yum/redhat/7/x86_64/archive/2015.8.11/SALTSTACK-GPG-KEY.pub
 SALT_REPO_KEY2=http://repo.saltstack.com/yum/redhat/7/x86_64/2015.8/base/RPM-GPG-KEY-CentOS-7
 
-yum install -y $RPM_EPEL
+yum install -y $RPM_EPEL || true
 yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
 yum-config-manager --add-repo $MY_SQL_REPO
 yum-config-manager --add-repo $CLOUDERA_MANAGER_REPO

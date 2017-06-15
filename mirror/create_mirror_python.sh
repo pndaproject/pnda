@@ -12,6 +12,7 @@ elif [ "x$DISTRO" == "xubuntu" ]; then
     apt-get -y update
     apt-get install -y libffi-dev python3-pip gcc
 fi
+ln -s /bin/easy_install-3.4 /usr/bin/easy_install3
 
 curl -LOJ https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
