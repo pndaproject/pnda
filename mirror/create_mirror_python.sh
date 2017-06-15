@@ -8,11 +8,11 @@ export PYTHON_REQ_DIR=$MIRROR_BUILD_DIR/dependencies
 
 if [ "x$DISTRO" == "xrhel" ]; then
     yum install -y libffi-devel python34-pip gcc
+    ln -sf /bin/easy_install-3.4 /usr/bin/easy_install3    
 elif [ "x$DISTRO" == "xubuntu" ]; then
     apt-get -y update
     apt-get install -y libffi-dev python3-pip gcc
 fi
-ln -s /bin/easy_install-3.4 /usr/bin/easy_install3
 
 curl -LOJ https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
