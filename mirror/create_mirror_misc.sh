@@ -28,10 +28,10 @@ elif [ "x$DISTRO" == "xubuntu" ]; then
 fi
 
 cd /tmp
-curl -LOJ https://download.elastic.co/logstash/logstash/logstash-1.5.4.tar.gz
-tar zxf logstash-1.5.4.tar.gz
-rm logstash-1.5.4.tar.gz
-cd logstash-1.5.4
-bin/plugin install $PLUGIN_LIST
-tar zcf logstash_plugins.tar.gz Gemfile vendor/bundle/jruby/1.9/
-mv logstash_plugins.tar.gz $STATIC_FILE_DIR
+curl -LOJ https://artifacts.elastic.co/downloads/logstash/logstash-5.0.2.tar.gz
+tar zxf logstash-5.0.2.tar.gz
+rm logstash-5.0.2.tar.gz
+cd logstash-5.0.2
+bin/logstash-plugin install $PLUGIN_LIST
+bin/logstash-plugin pack
+mv plugins_package.tar.gz $STATIC_FILE_DIR/logstash_plugins.tar.gz
