@@ -13,8 +13,8 @@ https://download.elastic.co/kibana/kibana/kibana-4.1.6-linux-x64.tar.gz
 https://download.elastic.co/kibana/kibana/kibana-4.1.6-linux-x64.tar.gz.sha1.txt
 https://download.elastic.co/logstash/logstash/logstash-1.5.4.tar.gz
 https://download.elastic.co/logstash/logstash/logstash-1.5.4.tar.gz.sha1.txt
-https://github.com/OpenTSDB/opentsdb/releases/download/v2.2.0/opentsdb-2.2.0.noarch.rpm
-https://github.com/OpenTSDB/opentsdb/releases/download/v2.2.0/opentsdb-2.2.0_all.deb
+https://github.com/OpenTSDB/opentsdb/releases/download/v2.3.0/opentsdb-2.3.0.rpm
+https://github.com/OpenTSDB/opentsdb/releases/download/v2.3.0/opentsdb-2.3.0_all.deb
 https://github.com/brutasse/graphite-api/releases/download/1.1.2/graphite-api_1.1.2-1447943657-ubuntu14.04_amd64.deb
 https://github.com/klyr/jupyter-spark/releases/download/0.3.0-patch/jupyter-spark-0.3.0-patch.tar.gz
 https://github.com/mk23/jmxproxy/releases/download/jmxproxy.3.2.0/jmxproxy-3.2.0.jar
