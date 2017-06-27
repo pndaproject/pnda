@@ -36,7 +36,8 @@ dpkg-scanpackages . /dev/null | tee Packages | gzip > Packages.gz
 # Expire-Date: 0
 # EOF
 # gpg --batch --gen-key ~/gpg_ops
-# gpg --output $DEB_REPO_DIR/pnda.gpg.key --armor --export info@pnda.io
+
+gpg --yes --output $DEB_REPO_DIR/pnda.gpg.key --armor --export info@pnda.io
 
 apt-ftparchive release . > Release
 gpg --yes --clearsign -o InRelease Release
