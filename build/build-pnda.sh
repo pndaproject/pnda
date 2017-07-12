@@ -66,14 +66,14 @@ declare -A upstream=(
 
 function fill_bom {
     for repo in ${!bom[@]}
-    do 
+    do
         bom[${repo}]=${1}
-    done 
-    
+    done
+
     for project in ${!upstream[@]}
-    do 
+    do
         upstream[${project}]=${1}
-    done 
+    done
 }
 
 function bom_error {
@@ -139,11 +139,21 @@ cd ${PNDA_STAGE}
 for repo in ${!bom[@]}
 do
     git clone --branch ${bom[${repo}]} https://github.com/pndaproject/${repo}.git
+    echo ${repo}
     cd ${repo}
     if [[ ${MODE} == "RELEASE" ]]; then
         VERSION=$(git describe --abbrev=0 --tags)
     else
         VERSION=${bom[${repo}]}
+    fi
+    if [[ ${repo} == "gobblin" ]]; then
+        echo 'Patching gobblin build to disable tests'
+        sed -i -e 's/.*gradlew.*$/.\/gradlew clean build -Pversion="${VERSION}" -PhadoopVersion="${HADOOP_VERSION}" -PexcludeHadoopDeps -PexcludeHiveDeps -x test/g' ./build.sh
+    fi
+    if [[ ${repo} == "platform-console-backend" ]]; then
+        echo 'Patching console build for jsdoc issue'
+        sed -i -e "s|, 'jsdoc'||g" ./console-backend-data-manager/Gruntfile.js
+        sed -i -e "s|, 'jsdoc'||g" ./console-backend-data-logger/Gruntfile.js
     fi
     ./build.sh ${VERSION}
     [[ $? -ne 0 ]] && build_error
