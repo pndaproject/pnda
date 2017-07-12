@@ -38,10 +38,15 @@ fi
 echo "Dependency check: Java JDK 1.8.0_74"
 
 if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_74" ]]; then
-    echo "WARN: Unable to find JDK 1.8.0_74, going to download it and set JAVA_HOME relative to ${PWD}"
     if [[ -z ${JAVA_MIRROR} ]]; then
-        JAVA_URL="http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.tar.gz"
+        echo "ERROR: cannot download JDK 1.8.0_74 from oracle servers, please either:"
+        echo "  - manually download jdk-8u74-linux-x64.tar.gz and set JAVA_HOME to /path/to/jdk1.8.0_74/"
+        echo "  or"
+        echo "  - set JAVA_MIRROR to a URL that can be used to download jdk-8u74-linux-x64.tar.gz"
+        echo "  then re-run this script"
+        exit -1
     else
+        echo "WARN: Unable to find JDK 1.8.0_74, going to download it and set JAVA_HOME relative to ${PWD}"
         JAVA_URL=${JAVA_MIRROR}
     fi
     wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" ${JAVA_URL}
