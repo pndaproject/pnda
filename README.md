@@ -4,6 +4,7 @@ This repository holds release notes and other tools and information pertaining t
 
 ## Release Notes
 
+- [Release 3.4.1 (July 2017)](releases/release-note-3.4.1.md)
 - [Release 3.4 (January 2017)](releases/release-note-3.4.md)
 - [Release 3.3 (December 2016)](releases/release-note-3.3.md)
 - [Release 3.2.1 (Hotfix release, October 2016)](releases/release-note-3.2.1.md)
