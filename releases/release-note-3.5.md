@@ -1,7 +1,6 @@
 # PNDA 3.5
 
 This is a template, please enter descriptive text here.
-TODO: add PNDA-2984
 
 ### Version Matrix
 |Repository|Version|Date|
