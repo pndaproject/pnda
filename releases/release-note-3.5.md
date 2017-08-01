@@ -19,7 +19,7 @@ This is a template, please enter descriptive text here.
 |[platform-salt-cloud](#platform-salt-cloud)|1.0.0|21 Oct 2016|
 |[platform-testing](#platform-testing)|0.3.3|01 Aug 2017|
 |[platform-tools](#platform-tools)|0.1.1|23 May 2017|
-|[pnda](#pnda)|0.2.0|23 May 2017|
+|[pnda](#pnda)|0.2.0|01 Aug 2017|
 |[pnda-aws-templates](#pnda-aws-templates)|1.3.0|01 Aug 2017|
 |[pnda-dib-elements](#pnda-dib-elements)|0.2.0|23 May 2017|
 |[pnda-guide](#pnda-guide)|0.2.0|23 May 2017|
@@ -132,6 +132,12 @@ This is a template, please enter descriptive text here.
 - PNDA-2966: Replace separate `install_sharedlib.py` with function in `cm_setup.py`
 - PNDA-2964: Stop using ec2 grains during deployment as it's not needed anymore
 - PNDA-2984: Upgrade JDK to 8u131
+- PNDA-2881: Update Kafka Manager version to 1.3.3.6
+- PNDA-2839: Update Grafana version to 4.2.0. Warning: the default pnda password has changed.
+- PNDA-2841: Update Logstash version to 5.0.2 for PNDA logshipper/logserver
+- PNDA-2838: Update OpenTSDB to version 2.3.0
+- PNDA-3085: Set timezone to UTC (UTC by default but can be configured with ntp:timezone pillar)
+- PNDA-3114: Install CDH platform testing modules after CDH has been set up.
 - Update versions of cloudera manager and redis
 - Add a flavor parameter to change kafka/zookeeper listening interface
 - Install cloudera manager agents manually
@@ -141,6 +147,9 @@ This is a template, please enter descriptive text here.
 - PNDA-2710: Remove online URL for logstash
 - PNDA-2781 Fixes for redhat mirror usage
 - PNDA-2874: Install correct snappy compression libraries, so avro files can be viewed in HUE again
+- PNDA-3059: Use latest version of numerous base packages from distro
+- PNDA-3112: Multiline log messages from file input
+- PNDA-3129: Create log directory for gobblin which was missing and preventing log from being written.
 - Update console-frontend owner to allow nginx to read files
 - Update Elasticsearch/Kibana extraction to fix permission issues
  
@@ -164,7 +173,6 @@ This is a template, please enter descriptive text here.
 - PNDA-2836: Scripts to update existing deb, rpm and python mirrors with new packages
 - PNDA-2843: Specify explicit versions for all python modules
 - PNDA-2874: Add snappy compression libraries for deb and rpm mirrors
-- PNDA-2894: review repo org and update documentation
 - PNDA-2903: Obtain nodejs as tar.gz instead of deb/rpm
 - PNDA-2944: Add RedHat license checks
 - Add graphite-api packages for offline
