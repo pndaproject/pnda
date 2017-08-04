@@ -1,7 +1,24 @@
 # PNDA 3.5
 
-This is a template, please enter descriptive text here.
+PNDA release 3.5 contains a number of improvements and bug fixes. 
 
+### Offline installation
+
+As you will see on the PNDA guide, we've review the provisioning process in order to enable offline installation. In the pnda repository, you will find all the scripts in order to get all required resources from Internet during provisioning.
+At the end, PNDA is working now in bot offline and online environment as we keep the online fallback for development purpose.
+
+### RedHat support
+
+Another new feature is the support of RedHat in PNDA, so then, you can build a RHEL7 PNDA base image using pnda-dib-elements if you are on OpenStack. If you are in AWS, you can use a RedHat AMI.
+In term of deployment, we've reviewed platform-salt in order to make it generic so that OS specific versions / name / etc... are defined in pillars.
+
+### General improvements
+
+* Console performance
+* Add Spark streaming applications
+
+
+Please refer to the CHANGELOGs for a full list of fixes, changes and additions.
 ### Version Matrix
 |Repository|Version|Date|
 |---|---|---|
