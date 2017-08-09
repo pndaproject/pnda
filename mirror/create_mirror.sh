@@ -22,4 +22,5 @@ fi
 $MIRROR_BUILD_DIR/create_mirror_misc.sh
 $MIRROR_BUILD_DIR/create_mirror_cdh.sh
 $MIRROR_BUILD_DIR/create_mirror_anaconda.sh
+$MIRROR_BUILD_DIR/create_mirror_hdp.sh
 $MIRROR_BUILD_DIR/create_mirror_python.sh

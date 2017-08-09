@@ -25,6 +25,9 @@ All notable changes to this project will be documented in this file.
 - PNDA-2717: Replace wget with curl
 - Fix Anaconda version at 4.0.0
 
+### Added
+- PNDA-2445: Support for Hortonworks HDP hadoop distro.
+
 ## [0.1.1] 2017-01-20
 ### Changed
 - Updated dependencies for build tools
