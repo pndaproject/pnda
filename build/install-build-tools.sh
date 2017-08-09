@@ -23,6 +23,8 @@ SPARK_VERSION='1.6.0'
 # Many Hadoop unit test tools depend on being able to correctly resolve the host to an address.
 # Make sure the result of running hostname is present in the /etc/hosts file
 #
+export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
+
 echo "Checking system config"
 
 if [[ -z $(grep `hostname` /etc/hosts) ]]; then
@@ -33,20 +35,30 @@ if [[ -z $(grep `hostname` /etc/hosts) ]]; then
     exit -1
 fi
 
-# Java 1.8.0_74
-#
-echo "Dependency check: Java JDK 1.8.0_74"
+if [[ "${DISTRO}" == "rhel" ]]; then
+  echo "Use of Red Hat software is governed by your agreement with Red Hat."
+  echo "In order to proceed, you must have a valid Red Hat subscription and software image on your system."
 
-if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_74" ]]; then
-    echo "WARN: Unable to find JDK 1.8.0_74, going to download it and set JAVA_HOME relative to ${PWD}"
-    if [[ -z ${JAVA_MIRROR} ]]; then
-        JAVA_URL="http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.tar.gz"
-    else
-        JAVA_URL=${JAVA_MIRROR}
-    fi
-    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" ${JAVA_URL}
-    tar zxf jdk-8u74-linux-x64.tar.gz --no-same-owner
-    export JAVA_HOME=${PWD}/jdk1.8.0_74
+  read -p "Do you wish to proceed? [Yes/No]  " yn
+  case $yn in
+      [Yy]* ) echo "Thanks";;
+      [Nn]* ) exit;;
+      * ) echo "Please answer yes or no.";;
+  esac
+
+  yum install -y wget
+fi
+
+
+# Java 1.8.0_131
+#
+echo "Dependency check: Java JDK 1.8.0_131"
+
+if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_131" ]]; then
+    echo "WARN: Unable to find JDK 1.8.0_131, going to download it and set JAVA_HOME relative to ${PWD}"
+    curl -LOJ -b oraclelicense=accept-securebackup-cookie -L http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz
+    tar zxf jdk-8u131-linux-x64.tar.gz --no-same-owner
+    export JAVA_HOME=${PWD}/jdk1.8.0_131
     export PATH=$JAVA_HOME/bin:${PATH}
 
     echo "JAVA_HOME set to ${JAVA_HOME}"
@@ -60,25 +72,57 @@ else
     echo "Java found at ${JAVA_HOME}"
 fi
 
-[[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_74" ]] && exit -1
+[[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_131" ]] && exit -1
 
-# apt-get packages required to carry out builds and tests
+# Packages required to carry out builds and tests
 #
-echo "Dependency check: apt-get packages"
+echo "Dependency check: packages"
 
-apt-get update -y
-apt-get install -y python-dev \
+if [[ "${DISTRO}" == "rhel" ]]; then
+
+    RPM_EXTRAS=rhui-REGION-rhel-server-extras
+    RPM_OPTIONAL=rhui-REGION-rhel-server-optional
+    RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    NODE_REPO=https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
+    
+    yum install -y $RPM_EPEL
+    yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
+
+    RPM_TMP=$(mktemp || bail)
+    wget -O ${RPM_TMP} ${NODE_REPO}
+    rpm -i --nosignature --force ${RPM_TMP}
+
+    yum install -y python-devel \
+                   cyrus-sasl-devel \
+                   gcc \
+                   gcc-c++ \
+                   git \
+                   nodejs \
+                   bc \
+                   curl \
+                   python-setuptools \
+                   python-devel \
+                   python2-pip \                  
+                   libaio # Needed for Gobblin
+
+elif [[ "${DISTRO}" == "ubuntu" ]]; then
+
+    echo 'deb [arch=amd64] https://deb.nodesource.com/node_6.x trusty main' > /etc/apt/sources.list.d/nodesource.list
+    curl -L 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key' | apt-key add -
+
+    apt-get update -y
+    apt-get install -y python-dev \
                    libsasl2-dev \
                    gcc \
                    git \
                    nodejs \
-                   npm \
                    bc \
                    curl \
                    python-setuptools \
                    apt-transport-https \
                    python-pip \
                    libaio1 # Needed for Gobblin
+fi
 
 if [ ! -f /usr/bin/node ]; then
         echo " WARN: Missing /usr/bin/node, creating link"
@@ -89,14 +133,22 @@ fi
 # 
 echo "Dependency check: sbt"
 
-if [ ! -f /etc/apt/sources.list.d/sbt.list ]; then
+if [[ "${DISTRO}" == "rhel" ]]; then
+
+    wget -qO- https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
+    sudo yum install sbt -y
+
+elif [[ "${DISTRO}" == "ubuntu" ]]; then
+
+    if [ ! -f /etc/apt/sources.list.d/sbt.list ]; then
         echo "WARN: Unable to find sbt, going to install it"
         echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
         apt-get update -y
-        apt-get install sbt -y
-else
-    echo "sbt.list found in /etc/apt/sources.list.d"
+        apt-get install sbt=0.13.13 -y
+    else
+        echo "sbt.list found in /etc/apt/sources.list.d"
+    fi
 fi
 
 # Maven 3.0.5
@@ -117,28 +169,28 @@ fi
 
 # Python pip libraries used in builds and tests
 #
-pip install spur==0.3.12
-pip install starbase==0.3.2
-pip install happybase==1.0.0
-pip install pyhs2==0.6.0
-pip install pywebhdfs==0.4.0
-pip install PyHDFS==0.1.2
-pip install cm-api==8.0.0
-pip install shyaml==0.4.1
-pip install nose==1.3.7
-pip install mock==2.0.0
-pip install pylint==1.6.4
-pip install python-swiftclient==3.1.0
-pip install tornado-cors==0.6.0
-pip install Tornado-JSON==1.2.2
-pip install boto==2.40.0
-pip install setuptools==28.8.0 --upgrade
-pip install impyla==0.13.8
-pip install eventlet==0.19.0
-pip install kazoo==2.2.1
-pip install avro==1.8.1
-pip install kafka-python==0.9.4
-pip install prettytable==0.7.2
+pip2 install spur==0.3.12
+pip2 install starbase==0.3.2
+pip2 install happybase==1.0.0
+pip2 install pyhs2==0.6.0
+pip2 install pywebhdfs==0.4.0
+pip2 install PyHDFS==0.1.2
+pip2 install cm-api==8.0.0
+pip2 install shyaml==0.4.1
+pip2 install nose==1.3.7
+pip2 install mock==2.0.0
+pip2 install pylint==1.6.4
+pip2 install python-swiftclient==3.1.0
+pip2 install tornado-cors==0.6.0
+pip2 install Tornado-JSON==1.2.2
+pip2 install boto==2.40.0
+pip2 install setuptools==28.8.0 --upgrade
+pip2 install impyla==0.13.8
+pip2 install eventlet==0.19.0
+pip2 install kazoo==2.2.1
+pip2 install avro==1.8.1
+pip2 install kafka-python==0.9.4
+pip2 install prettytable==0.7.2
 
 # grunt-cli needs to be installed globally
 

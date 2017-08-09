@@ -43,7 +43,7 @@ For example
 
 ```sh
 cd pnda
-./build.sh RELEASE release/3.2
+./build-pnda.sh RELEASE release/3.2
 ```
 
 #### Build master PNDA components & upstream projects at release X
@@ -67,6 +67,7 @@ From here, they can be copied to an ordinary HTTP server as part of your CICD pr
 ## Upstream Projects
 
 Build scripts for upstream projects are found in the ```upstream-projects``` directory and are invoked automatically as part of the PNDA build process described above. At the time of writing we build one upstream project, Kafka Manager.
+
 
 ## Using the build products
 

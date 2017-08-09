@@ -1,0 +1,22 @@
+-b oraclelicense=accept-securebackup-cookie -L http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz
+http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.25/mysql-connector-java-5.1.25.jar
+http://www.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
+http://www.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz.sha1
+http://www.mirrorservice.org/sites/ftp.apache.org/kafka/0.10.0.1/kafka_2.11-0.10.0.1.tgz
+https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz
+https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz.sha1
+https://artifacts.elastic.co/downloads/logstash/logstash-5.0.2.tar.gz
+https://artifacts.elastic.co/downloads/logstash/logstash-5.0.2.tar.gz.sha1
+https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.0.tar.gz
+https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.0.tar.gz.sha1.txt
+https://download.elastic.co/kibana/kibana/kibana-4.1.6-linux-x64.tar.gz
+https://download.elastic.co/kibana/kibana/kibana-4.1.6-linux-x64.tar.gz.sha1.txt
+https://github.com/OpenTSDB/opentsdb/releases/download/v2.3.0/opentsdb-2.3.0.rpm
+https://github.com/OpenTSDB/opentsdb/releases/download/v2.3.0/opentsdb-2.3.0_all.deb
+https://github.com/brutasse/graphite-api/releases/download/1.1.2/graphite-api_1.1.2-1447943657-ubuntu14.04_amd64.deb
+https://github.com/klyr/jupyter-spark/releases/download/0.3.0-patch/jupyter-spark-0.3.0-patch.tar.gz
+https://github.com/mk23/jmxproxy/releases/download/jmxproxy.3.2.0/jmxproxy-3.2.0.jar
+https://nodejs.org/download/release/v6.10.2/SHASUMS256.txt
+https://nodejs.org/download/release/v6.10.2/node-v6.10.2-linux-x64.tar.gz
+https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.2.0-1.x86_64.rpm
+https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.2.0_amd64.deb
