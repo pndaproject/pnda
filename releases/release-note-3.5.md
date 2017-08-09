@@ -4,18 +4,18 @@ PNDA release 3.5 contains a number of improvements and bug fixes.
 
 ### Offline installation
 
-As you will see on the PNDA guide, we've review the provisioning process in order to enable offline installation. In the pnda repository, you will find all the scripts in order to get all required resources from Internet during provisioning.
-At the end, PNDA is working now in bot offline and online environment as we keep the online fallback for development purpose.
+As you will see in the PNDA guide, we've revised the provisioning process in order to support offline installation. In the PNDA repository, you will find all the scripts necessary to retrieve the required resources from Internet during provisioning.
+PNDA is working now in both offline and online environments although we retain the online option for development purposes.
 
 ### RedHat support
 
-Another new feature is the support of RedHat in PNDA, so then, you can build a RHEL7 PNDA base image using pnda-dib-elements if you are on OpenStack. If you are in AWS, you can use a RedHat AMI.
-In term of deployment, we've reviewed platform-salt in order to make it generic so that OS specific versions / name / etc... are defined in pillars.
+Another new feature is the support of RedHat within PNDA so you can now build a RHEL7 PNDA base image using pnda-dib-elements on OpenStack and if you run in AWS, you can use the RedHat AMI.
+In term of deployment, we've revised platform-salt in order to make it generic so that OS specific versions / name / etc... are now defined in the pillars.
 
 ### General improvements
 
 * Console performance
-* Add Spark streaming applications
+* Added Spark streaming applications
 
 
 Please refer to the CHANGELOGs for a full list of fixes, changes and additions.
@@ -47,17 +47,17 @@ Please refer to the CHANGELOGs for a full list of fixes, changes and additions.
  
 #### [example-applications](https://github.com/pndaproject/example-applications)
 ##### Changed
-- PNDA-2700: Update spark streaming example to work on redhat.
+- PNDA-2700: Updated spark streaming example to work on RedHat.
  
 ##### Fixed
-- PNDA-3051: Fix timestamp generation for opentsdb datapoints
+- PNDA-3051: Fixed timestamp generation for opentsdb datapoints
  
 ##### Added
 - PNDA-2726: Added example spark-batch and spark-streaming jobs in python
  
 #### [example-kafka-clients](https://github.com/pndaproject/example-kafka-clients)
 ##### Changed
-- [ PNDA-2788 ]: Fix issues on java sample code
+- [ PNDA-2788 ]: Fixed issues on java sample code
  
 #### [gobblin](https://github.com/pndaproject/gobblin)
 ##### Changed
@@ -68,7 +68,7 @@ Please refer to the CHANGELOGs for a full list of fixes, changes and additions.
 - PNDA specific fix in order to make it compatible with the kafka output plugin
  
 ##### Fixed
-- Fix the decoder which expects a string
+- Fixed the decoder which expects a string
  
 #### [platform-console-backend](https://github.com/pndaproject/platform-console-backend)
 ##### Added
@@ -76,7 +76,7 @@ Please refer to the CHANGELOGs for a full list of fixes, changes and additions.
 - PNDA-2374: Pin down specific dependencies
  
 ##### Changed
-- PNDA-2682: review logging and routes
+- PNDA-2682: Reviewed logging and routes
  
 ##### Fixed
 - PNDA-3086: Only send notifications for metrics when they change (except health metrics)
@@ -109,20 +109,20 @@ Please refer to the CHANGELOGs for a full list of fixes, changes and additions.
  
 #### [platform-libraries](https://github.com/pndaproject/platform-libraries)
 ##### Changed
-- PNDA-2577: review python deps versions
+- PNDA-2577: Revised python deps versions
 - PNDA-2807: Update README.md in order to use yarn-client mode
  
 #### [platform-package-repository](https://github.com/pndaproject/platform-package-repository)
 ##### Changed
-- PNDA-2577: review python deps versions
-- PNDA-2883: add `auth_version` to `pr-config.json` to set the swift keystone auth version associated with `auth_url`
+- PNDA-2577: Revised python deps versions
+- PNDA-2883: Added `auth_version` to `pr-config.json` to set the swift keystone auth version associated with `auth_url`
  
 #### [platform-salt](https://github.com/pndaproject/platform-salt)
 ##### Added
 - PNDA-2375: Isolate PNDA from breaking dependency changes
-- PNDA-2456: Support for Redhat 7
+- PNDA-2456: Support for RedHat 7
 - PNDA-2480: Added a per flavor pillar setting for kafka log retention (log.retention.bytes) set to 300MB (pico) 1GB (standard) to stop disks filling up on pico clusters.
-- PNDA-2682: review console backend deployment
+- PNDA-2682: Revised console backend deployment
 - Add a simple jupyter notebook
 - Allow salt mine for all interfaces
  
@@ -198,7 +198,7 @@ Please refer to the CHANGELOGs for a full list of fixes, changes and additions.
 ##### Changed
 - PNDA-2537: update mirror deb/rpm script in order to pinned top level version
 - PNDA-2880: Pin 'sbt' to version 0.13.13
-- PNDA-2894: review repo org and update documentation
+- PNDA-2894: Revise repo org and update documentation
 - PNDA-2810: Update version of boto
 - PNDA-2984: Upgrade JDK to 8u131
 - Fix Cloudera dependencies at 5.9.0
