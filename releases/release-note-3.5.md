@@ -12,6 +12,10 @@ PNDA is working now in both offline and online environments although we retain t
 Another new feature is the support of RedHat within PNDA so you can now build a RHEL7 PNDA base image using pnda-dib-elements on OpenStack and if you run in AWS, you can use the RedHat AMI.
 In term of deployment, we've revised platform-salt in order to make it generic so that OS specific versions / name / etc... are now defined in the pillars.
 
+### Logstash integration
+
+The PNDA integration through logstash have been simplified and also you can now use logstash 5.3.0 instead of 2.3.4. This makes the installation and configuration much more easy, Check the Producer integration section in the [PNDA guide](https://github.com/pndaproject/pnda-guide/blob/master/producer/logstash.md).
+
 ### General improvements
 
 * Console performance
@@ -41,7 +45,7 @@ Please refer to the CHANGELOGs for a full list of fixes, changes and additions.
 |[pnda-dib-elements](#pnda-dib-elements)|0.2.0|23 May 2017|
 |[pnda-guide](#pnda-guide)|0.2.0|23 May 2017|
 |[pnda-heat-templates](#pnda-heat-templates)|1.3.0|01 Aug 2017|
-|[prod-logstash-codec-avro](#prod-logstash-codec-avro)|0.2.0|09 Sep 2016|
+|[logstash-codec-pnda-avro](#logstash-codec-pnda-avro)|0.1.0|23 May 2017|
  
 ### Change Log
  
@@ -299,6 +303,8 @@ Please refer to the CHANGELOGs for a full list of fixes, changes and additions.
 - PNDA-2916: Make number of kafka nodes variable for pico flavour
 - PNDA-2833: pylint fixes
  
-#### [prod-logstash-codec-avro](https://github.com/pndaproject/prod-logstash-codec-avro)
-- Unchanged in this PNDA release
- 
+#### [logstash-codec-pnda-avro](https://github.com/pndaproject/logstash-codec-pnda-avro)
+### Added
+- PNDA specific fix in order to make it compatible with the kafka output plugin
+### Fixed
+- Fix the decoder which expects a string 
