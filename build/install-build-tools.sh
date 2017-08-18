@@ -122,7 +122,8 @@ elif [[ "${DISTRO}" == "ubuntu" ]]; then
                    python-setuptools \
                    apt-transport-https \
                    python-pip \
-                   libaio1 # Needed for Gobblin
+                   libaio1 \ # Needed for Gobblin
+                   ruby-dev
 fi
 
 if [ ! -f /usr/bin/node ]; then
