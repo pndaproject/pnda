@@ -103,7 +103,8 @@ if [[ "${DISTRO}" == "rhel" ]]; then
                    python-setuptools \
                    python-devel \
                    python2-pip \                  
-                   libaio # Needed for Gobblin
+                   libaio \ # Needed for Gobblin
+                   ruby-devel
 
 elif [[ "${DISTRO}" == "ubuntu" ]]; then
 

@@ -30,6 +30,7 @@ MySQL-python-1.2.5-1.el7
 nginx
 nmap-ncat
 ntp-4.2.6p5
+patch
 python2-pip
 python34-devel
 python34-pip
@@ -37,6 +38,7 @@ python-carbon-0.9.15-6.el7
 python-devel
 redhat-lsb
 redis-3.2.3-1.el7
+ruby-devel
 salt-master-2015.8.11-1.el7
 salt-minion-2015.8.11-1.el7
 snappy-devel
