@@ -22,3 +22,7 @@ https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.2.0-1.x86_
 https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.2.0_amd64.deb
 http://search.maven.org/remotecontent?filepath=com/sleepycat/je/5.0.73/je-5.0.73.jar
 https://repo.continuum.io/archive/Anaconda2-4.0.0-Linux-x86_64.sh
+https://dist.apache.org/repos/dist/dev/incubator/livy/0.4.0-incubating/livy-0.4.0-incubating-bin-RC2.zip
+https://downloads.lightbend.com/scala/2.11.11/scala-2.11.11.tgz
+https://oss.sonatype.org/content/repositories/snapshots/com/github/alexarchambault/jupyter/jupyter-scala-cli_2.11.6/0.2.0-SNAPSHOT/jupyter-scala_2.11.6-0.2.0-SNAPSHOT.tar.xz
+https://dist.apache.org/repos/dist/dev/incubator/livy/0.4.0-incubating/livy-0.4.0-incubating-bin-RC2.zip
