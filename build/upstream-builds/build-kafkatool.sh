@@ -38,6 +38,7 @@ mkdir -p pnda-build
 mv kafkat kafka-tool-${KT_VERSION}
 cd kafka-tool-${KT_VERSION}
 gem build kafkat.gemspec
+mv kafkat*.gem kafkat-${KT_VERSION}.gem
 cd ..
 tar czf kafka-tool-${KT_VERSION}.tar.gz kafka-tool-${KT_VERSION}
 mv kafka-tool-${KT_VERSION}.tar.gz pnda-build/
