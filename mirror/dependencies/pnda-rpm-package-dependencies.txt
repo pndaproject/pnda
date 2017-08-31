@@ -30,6 +30,8 @@ MySQL-python-1.2.5-1.el7
 nginx
 nmap-ncat
 ntp-4.2.6p5
+openssl-libs-1.0.1e-60.el7
+openssl-devel-1.0.1e-60.el7
 python2-pip
 python34-devel
 python34-pip
