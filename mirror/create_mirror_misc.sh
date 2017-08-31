@@ -36,4 +36,5 @@ rm logstash-5.2.2.tar.gz
 cd logstash-5.2.2
 bin/logstash-plugin install $PLUGIN_LIST
 bin/logstash-plugin prepare-offline-pack $PLUGIN_LIST
+chmod a+r logstash-offline-plugins-5.2.2.zip
 mv logstash-offline-plugins-5.2.2.zip $STATIC_FILE_DIR/logstash-offline-plugins-5.2.2.zip
