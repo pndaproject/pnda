@@ -12,7 +12,6 @@
 
 MODE=${1}
 ARG=${2}
-
 function error {
     echo "Not Found"
     echo "Please run the build dependency installer script"
@@ -28,20 +27,19 @@ else
 fi
 
 if [[ ${MODE} == "PNDA" ]]; then
-    KT_VERSION=$(wget -qO- https://raw.githubusercontent.com/pndaproject/platform-salt/${ARG}/pillar/services.sls | shyaml get-value kafkatool.version)
+    KT_VERSION=$(wget -qO- https://raw.githubusercontent.com/boopalans/platform-salt/${ARG}/pillar/services.sls | shyaml get-value kafkatool.release_version)
 elif [[ ${MODE} == "UPSTREAM" ]]; then
     KT_VERSION=${ARG}
 fi
-    
-wget https://github.com/boopalans/kafkat/archive/${KT_VERSION}.tar.gz
-tar xzf ${KT_VERSION}.tar.gz
 
+echo `pwd`
+git clone -b ${KT_VERSION} https://github.com/airbnb/kafkat.git
 mkdir -p pnda-build
-mv ${KT_VERSION} kafka-tool-${KT_VERSION}
+mv kafkat kafka-tool-${KT_VERSION}
 cd kafka-tool-${KT_VERSION}
 gem build kafkat.gemspec
+mv kafkat*.gem kafkat-${KT_VERSION}.gem
 cd ..
-tar -cvzf kafka-tool-${KT_VERSION}.tar.gz kafka-tool-${KT_VERSION}
+tar czf kafka-tool-${KT_VERSION}.tar.gz kafka-tool-${KT_VERSION}
 mv kafka-tool-${KT_VERSION}.tar.gz pnda-build/
 sha512sum pnda-build/kafka-tool-${KT_VERSION}.tar.gz > pnda-build/kafka-tool-${KT_VERSION}.tar.gz.sha512.txt
-                                                                                 
