@@ -33,7 +33,7 @@ ntp-4.2.6p5
 python2-pip
 python34-devel
 python34-pip
-python-carbon-0.9.15-6.el7
+python-carbon
 python-devel
 redhat-lsb
 redis-3.2.3-1.el7
