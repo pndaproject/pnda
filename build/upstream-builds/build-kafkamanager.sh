@@ -53,13 +53,3 @@ sbt clean dist
 cd ..
 mv kafka-manager-${KM_VERSION}/target/universal/kafka-manager-${KM_VERSION}.zip pnda-build/
 sha512sum pnda-build/kafka-manager-${KM_VERSION}.zip > pnda-build/kafka-manager-${KM_VERSION}.zip.sha512.txt
-
-#kafkat build process
-git clone https://github.com/airbnb/kafkat.git
-cd kafkat
-gem build kafkat.gemspec
-cd ..
-mkdir -p pnda-build
-tar -cvzf kafkat.tar.gz kafkat
-mv kafkat.tar.gz pnda-build/
-sha512sum pnda-build/kafkat.tar.gz > pnda-build/kafkat.tar.gz.sha512.txt
