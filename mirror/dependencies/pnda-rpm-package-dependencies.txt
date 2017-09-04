@@ -34,6 +34,8 @@ patch
 openssl
 openssl-libs
 openssl-devel
+openssl-libs-1.0.1e-60.el7
+openssl-devel-1.0.1e-60.el7
 python2-pip
 python34-devel
 python34-pip
