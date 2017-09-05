@@ -19,6 +19,9 @@ if [ "x$DISTRO" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
 	  [Nn]* ) exit;;
 	  * ) echo "Please answer yes or no.";;
 	esac
+fi
+
+if [ "x$DISTRO" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
     $MIRROR_BUILD_DIR/create_mirror_rpm.sh
 elif [ "x$DISTRO" == "xubuntu" ]; then
     $MIRROR_BUILD_DIR/create_mirror_deb.sh
