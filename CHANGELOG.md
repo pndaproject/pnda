@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+### Changed
+ - PNDA-3216: Include Logstash 5.2.2 and updated plugin mechanism with fixed behaviour for offline installation
+ 
 ## [0.2.0] 2017-08-01
 ### Added
 - PNDA-2452: Add high level overview of creating PNDA
