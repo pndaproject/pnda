@@ -42,7 +42,7 @@ python34-pip
 python-carbon
 python-devel
 redhat-lsb
-redis-3.2.3-1.el7
+redis-3.2.10-2.el7
 ruby-devel
 salt-master-2015.8.11-1.el7
 salt-minion-2015.8.11-1.el7
