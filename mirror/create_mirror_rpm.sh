@@ -33,12 +33,16 @@ mkdir -p $RPM_REPO_DIR
 
 cd $RPM_REPO_DIR
 cp /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 $RPM_REPO_DIR
-cp /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release $RPM_REPO_DIR
-curl -LOJf $MY_SQL_REPO_KEY
-curl -LOJf $CLOUDERA_MANAGER_REPO_KEY
-curl -LOJf $SALT_REPO_KEY
-curl -LOJf $SALT_REPO_KEY2
-curl -LOJf $AMBARI_REPO_KEY
+
+if [ "x$DISTRO" == "xrhel" ]; then
+    # Not present on CentOS
+    cp /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release $RPM_REPO_DIR
+fi
+curl -LOJ $MY_SQL_REPO_KEY
+curl -LOJ $CLOUDERA_MANAGER_REPO_KEY
+curl -LOJ $SALT_REPO_KEY
+curl -LOJ $SALT_REPO_KEY2
+curl -LOJ $AMBARI_REPO_KEY
 
 #TODO yumdownloader doesn't always seem to download the full set of packages, for instance if git is installed, it won't download perl
 # packages correctly maybe because git already installed them. repotrack is meant to be better but I couldn't get that working.
