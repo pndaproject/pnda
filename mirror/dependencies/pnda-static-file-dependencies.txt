@@ -5,8 +5,8 @@ http://www.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz.sha1
 http://www.mirrorservice.org/sites/ftp.apache.org/kafka/0.10.0.1/kafka_2.11-0.10.0.1.tgz
 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz
 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz.sha1
-https://artifacts.elastic.co/downloads/logstash/logstash-5.0.2.tar.gz
-https://artifacts.elastic.co/downloads/logstash/logstash-5.0.2.tar.gz.sha1
+https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.tar.gz
+https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.tar.gz.sha1
 https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.0.tar.gz
 https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.0.tar.gz.sha1.txt
 https://download.elastic.co/kibana/kibana/kibana-4.1.6-linux-x64.tar.gz
