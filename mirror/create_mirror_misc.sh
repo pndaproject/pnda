@@ -23,7 +23,7 @@ cat SHASUMS256.txt | grep node-v6.10.2-linux-x64.tar.gz > node-v6.10.2-linux-x64
 sha512sum je-5.0.73.jar > je-5.0.73.jar.sha512.txt
 sha512sum Anaconda2-4.0.0-Linux-x86_64.sh > Anaconda2-4.0.0-Linux-x86_64.sh.sha512.txt
 
-if [ "x$DISTRO" == "xrhel" ]; then
+if [ "x$DISTRO" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
     yum install -y java-1.7.0-openjdk
 elif [ "x$DISTRO" == "xubuntu" ]; then
     apt-get install -y default-jre
