@@ -34,6 +34,7 @@ ntp-4.2.6p5
 openssl
 openssl-devel
 openssl-libs
+policycoreutils-python
 python-carbon
 python-chardet
 python-devel
@@ -46,6 +47,7 @@ redhat-lsb
 redis-3.2.3-1.el7
 salt-master-2015.8.11-1.el7
 salt-minion-2015.8.11-1.el7
+selinux-policy-targeted
 snappy-devel
 systemd-python
 unzip
