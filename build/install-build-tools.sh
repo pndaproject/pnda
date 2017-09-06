@@ -102,7 +102,8 @@ if [[ "${DISTRO}" == "rhel" ]]; then
                    curl \
                    python-setuptools \
                    python-devel \
-                   python2-pip \                  
+                   python2-pip \
+                   ruby-devel \
                    libaio # Needed for Gobblin
 
 elif [[ "${DISTRO}" == "ubuntu" ]]; then
@@ -121,6 +122,7 @@ elif [[ "${DISTRO}" == "ubuntu" ]]; then
                    python-setuptools \
                    apt-transport-https \
                    python-pip \
+                   ruby-dev \
                    libaio1 # Needed for Gobblin
 fi
 

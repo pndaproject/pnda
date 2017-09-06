@@ -1,10 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+##Unreleased
+### Added
+- PNDA-1960: Make Kafkat available on nodes as option for Kafka management at CLI
+
 ### Changed
  - PNDA-3216: Include Logstash 5.2.2 and updated plugin mechanism with fixed behaviour for offline installation
- 
+ - PNDA-3264: Use redis 3.2.10 on redhat
+
 ## [0.2.0] 2017-08-01
 ### Added
 - PNDA-2452: Add high level overview of creating PNDA
