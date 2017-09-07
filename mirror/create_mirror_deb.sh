@@ -21,8 +21,8 @@ apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD
 apt-get -y update
 apt-get -y install apt-transport-https curl dpkg-dev debfoster rng-tools
 
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password your_password'
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password your_password'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password password your_password'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password your_password'
 apt-get -y install $DEB_PACKAGE_LIST
 
 rm -rf $DEB_REPO_DIR

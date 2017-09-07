@@ -9,8 +9,8 @@ elif [ "x$DISTRO" == "xubuntu" ]; then
 fi
 
 curl -LOJ https://bootstrap.pypa.io/get-pip.py
-sudo python get-pip.py
-sudo pip2 install setuptools==34.2.0
+python get-pip.py
+pip2 install setuptools==34.2.0
 
 export MIRROR_OUTPUT_DIR=${1/\/mirror_python/}
 if [ "$#" -gt 1 ]; then
