@@ -26,6 +26,7 @@ yum-config-manager --add-repo $MY_SQL_REPO
 yum-config-manager --add-repo $CLOUDERA_MANAGER_REPO
 yum-config-manager --add-repo $SALT_REPO
 yum-config-manager --add-repo $AMBARI_REPO
+yum-config-manager --disable updates
 
 yum install -y createrepo
 rm -rf $RPM_REPO_DIR
