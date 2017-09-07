@@ -6,6 +6,7 @@ export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 RPM_PACKAGE_LIST=$(<${MIRROR_BUILD_DIR}/dependencies/pnda-rpm-package-dependencies.txt)
 
+YUM_CACHE_DIR=$MIRROR_BUILD_DIR/private-yum-cache
 RPM_REPO_DIR=$MIRROR_OUTPUT_DIR/mirror_rpm
 RPM_EXTRAS=rhui-REGION-rhel-server-extras
 RPM_OPTIONAL=rhui-REGION-rhel-server-optional
@@ -26,6 +27,7 @@ yum-config-manager --add-repo $MY_SQL_REPO
 yum-config-manager --add-repo $CLOUDERA_MANAGER_REPO
 yum-config-manager --add-repo $SALT_REPO
 yum-config-manager --add-repo $AMBARI_REPO
+yum-config-manager --disable updates
 
 yum install -y createrepo
 rm -rf $RPM_REPO_DIR
@@ -43,7 +45,6 @@ curl -LOJ $SALT_REPO_KEY
 curl -LOJ $SALT_REPO_KEY2
 curl -LOJ $AMBARI_REPO_KEY
 
-#TODO yumdownloader doesn't always seem to download the full set of packages, for instance if git is installed, it won't download perl
-# packages correctly maybe because git already installed them. repotrack is meant to be better but I couldn't get that working.
-yumdownloader --resolve --archlist=x86_64 --destdir $RPM_REPO_DIR $RPM_PACKAGE_LIST
+rm -rf $YUM_CACHE_DIR
+yumdownloader  --releasever=/ --installroot=$YUM_CACHE_DIR --resolve --archlist=x86_64 --destdir $RPM_REPO_DIR $RPM_PACKAGE_LIST
 createrepo --database $RPM_REPO_DIR
