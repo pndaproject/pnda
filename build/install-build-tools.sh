@@ -137,14 +137,14 @@ echo "Dependency check: sbt"
 
 if [[ "${DISTRO}" == "rhel" ]]; then
 
-    wget -qO- https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
-    sudo yum install sbt-0.13.9 -y
+    wget -qO- https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo
+    yum install sbt-0.13.9 -y
 
 elif [[ "${DISTRO}" == "ubuntu" ]]; then
 
     if [ ! -f /etc/apt/sources.list.d/sbt.list ]; then
         echo "WARN: Unable to find sbt, going to install it"
-        echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+        echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
         apt-get update -y
         apt-get install sbt=0.13.13 -y
