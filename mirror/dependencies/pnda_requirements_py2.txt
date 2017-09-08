@@ -26,6 +26,7 @@ elasticsearch==2.4.0
 enum-compat==0.0.2
 enum34==1.1.6
 eventlet==0.20.0
+findspark==1.1.0
 funcsigs==1.0.2
 functools32==3.2.3.post2
 future==0.16.0
@@ -48,12 +49,14 @@ monotonic==1.2
 msgpack-python==0.4.8
 netaddr==0.7.18
 netifaces==0.10.5
+numpy==1.13.1
 ordereddict==1.1
 oslo.config==3.21.0
 oslo.i18n==3.11.0
 oslo.serialization==2.15.0
 oslo.utils==3.21.0
 packaging==16.8
+pandas==0.20.3
 paramiko==2.1.1
 pbr==1.10.0
 pexpect==4.2.1
@@ -80,6 +83,7 @@ singledispatch==3.4.0.3
 six==1.10.0
 spur==0.3.20
 sql-magic==0.0.3
+sqlparse==0.2.3
 starbase==0.3.3
 stevedore==1.19.1
 structlog==16.1.0
