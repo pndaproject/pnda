@@ -37,6 +37,7 @@ html5lib==0.9999999
 idna==2.1
 impyla==0.14.0
 ipaddress==1.0.17
+ipython-sql==0.3.8
 iso8601==0.1.11
 itsdangerous==0.24
 jsonschema==2.5.1
@@ -78,6 +79,7 @@ simplejson==3.10.0
 singledispatch==3.4.0.3
 six==1.10.0
 spur==0.3.20
+sql-magic==0.0.3
 starbase==0.3.3
 stevedore==1.19.1
 structlog==16.1.0
