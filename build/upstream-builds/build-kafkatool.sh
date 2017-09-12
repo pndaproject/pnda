@@ -33,10 +33,11 @@ elif [[ ${MODE} == "UPSTREAM" ]]; then
 fi
 
 echo `pwd`
-git clone -b ${KT_VERSION} https://github.com/airbnb/kafkat.git
+git clone https://github.com/airbnb/kafkat.git
 mkdir -p pnda-build
 mv kafkat kafka-tool-${KT_VERSION}
 cd kafka-tool-${KT_VERSION}
+git checkout tags/${KT_VERSION}
 gem build kafkat.gemspec
 mv kafkat*.gem kafkat-${KT_VERSION}.gem
 cd ..
