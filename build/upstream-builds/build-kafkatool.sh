@@ -33,7 +33,6 @@ elif [[ ${MODE} == "UPSTREAM" ]]; then
 fi
 
 echo `pwd`
-CUR_DIR=${PWD}
 git clone https://github.com/airbnb/kafkat.git
 mkdir -p pnda-build
 mv kafkat kafka-tool-${KT_VERSION}
@@ -42,7 +41,7 @@ git checkout tags/${KT_VERSION}
 gem build kafkat.gemspec
 mv kafkat*.gem kafkat-${KT_VERSION}.gem
 #Download all kafkat gem dependency gems
-GEM_LIST=$(<${CUR_DIR}/../../upstream-builds/dependencies/upstream-kafka-tool-dependencies.txt)
+GEM_LIST=$(<../../../upstream-builds/dependencies/upstream-kafka-tool-dependencies.txt)
 for gem in $GEM_LIST ; do
     wget https://rubygems.org/downloads/${gem}
 done
