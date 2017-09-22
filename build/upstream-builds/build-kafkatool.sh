@@ -40,6 +40,11 @@ cd kafka-tool-${KT_VERSION}
 git checkout tags/${KT_VERSION}
 gem build kafkat.gemspec
 mv kafkat*.gem kafkat-${KT_VERSION}.gem
+#Download all kafkat gem dependency gems
+GEM_LIST=$(<../../../upstream-builds/dependencies/upstream-kafka-tool-dependencies.txt)
+for gem in $GEM_LIST ; do
+    wget https://rubygems.org/downloads/${gem}
+done
 cd ..
 tar czf kafka-tool-${KT_VERSION}.tar.gz kafka-tool-${KT_VERSION}
 mv kafka-tool-${KT_VERSION}.tar.gz pnda-build/
