@@ -11,7 +11,8 @@ All notable changes to this project will be documented in this file.
  - PNDA-3264: Use redis 3.2.10 on redhat
  - PNDA-3269: remove sudo on scripts as they should be run as root
  - PNDA-3270: fix issue on Jupyter py2 deps
- 
+ - PNDA-3289: Detect errors when building mirror and set exit code
+
 ## [0.2.0] 2017-08-01
 ### Added
 - PNDA-2452: Add high level overview of creating PNDA
