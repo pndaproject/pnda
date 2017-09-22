@@ -17,7 +17,7 @@ cd $STATIC_FILE_DIR
 echo "$STATIC_FILE_LIST" | while read STATIC_FILE
 do
     echo $STATIC_FILE
-    curl -LOJ $STATIC_FILE
+    curl -LOJf $STATIC_FILE
 done
 cat SHASUMS256.txt | grep node-v6.10.2-linux-x64.tar.gz > node-v6.10.2-linux-x64.tar.gz.sha1.txt
 sha512sum je-5.0.73.jar > je-5.0.73.jar.sha512.txt
@@ -30,7 +30,7 @@ elif [ "x$DISTRO" == "xubuntu" ]; then
 fi
 
 cd /tmp
-curl -LOJ https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.tar.gz
+curl -LOJf https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.tar.gz
 tar zxf logstash-5.2.2.tar.gz
 rm logstash-5.2.2.tar.gz
 cd logstash-5.2.2

@@ -34,13 +34,20 @@ mkdir -p $RPM_REPO_DIR
 cd $RPM_REPO_DIR
 cp /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 $RPM_REPO_DIR
 cp /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release $RPM_REPO_DIR
-curl -LOJ $MY_SQL_REPO_KEY
-curl -LOJ $CLOUDERA_MANAGER_REPO_KEY
-curl -LOJ $SALT_REPO_KEY
-curl -LOJ $SALT_REPO_KEY2
-curl -LOJ $AMBARI_REPO_KEY
+curl -LOJf $MY_SQL_REPO_KEY
+curl -LOJf $CLOUDERA_MANAGER_REPO_KEY
+curl -LOJf $SALT_REPO_KEY
+curl -LOJf $SALT_REPO_KEY2
+curl -LOJf $AMBARI_REPO_KEY
 
 #TODO yumdownloader doesn't always seem to download the full set of packages, for instance if git is installed, it won't download perl
 # packages correctly maybe because git already installed them. repotrack is meant to be better but I couldn't get that working.
-yumdownloader --resolve --archlist=x86_64 --destdir $RPM_REPO_DIR $RPM_PACKAGE_LIST
+# yumdownloader also doesn't set its exit code when a package is not found, so this scans the log output for this case and manually exits with an error
+(yumdownloader --resolve --archlist=x86_64 --destdir $RPM_REPO_DIR $RPM_PACKAGE_LIST 2>&1) | tee -a yum-downloader.log; cmd_result=${PIPESTATUS[0]} && if [ ${cmd_result} != '0' ]; then exit ${cmd_result}; fi
+if grep -q 'No Match for argument' "yum-downloader.log"; then
+    echo "missing rpm detected:"
+    echo $(cat yum-downloader.log | grep 'No Match for argument')
+    exit -1
+fi
+rm yum-downloader.log
 createrepo --database $RPM_REPO_DIR

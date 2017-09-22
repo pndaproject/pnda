@@ -6,6 +6,7 @@ import re
 import time
 import os
 import subprocess
+import sys
 
 def main():
 
@@ -21,13 +22,17 @@ def main():
     subprocess.call(["pip2","download","setuptools","--platform","multilinux1_x86_64","--python-version","27","--implementation","py","--only-binary=:all:","-d",package_path])
     python_deps = (file_py2.read()).rstrip().split('\n')
     for one_dep in python_deps:
-        subprocess.call(["pip2","download", "--no-deps", one_dep,"--no-binary",":all:","-d",package_path])
+        ret_code = subprocess.call(["pip2","download", "--no-deps", one_dep,"--no-binary",":all:","-d",package_path])
+        if ret_code != 0:
+            sys.exit(-1)
 
     # download python 3 libs
     subprocess.call(["pip3","download","setuptools","--only-binary=:all:","-d",package_path])
     python_deps = (file_py3.read()).rstrip().split('\n')
     for one_dep in python_deps:
-        subprocess.call(["pip3","download", "--no-deps", one_dep,"-d",package_path])
+        ret_code = subprocess.call(["pip3","download", "--no-deps", one_dep,"-d",package_path])
+        if ret_code != 0:
+            sys.exit(-1)
 
 if __name__ == '__main__':
     main()

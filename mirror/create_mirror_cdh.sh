@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/bash -ev
 export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 if [[ "${DISTRO}" == "ubuntu" ]]; then
@@ -16,5 +16,5 @@ cd $CLOUDERA_REPO_FILE_DIR
 echo "$CLOUDERA_REPO_FILE_LIST" | while read CLOUDERA_REPO_FILE
 do
     echo $CLOUDERA_REPO_FILE
-    curl -LOJ $CLOUDERA_REPO_FILE
+    curl -LOJf $CLOUDERA_REPO_FILE
 done
