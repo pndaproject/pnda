@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 ### Added
+- PNDA-3304: Add script to set a non-transparent proxy for the mirror build.
 - PNDA-1960: Make Kafkat available on nodes as option for Kafka management at CLI
 
 ### Changed

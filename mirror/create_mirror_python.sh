@@ -17,7 +17,7 @@ curl -LOJ https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 pip2 install setuptools==34.2.0
 pip2 install github3.py
-easy_install-3.4 pip==9.0.1
+python3 get-pip.py
 pip3 install setuptools==34.2.0
 rm get-pip.py
 

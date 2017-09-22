@@ -14,6 +14,8 @@ At the high level, the following steps are required to create a PNDA cluster.
 
 Please refer to the [PNDA guide](https://github.com/pndaproject/pnda-guide/blob/develop/provisioning/platform_requirements.md) for guidance on how to prepare the target envirnonment for the PNDA cluster.
 
+If your target environment is set up behind a non-transparent proxy, use the [proxy configuration tool](PROXY.md) to set up your target enviroment for using the proxy.
+
 ## Download packages
 
 To enable offline installation, you need to build mirrors and indexes. Use the [mirror creation process](mirror/README.md) to download all the 3rd party dependencies that PNDA uses during the orchestration process. 
