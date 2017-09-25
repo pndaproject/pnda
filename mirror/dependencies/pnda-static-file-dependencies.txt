@@ -2,7 +2,7 @@
 http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.25/mysql-connector-java-5.1.25.jar
 http://www.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
 http://www.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz.sha1
-http://www.mirrorservice.org/sites/ftp.apache.org/kafka/0.10.0.1/kafka_2.11-0.10.0.1.tgz
+http://www.mirrorservice.org/sites/ftp.apache.org/kafka/0.11.0.0/kafka_2.11-0.11.0.0.tgz
 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz
 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz.sha1
 https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.tar.gz
