@@ -8,9 +8,9 @@ ambari-metrics-monitor-2.5.1.0-159
 ambari-server-2.5.1.0-159
 at
 bzip2
-cloudera-manager-agent-5.9.0-1.cm590.p0.249.el7
-cloudera-manager-daemons-5.9.0-1.cm590.p0.249.el7
-cloudera-manager-server-5.9.0-1.cm590.p0.249.el7
+cloudera-manager-agent-5.12.1-1.cm5121.p0.6.el7
+cloudera-manager-daemons-5.12.1-1.cm5121.p0.6.el7
+cloudera-manager-server-5.12.1-1.cm5121.p0.6.el7
 cyrus-sasl-devel
 fuse-sshfs
 gcc
