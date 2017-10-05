@@ -39,3 +39,4 @@ uwsgi
 uwsgi-plugin-python
 wget
 xfsprogs
+zip
