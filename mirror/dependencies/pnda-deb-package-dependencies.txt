@@ -3,9 +3,9 @@ ambari-agent=2.5.1.0-159
 ambari-metrics-assembly=2.5.1.0-159
 ambari-server=2.5.1.0-159
 build-essential
-cloudera-manager-agent=5.9.0-1.cm590.p0.249~trusty-cm5
-cloudera-manager-daemons=5.9.0-1.cm590.p0.249~trusty-cm5
-cloudera-manager-server=5.9.0-1.cm590.p0.249~trusty-cm5
+cloudera-manager-agent=5.12.1-1.cm5121.p0.6~trusty-cm5
+cloudera-manager-daemons=5.12.1-1.cm5121.p0.6~trusty-cm5
+cloudera-manager-server=5.12.1-1.cm5121.p0.6~trusty-cm5
 debconf-utils
 g++
 git

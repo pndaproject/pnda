@@ -9,7 +9,7 @@ DEB_PACKAGE_LIST=$(<${MIRROR_BUILD_DIR}/dependencies/pnda-deb-package-dependenci
 export DEBIAN_FRONTEND=noninteractive
 DEB_REPO_DIR=$MIRROR_OUTPUT_DIR/mirror_deb
 
-echo 'deb [arch=amd64] https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/ trusty-cm5.9.0 contrib' > /etc/apt/sources.list.d/cloudera-manager.list
+echo 'deb [arch=amd64] https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/ trusty-cm5.12.1 contrib' > /etc/apt/sources.list.d/cloudera-manager.list
 curl -L 'https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/archive.key' | apt-key add -
 
 echo 'deb [arch=amd64] http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2015.8.11/ trusty main' > /etc/apt/sources.list.d/saltstack.list
