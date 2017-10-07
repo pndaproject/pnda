@@ -153,34 +153,38 @@ cd ${PNDA_STAGE}
 
 for repo in ${!bom[@]}
 do
-    git clone --branch ${bom[${repo}]} https://github.com/pndaproject/${repo}.git
-    cd ${repo}
-    if [[ ${MODE} == "RELEASE" ]]; then
-        VERSION=$(git describe --abbrev=0 --tags)
-    else
-        VERSION=${bom[${repo}]}
+    if [[ ${bom[${repo}]} != "" ]]; then
+        git clone --branch ${bom[${repo}]} https://github.com/pndaproject/${repo}.git
+        cd ${repo}
+        if [[ ${MODE} == "RELEASE" ]]; then
+            VERSION=$(git describe --abbrev=0 --tags)
+        else
+            VERSION=${bom[${repo}]}
+        fi
+        ./build.sh ${VERSION}
+        [[ $? -ne 0 ]] && build_error
+        cd ..
+        mv ${repo}/pnda-build/* ${PNDA_DIST}/
     fi
-    ./build.sh ${VERSION}
-    [[ $? -ne 0 ]] && build_error
-    cd ..
-    mv ${repo}/pnda-build/* ${PNDA_DIST}/
 done
 
 for project in ${!upstream[@]}
 do
-    MODE="UPSTREAM"
-    VERSION=$(echo ${upstream[${project}]} | grep -Po '(?<=^UPSTREAM\().*(?=\)$)')
-    if [[ -z ${VERSION} ]]; then
-        VERSION=${upstream[${project}]}
-        MODE="PNDA"
+    if [[ ${upstream[${project}]} != "" ]]; then
+        MODE="UPSTREAM"
+        VERSION=$(echo ${upstream[${project}]} | grep -Po '(?<=^UPSTREAM\().*(?=\)$)')
+        if [[ -z ${VERSION} ]]; then
+            VERSION=${upstream[${project}]}
+            MODE="PNDA"
+        fi
+        mkdir -p build-${project}
+        cp ${UPSTREAM_BUILDS}/build-${project}.sh build-${project}/
+        cd build-${project}
+        ./build-${project}.sh ${MODE} ${VERSION}
+        [[ $? -ne 0 ]] && build_error
+        cd ..
+        mv build-${project}/pnda-build/* ${PNDA_DIST}/
     fi
-    mkdir -p build-${project}
-    cp ${UPSTREAM_BUILDS}/build-${project}.sh build-${project}/
-    cd build-${project}
-    ./build-${project}.sh ${MODE} ${VERSION}
-    [[ $? -ne 0 ]] && build_error
-    cd ..
-    mv build-${project}/pnda-build/* ${PNDA_DIST}/
 done
 
 cd ${BASE}
