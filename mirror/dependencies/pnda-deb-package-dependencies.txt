@@ -19,6 +19,8 @@ libffi-dev
 libmysql-java=5.1.28-1
 libsasl2-dev
 libsodium13
+libxml2-dev
+libxslt1-dev
 mysql-server-5.6=5.6.33-0ubuntu0.14.04.1
 nginx
 ntp
