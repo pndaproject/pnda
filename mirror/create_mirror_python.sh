@@ -7,13 +7,29 @@ export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 export PYTHON_REQ_DIR=$MIRROR_BUILD_DIR/dependencies
 
 if [ "x$DISTRO" == "xrhel" ]; then
-    yum install -y libffi-devel python34-pip gcc
+    yum install -y libffi-devel python34-pip gcc 2>&1 | tee -a yum-installer.log;
 elif [ "x$DISTRO" == "xubuntu" ]; then
     apt-get -y update
-    apt-get install -y libffi-dev python3-pip gcc
+    apt-get install -y libffi-dev python3-pip gcc 2>&1 | tee -a apt-installer.log;
 fi
 
-curl -LOJ https://bootstrap.pypa.io/get-pip.py
+if [[ "${DISTRO}" == "ubuntu" ]]; then
+    if grep -q "Unable to locate" "apt-installer.log"; then
+        echo "Packages Unable to locate"
+        echo $(cat apt-installer.log | grep "Unable to locate")
+        exit -1;
+    fi
+    rm apt-installer.log
+elif [[ "${DISTRO}" == "rhel" ]]; then
+    if grep -q "No package" "yum-installer.log"; then
+        echo "No package Available"
+        echo $(cat yum-installer.log | grep "No package")
+        exit -1;
+    fi
+    rm yum-installer.log
+fi
+
+curl -LOJf https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
 sudo pip2 install setuptools==34.2.0
 sudo pip2 install github3.py

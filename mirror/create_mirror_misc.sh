@@ -1,9 +1,6 @@
 #!/bin/bash -ev
 export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
-if [[ "${DISTRO}" == "ubuntu" ]]; then
-    apt-get install -y apt-transport-https curl
-fi
 
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
@@ -23,14 +20,34 @@ cat SHASUMS256.txt | grep node-v6.10.2-linux-x64.tar.gz > node-v6.10.2-linux-x64
 sha512sum je-5.0.73.jar > je-5.0.73.jar.sha512.txt
 sha512sum Anaconda2-4.0.0-Linux-x86_64.sh > Anaconda2-4.0.0-Linux-x86_64.sh.sha512.txt
 
+if [[ "${DISTRO}" == "ubuntu" ]]; then
+    apt-get install -y apt-transport-https curl 2>&1 | tee -a apt-installer.log;
+fi
+
 if [ "x$DISTRO" == "xrhel" ]; then
-    yum install -y java-1.7.0-openjdk
+    yum install -y java-1.7.0-openjdk 2>&1 | tee -a yum-installer.log;
 elif [ "x$DISTRO" == "xubuntu" ]; then
-    apt-get install -y default-jre
+    apt-get install -y default-jre 2>&1 | tee -a apt-installer.log;
+fi
+
+if [[ "${DISTRO}" == "ubuntu" ]]; then
+    if grep -q "Unable to locate" "apt-installer.log"; then
+        echo "Packages Unable to locate"
+        echo $(cat apt-installer.log | grep "Unable to locate")
+        exit -1;
+    fi
+    rm apt-installer.log
+elif [[ "${DISTRO}" == "rhel" ]]; then
+    if grep -q "No package" "yum-installer.log"; then
+        echo "No package Available"
+        echo $(cat yum-installer.log | grep "No package")
+        exit -1;
+    fi
+    rm yum-installer.log
 fi
 
 cd /tmp
-curl -LOJ https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.tar.gz
+curl -LOJf https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.tar.gz
 tar zxf logstash-5.2.2.tar.gz
 rm logstash-5.2.2.tar.gz
 cd logstash-5.2.2

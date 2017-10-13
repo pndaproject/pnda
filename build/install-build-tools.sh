@@ -27,6 +27,11 @@ export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 echo "Checking system config"
 
+BASE=${PWD}
+PNDA_TEMP=${BASE}/pnda-temp
+mkdir -p ${PNDA_TEMP}
+
+
 if [[ -z $(grep `hostname` /etc/hosts) ]]; then
     echo "ERROR: The host on which you perform builds must be able to properly resolve itself in order to run Hadoop unit tests"
     echo "Please add the following entry to /etc/hosts"
@@ -46,7 +51,7 @@ if [[ "${DISTRO}" == "rhel" ]]; then
       * ) echo "Please answer yes or no.";;
   esac
 
-  yum install -y wget
+  yum install -y wget 2>&1  | tee -a ${PNDA_TEMP}/yum-installer.log;
 fi
 
 
@@ -85,7 +90,7 @@ if [[ "${DISTRO}" == "rhel" ]]; then
     RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     NODE_REPO=https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
     
-    yum install -y $RPM_EPEL
+    yum install -y $RPM_EPEL 2>&1  | tee -a ${PNDA_TEMP}/yum-installer.log;
     yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
 
     RPM_TMP=$(mktemp || bail)
@@ -104,7 +109,7 @@ if [[ "${DISTRO}" == "rhel" ]]; then
                    python-devel \
                    python2-pip \
                    ruby-devel \
-                   libaio # Needed for Gobblin
+                   libaio | tee -a ${PNDA_TEMP}/yum-installer.log; # Needed for Gobblin
 
 elif [[ "${DISTRO}" == "ubuntu" ]]; then
 
@@ -123,7 +128,7 @@ elif [[ "${DISTRO}" == "ubuntu" ]]; then
                    apt-transport-https \
                    python-pip \
                    ruby-dev \
-                   libaio1 # Needed for Gobblin
+                   libaio1 2>&1  | tee -a ${PNDA_TEMP}/apt-installer.log; # Needed for Gobblin
 fi
 
 if [ ! -f /usr/bin/node ]; then
@@ -138,7 +143,7 @@ echo "Dependency check: sbt"
 if [[ "${DISTRO}" == "rhel" ]]; then
 
     wget -qO- https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
-    sudo yum install sbt-0.13.9 -y
+    sudo yum install sbt-0.13.9 -y 2>&1 | tee -a ${PNDA_TEMP}/yum-installer.log;
 
 elif [[ "${DISTRO}" == "ubuntu" ]]; then
 
@@ -146,8 +151,8 @@ elif [[ "${DISTRO}" == "ubuntu" ]]; then
         echo "WARN: Unable to find sbt, going to install it"
         echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
-        apt-get update -y
-        apt-get install sbt=0.13.13 -y
+        apt-get update -y 
+        apt-get install sbt=0.13.13 -y 2>&1  | tee -a ${PNDA_TEMP}/apt-installer.log;
     else
         echo "sbt.list found in /etc/apt/sources.list.d"
     fi
@@ -171,30 +176,37 @@ fi
 
 # Python pip libraries used in builds and tests
 #
-pip2 install spur==0.3.12
-pip2 install starbase==0.3.2
-pip2 install happybase==1.0.0
-pip2 install pyhs2==0.6.0
-pip2 install pywebhdfs==0.4.0
-pip2 install PyHDFS==0.1.2
-pip2 install cm-api==8.0.0
-pip2 install shyaml==0.4.1
-pip2 install nose==1.3.7
-pip2 install mock==2.0.0
-pip2 install pylint==1.6.4
-pip2 install python-swiftclient==3.1.0
-pip2 install tornado-cors==0.6.0
-pip2 install Tornado-JSON==1.2.2
-pip2 install boto==2.40.0
-pip2 install setuptools==28.8.0 --upgrade
-pip2 install impyla==0.13.8
-pip2 install eventlet==0.19.0
-pip2 install kazoo==2.2.1
-pip2 install avro==1.8.1
-pip2 install kafka-python==0.9.4
-pip2 install prettytable==0.7.2
-pip2 install pyhive==0.2.1
-pip2 install thrift_sasl==0.2.1
+pip2 install spur==0.3.12 \
+             starbase==0.3.2 \
+             happybase==1.0.0 \
+             pyhs2==0.6.0 \
+             pywebhdfs==0.4.0 \
+             PyHDFS==0.1.2 \
+             cm-api==8.0.0 \
+             shyaml==0.4.1 \
+             nose==1.3.7 \
+             mock==2.0.0 \
+             pylint==1.6.4 \
+             python-swiftclient==3.1.0 \
+             tornado-cors==0.6.0 \
+             Tornado-JSON==1.2.2 \
+             boto==2.40.0 \
+             setuptools==28.8.0 --upgrade \
+             impyla==0.13.8 \
+             eventlet==0.19.0 \
+             kazoo==2.2.1 \
+             avro==1.8.1 \
+             kafka-python==0.9.4 \
+             prettytable==0.7.2 \
+             pyhive==0.2.1 \
+             thrift_sasl==0.2.1 --log ${PNDA_TEMP}/pip.log;
+
+if grep -q "No matching distribution found for" "${PNDA_TEMP}/pip.log"; then
+    echo "No matching distribution found for"
+    echo $(cat ${PNDA_TEMP}/pip.log | grep "No matching distribution found for")
+    exit -1;
+fi
+
 # grunt-cli needs to be installed globally
 
 [[ -e ~/tmp ]] && TMP_EXISTS=true
@@ -208,6 +220,21 @@ npm install -g grunt-cli
 if [[ -z ${TMP_EXISTS} ]] && [[ -e ~/tmp ]]; then
     chmod -R 777 ~/tmp
 fi
+
+if [[ "${DISTRO}" == "rhel" ]]; then
+    if grep -q "No package" "${PNDA_TEMP}/yum-installer.log"; then
+        echo "Not availble Packages"
+        echo $(cat ${PNDA_TEMP}/yum-installer.log | grep "No package")
+        exit -1;
+    fi
+elif [[ "${DISTRO}" == "ubuntu" ]]; then
+    if grep -q "Unable to locate" "${PNDA_TEMP}/apt-installer.log"; then
+        echo "Packages Unable to locate"
+        echo $(cat ${PNDA_TEMP}/apt-installer.log | grep "Unable to locate")
+        exit -1;
+    fi
+fi
+rm -rf ${PNDA_TEMP}
 
 # Apache Spark
 #

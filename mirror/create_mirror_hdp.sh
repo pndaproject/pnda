@@ -1,9 +1,6 @@
 #!/bin/bash -v
 export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
-if [[ "${DISTRO}" == "ubuntu" ]]; then
-    apt-get install -y apt-transport-https curl
-fi
 
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
 
@@ -11,6 +8,17 @@ fi
 HDP_REPO_FILE_DIR=$MIRROR_OUTPUT_DIR/mirror_hdp
 mkdir -p $HDP_REPO_FILE_DIR
 cd $HDP_REPO_FILE_DIR
+
+if [[ "${DISTRO}" == "ubuntu" ]]; then
+    apt-get install -y apt-transport-https curl 2>&1 | tee -a apt-installer.log;
+    if grep -q "Unable to locate" "apt-installer.log"; then
+        echo "Packages Unable to locate"
+        echo $(cat apt-installer.log | grep "Unable to locate")
+        exit -1;
+    fi
+    rm apt-installer.log
+fi
+
 
 curl -LOJ http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.0.3/HDP-2.6.0.3-centos7-rpm.tar.gz
 curl -LOJ http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.21/repos/centos7/HDP-UTILS-1.1.0.21-centos7.tar.gz

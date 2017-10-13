@@ -19,16 +19,24 @@ echo 'deb http://public-repo-1.hortonworks.com/ambari/ubuntu14/2.x/updates/2.5.1
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD
 
 apt-get -y update
-apt-get -y install apt-transport-https curl dpkg-dev debfoster rng-tools
+apt-get -y install apt-transport-https curl dpkg-dev debfoster rng-tools 2>&1 | tee -a ${MIRRO_BUILD_DIR}/apt-installer.log;
 
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password your_password'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password your_password'
-apt-get -y install $DEB_PACKAGE_LIST
+apt-get -y install $DEB_PACKAGE_LIST 2>&1 | tee -a ${MIRRO_BUILD_DIR}/apt-installer.log;
 
 rm -rf $DEB_REPO_DIR
 mkdir -p $DEB_REPO_DIR
 cd $DEB_REPO_DIR
-apt-get download $DEB_PACKAGE_LIST
+mv ${MIRRO_BUILD_DIR}/apt-installer.log $DEB_REPO_DIR/
+apt-get download $DEB_PACKAGE_LIST 2>&1 | tee -a apt-installer.log;
+if grep -q "Unable to locate" "apt-installer.log"; then
+    echo "Packages Unable to locate"
+    echo $(cat apt-installer.log | grep "Unable to locate")
+    exit -1;
+fi
+rm apt-installer.log
+
 for DEB_PACKAGE in $DEB_PACKAGE_LIST
 do
 	DEBP=(${DEB_PACKAGE//=/ })
