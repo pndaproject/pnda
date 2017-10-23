@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - PNDA-3356: Include zip on deb mirror for HDP installation
+- PNDA-3238: Add jupyter extensions to the kenel virtual environment.
 
 ## [0.2.0] 2017-08-01
 ### Added

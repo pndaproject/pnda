@@ -24,6 +24,8 @@ httpd-tools
 libffi-devel
 libgsasl-devel
 libtirpc-devel
+libxml2-devel
+libxslt-devel
 mailcap
 mysql-community-server-5.5.54-2.el7
 MySQL-python-1.2.5-1.el7
