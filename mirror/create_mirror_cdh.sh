@@ -16,5 +16,5 @@ cd $CLOUDERA_REPO_FILE_DIR
 echo "$CLOUDERA_REPO_FILE_LIST" | while read CLOUDERA_REPO_FILE
 do
     echo $CLOUDERA_REPO_FILE
-    curl -LOJf $CLOUDERA_REPO_FILE
+    curl -LOJf --retry 5 --retry-max-time 0 $CLOUDERA_REPO_FILE
 done

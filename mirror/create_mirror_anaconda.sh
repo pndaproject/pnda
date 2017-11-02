@@ -16,5 +16,5 @@ cd $ANACONDA_REPO_FILE_DIR
 echo "$ANACONDA_REPO_FILE_LIST" | while read ANACONDA_REPO_FILE
 do
     echo $ANACONDA_REPO_FILE
-    curl -LOJf $ANACONDA_REPO_FILE
+    curl -LOJf --retry 5 --retry-max-time 0 $ANACONDA_REPO_FILE
 done
