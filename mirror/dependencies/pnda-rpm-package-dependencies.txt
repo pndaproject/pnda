@@ -21,6 +21,7 @@ gnuplot
 graphite-api-1.1.3-3.el7
 httpd
 httpd-tools
+krb5-devel
 libffi-devel
 libgsasl-devel
 libtirpc-devel
