@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - PNDA-3356: Include zip on deb mirror for HDP installation
 - PNDA-3238: Add jupyter extensions to the kenel virtual environment.
+- PNDA-3347: fix issue on HDP utils folder structure on ubuntu14
 
 ## [0.2.0] 2017-08-01
 ### Added
