@@ -18,6 +18,7 @@ curl -LOJf http://public-repo-1.hortonworks.com/HDP/ubuntu14/2.x/updates/2.6.0.3
 curl -LOJf http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.21/repos/ubuntu14/HDP-UTILS-1.1.0.21-ubuntu14.tar.gz
 tar zxf HDP-2.6.0.3-centos7-rpm.tar.gz
 tar zxf HDP-2.6.0.3-ubuntu14-deb.tar.gz
-tar zxf HDP-UTILS-1.1.0.21-ubuntu14.tar.gz
+mkdir -p HDP-UTILS-1.1.0.21/repos/ubuntu14/
+tar zxf HDP-UTILS-1.1.0.21-ubuntu14.tar.gz -C 'HDP-UTILS-1.1.0.21/repos/ubuntu14/'
 mkdir -p HDP-UTILS-1.1.0.21/repos/centos7/
 tar zxf HDP-UTILS-1.1.0.21-centos7.tar.gz -C 'HDP-UTILS-1.1.0.21/repos/centos7/'
