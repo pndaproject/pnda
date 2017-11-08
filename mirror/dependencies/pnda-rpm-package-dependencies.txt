@@ -17,6 +17,7 @@ gcc
 gcc-c++
 git
 glibc-devel
+glibc-headers
 gnuplot
 graphite-api-1.1.3-3.el7
 httpd
