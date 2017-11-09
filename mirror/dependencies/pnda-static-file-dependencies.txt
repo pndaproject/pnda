@@ -1,7 +1,7 @@
 -b oraclelicense=accept-securebackup-cookie -L http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz
 http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.25/mysql-connector-java-5.1.25.jar
-http://www.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
-http://www.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz.sha1
+http://archive.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
+http://archive.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz.sha1
 http://www.mirrorservice.org/sites/ftp.apache.org/kafka/0.11.0.0/kafka_2.11-0.11.0.0.tgz
 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz
 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz.sha1
