@@ -17,7 +17,7 @@ cd $HDP_REPO_FILE_DIR
 echo "$HDP_FILE_LIST" | while read HDP_FILE
 do
     echo $HDP_FILE
-    curl -LOJf --retry 5 --retry-max-time 0 $HDP_FILE
+    curl -LOJf --retry 9 --retry-max-time 0 $HDP_FILE
 done
 
 tar zxf HDP-2.6.0.3-centos7-rpm.tar.gz
