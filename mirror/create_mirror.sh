@@ -40,3 +40,5 @@ $MIRROR_BUILD_DIR/create_mirror_hdp.sh
 
 $MIRROR_BUILD_DIR/create_mirror_python.sh
 [[ $? -ne 0 ]] && mirror_error "Problem while creating python package mirror"
+
+exit 0
