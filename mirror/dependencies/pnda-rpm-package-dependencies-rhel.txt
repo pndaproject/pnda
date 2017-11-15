@@ -12,6 +12,7 @@ bzip2
 cloudera-manager-agent-5.12.1-1.cm5121.p0.6.el7
 cloudera-manager-daemons-5.12.1-1.cm5121.p0.6.el7
 cloudera-manager-server-5.12.1-1.cm5121.p0.6.el7
+czmq-devel
 cyrus-sasl-devel
 fuse-sshfs
 gcc
@@ -25,13 +26,9 @@ httpd-tools
 libffi-devel
 libgsasl-devel
 libtirpc-devel
-libxml2-devel
 libxslt-devel
-czmq-devel
 libxml2-python
 libxml2-devel
-libxslt-devel
-czmq-devel
 mailcap
 mysql-community-server-5.5.54-2.el7
 nginx
