@@ -35,9 +35,9 @@ nginx
 nmap-ncat
 ntp-4.2.6p5
 patch
-openssl
-openssl-libs-1.0.1e-60.el7
-openssl-devel-1.0.1e-60.el7
+openssl-1.0.2k-8.el7
+openssl-libs-1.0.2k-8.el7
+openssl-devel-1.0.2k-8.el7
 policycoreutils-python
 python-carbon
 python-chardet
