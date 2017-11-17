@@ -9,7 +9,7 @@ function mirror_error {
     exit -1
 }
 
-if [ "x$DISTRO" == "xrhel" ]; then
+if [ "x$DISTRO" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
 	echo "Use of Red Hat software is governed by your agreement with Red Hat."
 	echo "In order to proceed, you must have a valid Red Hat subscription and software image on your system."
 
@@ -19,6 +19,9 @@ if [ "x$DISTRO" == "xrhel" ]; then
 	  [Nn]* ) exit;;
 	  * ) echo "Please answer yes or no.";;
 	esac
+fi
+
+if [ "x$DISTRO" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
     $MIRROR_BUILD_DIR/create_mirror_rpm.sh
 elif [ "x$DISTRO" == "xubuntu" ]; then
     $MIRROR_BUILD_DIR/create_mirror_deb.sh
