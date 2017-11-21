@@ -24,4 +24,5 @@ http://search.maven.org/remotecontent?filepath=com/sleepycat/je/5.0.73/je-5.0.73
 https://repo.continuum.io/archive/Anaconda2-4.0.0-Linux-x86_64.sh
 http://central.maven.org/maven2/org/kitesdk/kite-tools/1.0.0/kite-tools-1.0.0-binary.jar
 http://central.maven.org/maven2/org/kitesdk/kite-tools/1.0.0/kite-tools-1.0.0-binary.jar.sha1
-
+http://apache.claz.org/incubator/livy/0.4.0-incubating/livy-0.4.0-incubating-bin.zip
+https://oss.sonatype.org/content/repositories/snapshots/com/github/alexarchambault/jupyter/jupyter-scala-cli_2.11.6/0.2.0-SNAPSHOT/jupyter-scala_2.11.6-0.2.0-SNAPSHOT.zip
