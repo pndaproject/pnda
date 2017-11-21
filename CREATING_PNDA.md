@@ -80,4 +80,4 @@ Place the SaltStack formulas repository on the client machine alongside the temp
 
 ## Create PNDA
 
-Once all the assets are in place, proceed with the PNDA creation instructions found in the [PNDA guide](https://github.com/pndaproject/pnda-guide/blob/develop) and the templates repositories referenced above.
+Once all the assets are in place, proceed with the PNDA creation instructions found in the [PNDA guide](https://github.com/pndaproject/pnda-guide) and the templates repositories referenced above.
