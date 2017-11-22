@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## [Unreleased]
 ### Added
 - PNDA-3304: Add script to set a non-transparent proxy for the mirror build.
 - PNDA-1960: Make Kafkat available on nodes as option for Kafka management at CLI
@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-2884: Upgrade CDH and Cloudera Manager version 5.12.1
 
 ### Fixed
+- PNDA-3499: Cleanup CHANGELOG with missing release info.
 - PNDA-3356: Include zip on deb mirror for HDP installation
 - PNDA-3238: Add jupyter extensions to the kenel virtual environment.
 - PNDA-3347: fix issue on HDP utils folder structure on ubuntu14
