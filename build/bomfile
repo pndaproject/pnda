@@ -1,0 +1,11 @@
+platform-console-backend 0.4.0
+platform-console-frontend RELEASE_0.2.1
+platform-data-mgmnt RELEASE_0.2.1
+platform-deployment-manager RELEASE_0.5.0
+platform-libraries RELEASE_0.1.4
+platform-package-repository 0.3.1
+platform-testing RELEASE_0.4.0
+gobblin RELEASE_0.1.6
+kafkamanager UPSTREAM(1.3.3.6)
+jupyterproxy UPSTREAM(1.3.1)
+kafkatool UPSTREAM(v0.2.0)
