@@ -33,8 +33,10 @@ do
     fi
 done
 
-apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD
-apt-key export 'Jenkins (HDP Builds) <jenkin@hortonworks.com>' > hdp.gpg.key
+if [ "x$DISTRO" == "xubuntu" ]; then
+    apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD
+    apt-key export 'Jenkins (HDP Builds) <jenkin@hortonworks.com>' > hdp.gpg.key
+fi
 
 tar zxf HDP-2.6.3.0-centos7-rpm.tar.gz
 tar zxf HDP-2.6.3.0-ubuntu14-deb.tar.gz
