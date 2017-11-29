@@ -33,8 +33,11 @@ do
     fi
 done
 
-tar zxf HDP-2.6.0.3-centos7-rpm.tar.gz
-tar zxf HDP-2.6.0.3-ubuntu14-deb.tar.gz
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD
+apt-key export 'Jenkins (HDP Builds) <jenkin@hortonworks.com>' > hdp.gpg.key
+
+tar zxf HDP-2.6.3.0-centos7-rpm.tar.gz
+tar zxf HDP-2.6.3.0-ubuntu14-deb.tar.gz
 mkdir -p HDP-UTILS-1.1.0.21/repos/ubuntu14/
 tar zxf HDP-UTILS-1.1.0.21-ubuntu14.tar.gz -C 'HDP-UTILS-1.1.0.21/repos/ubuntu14/'
 mkdir -p HDP-UTILS-1.1.0.21/repos/centos7/
