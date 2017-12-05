@@ -136,7 +136,7 @@ echo "Dependency check: sbt"
 if [[ "${DISTRO}" == "rhel" ]]; then
 
     wget -qO- https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
-    sudo yum install sbt-0.13.9 -y
+    sudo yum install sbt -y
 
 elif [[ "${DISTRO}" == "ubuntu" ]]; then
 
