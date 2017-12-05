@@ -8,15 +8,16 @@ elif [ "x$DISTRO" == "xubuntu" ]; then
     apt-get install -y libffi-dev gcc
 fi
 
-curl -LOJ https://bootstrap.pypa.io/get-pip.py
-sudo python get-pip.py
-sudo pip2 install setuptools==34.2.0
+curl -LOJf https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
+pip2 install setuptools==34.2.0
 
 export MIRROR_OUTPUT_DIR=${1/\/mirror_python/}
 if [ "$#" -gt 1 ]; then
 python << END
 import os
 import subprocess
+import sys
 
 package_path=os.environ['MIRROR_OUTPUT_DIR']+"/mirror_python/packages"
 # init directory
@@ -24,7 +25,9 @@ if not os.path.exists(package_path):
     os.makedirs(package_path)
 
 for one_dep in "${@:2}".split():
-    subprocess.call(["pip2","download", "--no-deps", one_dep,"--no-binary",":all:","-d",package_path])
+    ret_code = subprocess.call(["pip2","download", "--no-deps", one_dep,"--no-binary",":all:","-d",package_path])
+    if ret_code != 0:
+        sys.exit(-1)
 END
 fi
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-# 
+#
 #   Copyright (c) 2016 Cisco and/or its affiliates.
 #   This software is licensed to you under the terms of the Apache License, Version 2.0
 #   (the "License").
@@ -35,7 +35,7 @@ if [[ -z $(grep `hostname` /etc/hosts) ]]; then
     exit -1
 fi
 
-if [[ "${DISTRO}" == "rhel" ]]; then
+if [ "x${DISTRO}" == "xrhel" ]; then
   echo "Use of Red Hat software is governed by your agreement with Red Hat."
   echo "In order to proceed, you must have a valid Red Hat subscription and software image on your system."
 
@@ -45,7 +45,9 @@ if [[ "${DISTRO}" == "rhel" ]]; then
       [Nn]* ) exit;;
       * ) echo "Please answer yes or no.";;
   esac
+fi
 
+if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
   yum install -y wget
 fi
 
@@ -78,13 +80,13 @@ fi
 #
 echo "Dependency check: packages"
 
-if [[ "${DISTRO}" == "rhel" ]]; then
+if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
 
     RPM_EXTRAS=rhui-REGION-rhel-server-extras
     RPM_OPTIONAL=rhui-REGION-rhel-server-optional
     RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     NODE_REPO=https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
-    
+
     yum install -y $RPM_EPEL
     yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
 
@@ -102,7 +104,8 @@ if [[ "${DISTRO}" == "rhel" ]]; then
                    curl \
                    python-setuptools \
                    python-devel \
-                   python2-pip \                  
+                   python2-pip \
+                   ruby-devel \
                    libaio # Needed for Gobblin
 
 elif [[ "${DISTRO}" == "ubuntu" ]]; then
@@ -121,6 +124,7 @@ elif [[ "${DISTRO}" == "ubuntu" ]]; then
                    python-setuptools \
                    apt-transport-https \
                    python-pip \
+                   ruby-dev \
                    libaio1 # Needed for Gobblin
 fi
 
@@ -130,19 +134,19 @@ if [ ! -f /usr/bin/node ]; then
 fi
 
 # Scala Build Tool - sbt
-# 
+#
 echo "Dependency check: sbt"
 
-if [[ "${DISTRO}" == "rhel" ]]; then
+if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
 
-    wget -qO- https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
-    sudo yum install sbt -y
+    wget -qO- https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo
+    yum install sbt-0.13.9 -y
 
 elif [[ "${DISTRO}" == "ubuntu" ]]; then
 
     if [ ! -f /etc/apt/sources.list.d/sbt.list ]; then
         echo "WARN: Unable to find sbt, going to install it"
-        echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+        echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
         apt-get update -y
         apt-get install sbt=0.13.13 -y
@@ -191,7 +195,8 @@ pip2 install kazoo==2.2.1
 pip2 install avro==1.8.1
 pip2 install kafka-python==0.9.4
 pip2 install prettytable==0.7.2
-
+pip2 install pyhive==0.2.1
+pip2 install thrift_sasl==0.2.1
 # grunt-cli needs to be installed globally
 
 [[ -e ~/tmp ]] && TMP_EXISTS=true

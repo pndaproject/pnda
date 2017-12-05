@@ -9,17 +9,20 @@ DEB_PACKAGE_LIST=$(<${MIRROR_BUILD_DIR}/dependencies/pnda-deb-package-dependenci
 export DEBIAN_FRONTEND=noninteractive
 DEB_REPO_DIR=$MIRROR_OUTPUT_DIR/mirror_deb
 
-echo 'deb [arch=amd64] https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/ trusty-cm5.9.0 contrib' > /etc/apt/sources.list.d/cloudera-manager.list
+echo 'deb [arch=amd64] https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/ trusty-cm5.12.1 contrib' > /etc/apt/sources.list.d/cloudera-manager.list
 curl -L 'https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/archive.key' | apt-key add -
 
 echo 'deb [arch=amd64] http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2015.8.11/ trusty main' > /etc/apt/sources.list.d/saltstack.list
 curl -L 'http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2015.8.11/SALTSTACK-GPG-KEY.pub' | apt-key add -
 
+echo 'deb http://public-repo-1.hortonworks.com/ambari/ubuntu14/2.x/updates/2.5.1.0 Ambari main' > /etc/apt/sources.list.d/ambari.list
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD
+
 apt-get -y update
 apt-get -y install apt-transport-https curl dpkg-dev debfoster rng-tools
 
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password your_password'
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password your_password'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password password your_password'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password your_password'
 apt-get -y install $DEB_PACKAGE_LIST
 
 rm -rf $DEB_REPO_DIR

@@ -17,21 +17,25 @@ cd $STATIC_FILE_DIR
 echo "$STATIC_FILE_LIST" | while read STATIC_FILE
 do
     echo $STATIC_FILE
-    curl -LOJ $STATIC_FILE
+    curl -LOJf --retry 5 --retry-max-time 0 $STATIC_FILE
 done
 cat SHASUMS256.txt | grep node-v6.10.2-linux-x64.tar.gz > node-v6.10.2-linux-x64.tar.gz.sha1.txt
+sha512sum je-5.0.73.jar > je-5.0.73.jar.sha512.txt
+sha512sum Anaconda2-4.0.0-Linux-x86_64.sh > Anaconda2-4.0.0-Linux-x86_64.sh.sha512.txt
 
-if [ "x$DISTRO" == "xrhel" ]; then
+if [ "x$DISTRO" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
     yum install -y java-1.7.0-openjdk
 elif [ "x$DISTRO" == "xubuntu" ]; then
     apt-get install -y default-jre
 fi
 
 cd /tmp
-curl -LOJ https://artifacts.elastic.co/downloads/logstash/logstash-5.0.2.tar.gz
-tar zxf logstash-5.0.2.tar.gz
-rm logstash-5.0.2.tar.gz
-cd logstash-5.0.2
-bin/logstash-plugin install $PLUGIN_LIST
-bin/logstash-plugin pack
-mv plugins_package.tar.gz $STATIC_FILE_DIR/logstash_plugins.tar.gz
+curl -LOJf --retry 5 --retry-max-time 0 https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.tar.gz
+tar zxf logstash-5.2.2.tar.gz
+rm logstash-5.2.2.tar.gz
+cd logstash-5.2.2
+# work around bug introduced in 5.1.1: https://discuss.elastic.co/t/5-1-1-plugin-installation-behind-proxy/70454
+JARS_SKIP='true' bin/logstash-plugin install $PLUGIN_LIST
+bin/logstash-plugin prepare-offline-pack $PLUGIN_LIST
+chmod a+r logstash-offline-plugins-5.2.2.zip
+mv logstash-offline-plugins-5.2.2.zip $STATIC_FILE_DIR/logstash-offline-plugins-5.2.2.zip

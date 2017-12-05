@@ -12,7 +12,9 @@ At the high level, the following steps are required to create a PNDA cluster.
 
 ## Before you start
 
-Please refer to the [PNDA guide](https://github.com/pndaproject/pnda-guide/blob/develop/provisioning/platform_requirements.md) for guidance on how to prepare the target envirnonment for the PNDA cluster.
+Please refer to the [PNDA guide](https://github.com/pndaproject/pnda-guide) for guidance on how to prepare the target envirnonment for the PNDA cluster.
+
+If your target environment is set up behind a non-transparent proxy, use the [proxy configuration tool](PROXY.md) to set up your target enviroment for using the proxy.
 
 ## Download packages
 
@@ -78,4 +80,4 @@ Place the SaltStack formulas repository on the client machine alongside the temp
 
 ## Create PNDA
 
-Once all the assets are in place, proceed with the PNDA creation instructions found in the [PNDA guide](https://github.com/pndaproject/pnda-guide/blob/develop) and the templates repositories referenced above.
+Once all the assets are in place, proceed with the PNDA creation instructions found in the [PNDA guide](https://github.com/pndaproject/pnda-guide) and the templates repositories referenced above.

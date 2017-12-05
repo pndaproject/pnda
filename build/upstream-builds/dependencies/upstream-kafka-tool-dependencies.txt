@@ -1,0 +1,7 @@
+colored-1.2.gem
+highline-1.7.8.gem
+json-1.8.6.gem
+retryable-1.3.6.gem
+trollop-2.1.2.gem
+zookeeper-1.4.11.gem
+zk-1.9.6.gem
