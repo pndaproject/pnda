@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - PNDA-3579: ignore files generated on install build tools step
 
+### Fixed
+- PNDA-3578: RPM repo can be overridden before running mirror scripts in case of non AWS environment
+
 ## [1.0.0] 2017-11-24
 ### Added
 - PNDA-3304: Add script to set a non-transparent proxy for the mirror build.
