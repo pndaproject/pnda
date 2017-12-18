@@ -1,7 +1,7 @@
 -b oraclelicense=accept-securebackup-cookie -L http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz
 http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.25/mysql-connector-java-5.1.25.jar
-http://archive.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
-http://archive.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz.sha1
+http://archive.apache.org/dist/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz
+http://archive.apache.org/dist/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz.sha1
 http://archive.apache.org/dist/kafka/0.11.0.0/kafka_2.11-0.11.0.0.tgz
 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz
 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz.sha1
@@ -20,8 +20,7 @@ https://nodejs.org/download/release/v6.10.2/SHASUMS256.txt
 https://nodejs.org/download/release/v6.10.2/node-v6.10.2-linux-x64.tar.gz
 https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.2.0-1.x86_64.rpm
 https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.2.0_amd64.deb
-http://search.maven.org/remotecontent?filepath=com/sleepycat/je/5.0.73/je-5.0.73.jar
+http://central.maven.org/maven2/com/sleepycat/je/5.0.73/je-5.0.73.jar
 https://repo.continuum.io/archive/Anaconda2-4.0.0-Linux-x86_64.sh
 http://central.maven.org/maven2/org/kitesdk/kite-tools/1.0.0/kite-tools-1.0.0-binary.jar
 http://central.maven.org/maven2/org/kitesdk/kite-tools/1.0.0/kite-tools-1.0.0-binary.jar.sha1
-
