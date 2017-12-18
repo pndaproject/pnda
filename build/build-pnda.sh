@@ -77,6 +77,7 @@ declare -A upstream=(
 [kafkamanager]=
 [jupyterproxy]=
 [kafkatool]=
+[livy]=
 )
 
 function fill_bom {
