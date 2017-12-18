@@ -79,10 +79,10 @@ For more details refer to the [Hadoop Distributions](https://github.com/pndaproj
 #### Using the ```heat-cli``` on *OpenStack*
 ||pico|standard|
 |---|---|---|
-|RHEL, HDP|pending|pending|
-|Ubuntu, HDP|pending|pending|
-|RHEL, CDH|pending|pending|
-|Ubuntu, CDH|pending|pending|
+|RHEL, HDP|PASSED|PASSED|
+|Ubuntu, HDP|PASSED|PASSED|
+|RHEL, CDH|PASSED|PASSED|
+|Ubuntu, CDH|PASSED|PASSED|
 
 ### Change Log
  
