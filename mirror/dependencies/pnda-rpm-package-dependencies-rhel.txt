@@ -34,6 +34,7 @@ mysql-community-server-5.5.54-2.el7
 nginx
 nmap-ncat
 ntp-4.2.6p5
+pam-devel
 patch
 openssl-1.0.2k-8.el7
 openssl-libs-1.0.2k-8.el7

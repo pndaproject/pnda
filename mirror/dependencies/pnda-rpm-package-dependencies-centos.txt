@@ -38,6 +38,7 @@ patch
 openssl-1.0.2k-8.el7
 openssl-libs-1.0.2k-8.el7
 openssl-devel-1.0.2k-8.el7
+pam-devel
 policycoreutils-python
 python-carbon
 python-chardet

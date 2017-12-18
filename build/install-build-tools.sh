@@ -102,6 +102,7 @@ if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
                    nodejs \
                    bc \
                    curl \
+                   pam-devel \
                    python-setuptools \
                    python-devel \
                    python2-pip \
@@ -123,6 +124,7 @@ elif [[ "${DISTRO}" == "ubuntu" ]]; then
                    curl \
                    python-setuptools \
                    apt-transport-https \
+                   libpam0g-dev \
                    python-pip \
                    ruby-dev \
                    libaio1 # Needed for Gobblin

@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- PNDA-3562: add pam-devel for PAM authentication on PNDA console frontend
+
 ### Changed
 - PNDA-3579: ignore files generated on install build tools step
 
