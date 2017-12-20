@@ -25,8 +25,10 @@ sha512sum Anaconda2-4.0.0-Linux-x86_64.sh > Anaconda2-4.0.0-Linux-x86_64.sh.sha5
 
 if [ "x$DISTRO" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
     yum install -y java-1.7.0-openjdk
+    yum install -y postgresql-devel
 elif [ "x$DISTRO" == "xubuntu" ]; then
     apt-get install -y default-jre
+    apt-get install -y libpq-dev
 fi
 
 cd /tmp

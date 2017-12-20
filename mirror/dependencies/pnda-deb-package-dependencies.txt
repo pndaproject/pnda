@@ -19,6 +19,7 @@ libffi-dev
 libkrb5-dev
 libmysql-java=5.1.28-1
 libpam0g-dev
+libpq-dev
 libsasl2-dev
 libsodium13
 libxml2-dev
