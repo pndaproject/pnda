@@ -41,6 +41,7 @@ openssl-libs-1.0.2k-8.el7
 openssl-devel-1.0.2k-8.el7
 pam-devel
 policycoreutils-python
+postgresql-devel
 python-carbon
 python-chardet
 python-devel

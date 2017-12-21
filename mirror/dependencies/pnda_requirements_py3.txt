@@ -8,6 +8,7 @@ entrypoints==0.2.2
 hdijupyterutils==0.12.4
 html5lib==0.9999999
 https://github.com/klyr/jupyter-spark/releases/download/0.3.0-patch/jupyter-spark-0.3.0-patch.tar.gz
+impyla==0.14.0
 ipykernel==4.5.2
 ipython-genutils==0.1.0
 ipython==5.1.0
@@ -37,9 +38,11 @@ pexpect==4.2.1
 pickleshare==0.7.4
 plotly==1.10.0
 prompt-toolkit==1.0.9
+psycopg2==2.7.3.2
 ptyprocess==0.5.1
 Pygments==2.1.3
 pykerberos==1.1.14
+pymysql==0.7.11
 python_dateutil==2.6.0
 python-editor==1.0.3
 pyzmq==16.0.2
@@ -53,6 +56,7 @@ SQLAlchemy==1.1.4
 sql-magic==0.0.3
 terminado==0.6
 testpath==0.3
+thrift==0.9.3
 tornado==4.4.2
 traitlets==4.3.1
 wcwidth==0.1.7

@@ -76,6 +76,7 @@ ply==3.9
 positional==1.1.1
 prettytable==0.7.2
 prompt_toolkit==1.0.15
+psycopg2==2.7.3.2
 ptyprocess==0.5.1
 pyasn1==0.1.9
 pycparser==2.17
@@ -83,6 +84,7 @@ pyhive==0.2.1
 pyhs2==0.6.0
 pykerberos==1.1.14
 pyparsing==2.1.10
+pymysql==0.7.11
 python-keystoneclient==3.8.0
 python-swiftclient==3.2.0
 pytz==2016.10
