@@ -5,9 +5,12 @@ All notable changes to this project will be documented in this file.
 ### Added
 - PNDA-3562: add pam-devel for PAM authentication on PNDA console frontend
 - PNDA-2832: Jupyter %sql magic support
+- PNDA-1899: Scala Spark Jupyter Integration
 
 ### Changed
 - PNDA-3579: ignore files generated on install build tools step
+- PNDA-3530: Ambari version 2.6.0.0 and HDP version 2.6.3.0
+- PNDA-3483: Zookeeper version 3.4.11
 
 ### Fixed
 - PNDA-3578: RPM repo can be overridden before running mirror scripts in case of non AWS environment
@@ -17,7 +20,6 @@ All notable changes to this project will be documented in this file.
 - PNDA-3304: Add script to set a non-transparent proxy for the mirror build.
 - PNDA-1960: Make Kafkat available on nodes as option for Kafka management at CLI
 - PNDA-3484: Add CentOS Support
-- PNDA-1899: Scala Spark Jupyter Integration
 
 ### Changed
 - PNDA-3216: Include Logstash 5.2.2 and updated plugin mechanism with fixed behaviour for offline installation
@@ -27,8 +29,6 @@ All notable changes to this project will be documented in this file.
 - PNDA-3289: Detect errors when building mirror and set exit code
 - PNDA-3249: Upgrade Kafka version to 0.11.0.0
 - PNDA-2884: Upgrade CDH and Cloudera Manager version 5.12.1
-- PNDA-3530: Ambari version 2.6.0.0 and HDP version 2.6.3.0
-- PNDA-3483: Zookeeper version 3.4.11
 
 ### Fixed
 - PNDA-3499: Cleanup CHANGELOG with missing release info.
