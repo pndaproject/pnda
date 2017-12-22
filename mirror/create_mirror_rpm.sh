@@ -3,12 +3,11 @@ export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
-
 RPM_PACKAGE_LIST=$(<${MIRROR_BUILD_DIR}/dependencies/pnda-rpm-package-dependencies-${DISTRO}.txt)
 
 RPM_REPO_DIR=$MIRROR_OUTPUT_DIR/mirror_rpm
-RPM_EXTRAS=rhui-REGION-rhel-server-extras
-RPM_OPTIONAL=rhui-REGION-rhel-server-optional
+[[ -z ${RPM_EXTRAS} ]] && export RPM_EXTRAS=rhui-REGION-rhel-server-extras
+[[ -z ${RPM_OPTIONAL} ]] && export RPM_OPTIONAL=rhui-REGION-rhel-server-optional
 RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 MY_SQL_REPO=https://repo.mysql.com/yum/mysql-5.5-community/el/7/x86_64/
 MY_SQL_REPO_KEY=https://repo.mysql.com/RPM-GPG-KEY-mysql
