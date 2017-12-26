@@ -107,6 +107,7 @@ if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
                    python-devel \
                    python2-pip \
                    ruby-devel \
+                   unzip \
                    libaio # Needed for Gobblin
 
 elif [[ "${DISTRO}" == "ubuntu" ]]; then
@@ -127,6 +128,7 @@ elif [[ "${DISTRO}" == "ubuntu" ]]; then
                    libpam0g-dev \
                    python-pip \
                    ruby-dev \
+                   unzip \
                    libaio1 # Needed for Gobblin
 fi
 
