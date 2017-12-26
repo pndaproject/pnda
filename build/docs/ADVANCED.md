@@ -24,13 +24,13 @@ It is possible to use build-pnda.sh to build PNDA components & upstream projects
 |platform-libraries|
 |platform-package-repository| 
 |platform-testing| 
-|gobblin| 
        
 |Upstream Projects|
 |---|
 |kafkamanager|
 |jupyterproxy|
 |livy|
+|gobblin| 
 
 #### Examples
 
@@ -63,6 +63,7 @@ More complex BOM specifying various component versions, PNDA release versions an
        kafkamanager UPSTREAM(1.3.2.4)
        jupyterproxy UPSTREAM(1.3.1)
        livy UPSTREAM(0.3.0)
+       gobblin UPSTREAM(0.11.0)
 ```
 
 Invocation example.

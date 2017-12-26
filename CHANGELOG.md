@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-3562: add pam-devel for PAM authentication on PNDA console frontend
 - PNDA-2832: Jupyter %sql magic support
 - PNDA-1899: Scala Spark Jupyter Integration
+- PNDA-3133: Remove Gobblin fork and use release distribution instead.
 
 ### Changed
 - PNDA-3579: ignore files generated on install build tools step
