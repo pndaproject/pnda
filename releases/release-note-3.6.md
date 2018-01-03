@@ -52,7 +52,7 @@ For more details refer to the [Hadoop Distributions](https://github.com/pndaproj
 |[pnda-cli](#pnda-cli)|1.0.0|24 Nov 2017|
 |[pnda-dib-elements](#pnda-dib-elements)|0.2.0|23 May 2017|
 |[pnda-guide](#pnda-guide)|0.3.0|24 Nov 2017|
-|[pnda-heat-templates](#pnda-heat-templates)|1.4.0|24 Nov 2017|
+|[pnda-heat-templates](#pnda-heat-templates)|1.4.0|18 Dec 2017|
 
 ### Testing Matrix
 
@@ -79,10 +79,10 @@ For more details refer to the [Hadoop Distributions](https://github.com/pndaproj
 #### Using the ```heat-cli``` on *OpenStack*
 ||pico|standard|
 |---|---|---|
-|RHEL, HDP|pending|pending|
-|Ubuntu, HDP|pending|pending|
-|RHEL, CDH|pending|pending|
-|Ubuntu, CDH|pending|pending|
+|RHEL, HDP|PASSED|PASSED|
+|Ubuntu, HDP|PASSED|PASSED|
+|RHEL, CDH|PASSED|PASSED|
+|Ubuntu, CDH|PASSED|PASSED|
 
 ### Change Log
  
@@ -261,13 +261,15 @@ For more details refer to the [Hadoop Distributions](https://github.com/pndaproj
 #### [pnda-heat-templates](https://github.com/pndaproject/pnda-heat-templates)
 ##### Added:
 - PNDA-2969: Allow hadoop distro to be set in `pnda_env.yaml`. Supported values are `HDP` and `CDH`.
+- PNDA-2389: PNDA automatically reboots instances that need rebooting following kernel updates
  
 ##### Changed
 - PNDA-3444: Disallow uppercase letters in the cluster names.
 - PNDA-2965: Rename `cloudera_*` role grains to `hadoop_*`
 - PNDA-3180: When expanding a cluster limit the operations to strictly required steps on specific nodes
 - PNDA-3249: put mine configuration in pillar
+- Issue-123: Fixed Jenkins GPG Key Added in package-install.sh file
  
 ##### Fixed
 - PNDA-3499: Cleanup CHANGELOG with missing release info.
- 
+- PNDA-3524: remove beacons logic 
