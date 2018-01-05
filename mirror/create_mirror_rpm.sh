@@ -41,9 +41,9 @@ curl -LOJf $SALT_REPO_KEY
 curl -LOJf $SALT_REPO_KEY2
 curl -LOJf $AMBARI_REPO_KEY
 
-if [ "x$DISTRO" == "xcentos" ]; then
-	rpm --import *
-fi
+# import repo keys
+rpm --import *
+
 
 yum install -y createrepo
 
