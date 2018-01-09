@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - PNDA-3578: RPM repo can be overridden before running mirror scripts in case of non AWS environment
+- Forked: Remove conditional key import
 
 ## [1.0.0] 2017-11-24
 ### Added
