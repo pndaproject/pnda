@@ -31,6 +31,8 @@ All notable changes to this project will be documented in this file.
 - PNDA-3289: Detect errors when building mirror and set exit code
 - PNDA-3249: Upgrade Kafka version to 0.11.0.0
 - PNDA-2884: Upgrade CDH and Cloudera Manager version 5.12.1
+- PNDA-3530: Ambari version 2.6.0.0 and HDP version 2.6.3.0
+- PNDA-3483: Zookeeper version 3.4.11
 
 ### Fixed
 - PNDA-3499: Cleanup CHANGELOG with missing release info.

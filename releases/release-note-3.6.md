@@ -76,7 +76,7 @@ For more details refer to the [Hadoop Distributions](https://github.com/pndaproj
 |RHEL, CDH|PASSED|PASSED|
 |Ubuntu, CDH|PASSED|PASSED|
 
-#### Using the ```heat-cli``` on *OpenStack*
+#### Using the ```heat-cli``` on *OpenStack* 
 ||pico|standard|
 |---|---|---|
 |RHEL, HDP|PASSED|PASSED|
