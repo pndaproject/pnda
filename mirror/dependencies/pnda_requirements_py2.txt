@@ -49,6 +49,7 @@ iso8601==0.1.11
 itsdangerous==0.24
 jsonschema==2.5.1
 kafka-python==0.9.5
+kafka-python==1.3.5
 kazoo==2.2.1
 keystoneauth1==2.16.0
 lxml==3.6.4
