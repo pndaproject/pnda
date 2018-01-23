@@ -1,23 +1,32 @@
+#!/bin/bash -ev
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
+[[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
+
 STATIC_FILE_DIR=$MIRROR_OUTPUT_DIR/mirror_apps
 mkdir -p $STATIC_FILE_DIR
 cd $STATIC_FILE_DIR
-cp $MIRROR_OUTPUT_DIR/mirror_python/packages/kafka-python-1.3.5.tar.gz ./
-[[ $? -ne 0 ]] && echo "Error copying kafka-python" && exit -1
-cp $MIRROR_OUTPUT_DIR/mirror_python/packages/avro-1.8.1.tar.gz ./
-[[ $? -ne 0 ]] && echo "Error copying avro-python" && exit -1
-CANDIDATES=(`ls $STATIC_FILE_DIR/*`)
-for c in ${CANDIDATES[*]}
+
+STATIC_FILE_LIST_APP=$(<${MIRROR_BUILD_DIR}/dependencies/pnda-static-file-app-dependencies.txt)
+cd $STATIC_FILE_DIR
+echo "$STATIC_FILE_LIST_APP" | while read STATIC_FILE
 do
-    tar zxf $c
-    [[ $? -ne 0 ]] && echo "Error extracting ${c}" && exit -1
-    rm -rf $c
-    filename="${c/%.tar.gz/}"
-    cd "$filename"
-    python setup.py bdist_egg
-    [[ $? -ne 0 ]] && echo "Error creating egg file for ${c}" && exit -1
-    egg_file=(`ls dist/*.egg`)
-    cp $egg_file .././
-    rm -rf "$filename"
-    cd ..
+    IFS=', ' read -r -a appdata <<< $STATIC_FILE
+    if [ "${appdata[0]}" = "python" ] ; then
+        curl -LOJf --retry 5 --retry-max-time 0 "${appdata[1]}"
+        file=$(echo ${appdata[1]} | rev | cut -d/ -f1 | rev)
+        tar zxf $file
+        rm -f $file
+        filename="${file/%.tar.gz/}"
+        cd "$filename"
+        python setup.py bdist_egg
+        egg_file=(`ls dist/*.egg`)
+        cp $egg_file .././
+        cd ..
+        rm -rf "$filename"
+    elif [ "${appdata[0]}" = "java" ] ; then
+        curl -LOJf --retry 5 --retry-max-time 0 "${appdata[1]}"
+    else
+        echo "unknow type dependency"
+        exit -1
+    fi
 done
