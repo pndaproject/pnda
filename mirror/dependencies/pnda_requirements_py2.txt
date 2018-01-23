@@ -119,3 +119,4 @@ widgetsnbextension==2.0.0
 virtualenv==15.1.0
 wrapt==1.10.8
 wsgiref==0.1.2
+superset==0.22.1
