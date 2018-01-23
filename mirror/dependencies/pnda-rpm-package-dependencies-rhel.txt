@@ -26,6 +26,7 @@ httpd-tools
 krb5-devel
 libffi-devel
 libgsasl-devel
+libsasl2-devel
 libtirpc-devel
 libxslt-devel
 libxml2-python
@@ -37,6 +38,7 @@ nmap-ncat
 ntp-4.2.6p5
 pam-devel
 patch
+openldap-devel
 openssl-1.0.2k-8.el7
 openssl-libs-1.0.2k-8.el7
 openssl-devel-1.0.2k-8.el7
@@ -47,6 +49,7 @@ python-chardet
 python-devel
 python-kitchen
 python-six
+python-wheel
 python2-pip
 python34-devel
 python34-pip
