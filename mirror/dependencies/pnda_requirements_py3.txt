@@ -63,4 +63,4 @@ wcwidth==0.1.7
 webencodings==0.5
 wheel==0.29.0
 widgetsnbextension==2.0.0
-superset=0.22.1
+superset==0.22.1
