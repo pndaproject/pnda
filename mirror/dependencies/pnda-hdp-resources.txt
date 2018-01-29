@@ -1,4 +1,4 @@
-http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.3.0/HDP-2.6.3.0-centos7-rpm.tar.gz
-http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.21/repos/centos7/HDP-UTILS-1.1.0.21-centos7.tar.gz
-http://public-repo-1.hortonworks.com/HDP/ubuntu14/2.x/updates/2.6.3.0/HDP-2.6.3.0-ubuntu14-deb.tar.gz
-http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.21/repos/ubuntu14/HDP-UTILS-1.1.0.21-ubuntu14.tar.gz
+http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.4.0/HDP-2.6.4.0-centos7-rpm.tar.gz
+http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/centos7/HDP-UTILS-1.1.0.22-centos7.tar.gz
+http://public-repo-1.hortonworks.com/HDP/ubuntu14/2.x/updates/2.6.4.0/HDP-2.6.4.0-ubuntu14-deb.tar.gz
+http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/ubuntu14/HDP-UTILS-1.1.0.22-ubuntu14.tar.gz
