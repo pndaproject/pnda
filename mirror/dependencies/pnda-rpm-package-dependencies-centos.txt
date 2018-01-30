@@ -1,10 +1,10 @@
 MySQL-python-1.2.5-1.el7
 acl
-ambari-agent-2.6.0.0-267
-ambari-metrics-collector-2.6.0.0-267
-ambari-metrics-hadoop-sink-2.6.0.0-267
-ambari-metrics-monitor-2.6.0.0-267
-ambari-server-2.6.0.0-267
+ambari-agent-2.6.1.0-143
+ambari-metrics-collector-2.6.1.0-143
+ambari-metrics-hadoop-sink-2.6.1.0-143
+ambari-metrics-monitor-2.6.1.0-143
+ambari-server-2.6.1.0-143
 apr
 apr-util
 at

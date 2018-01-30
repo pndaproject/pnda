@@ -1,7 +1,7 @@
 acl
-ambari-agent=2.6.0.0-267
-ambari-metrics-assembly=2.6.0.0-267
-ambari-server=2.6.0.0-267
+ambari-agent=2.6.1.0-143
+ambari-metrics-assembly=2.6.1.0-143
+ambari-server=2.6.1.0-143
 build-essential
 cloudera-manager-agent=5.12.1-1.cm5121.p0.6~trusty-cm5
 cloudera-manager-daemons=5.12.1-1.cm5121.p0.6~trusty-cm5

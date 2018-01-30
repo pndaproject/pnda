@@ -78,7 +78,7 @@ do
         HADOOP_VERSION=2.6.0-cdh5.9.0
     fi
     if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
-        HADOOP_VERSION=2.7.3.2.6.3.0-235
+        HADOOP_VERSION=2.7.3.2.6.4.0-91
     fi
 
     ./gradlew build -Pversion="${GB_VERSION}-${HADOOP_DISTRIBUTION}" -PhadoopVersion="${HADOOP_VERSION}" -PexcludeHadoopDeps -PexcludeHiveDeps ${EXCLUDES}
