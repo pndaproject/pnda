@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-3579: ignore files generated on install build tools step
 - PNDA-3530: Ambari version 2.6.0.0 and HDP version 2.6.3.0
 - PNDA-3483: Zookeeper version 3.4.11
+- PNDA-4043: Update HDP to version 2.6.4.0
 
 ### Fixed
 - PNDA-3578: RPM repo can be overridden before running mirror scripts in case of non AWS environment
