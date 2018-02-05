@@ -7,6 +7,7 @@ fi
 
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
+source ${MIRROR_BUILD_DIR}/common/utils.sh
 
 HDP_FILE_LIST=$(<${MIRROR_BUILD_DIR}/dependencies/pnda-hdp-resources.txt)
 
@@ -17,20 +18,7 @@ cd $HDP_REPO_FILE_DIR
 echo "$HDP_FILE_LIST" | while read HDP_FILE
 do
     echo $HDP_FILE
-
-    ATTEMPT=0
-    RETRY=3
-    until [[ ${ATTEMPT} -ge ${RETRY} ]]
-    do
-        curl -LOJf $HDP_FILE && break
-        ATTEMPT=$[${ATTEMPT}+1]
-        sleep 10
-    done
-
-    if [[ ${ATTEMPT} -ge ${RETRY} ]]; then
-        echo "Failed to download ${HDP_FILE} after ${RETRY} retries"
-        exit -1
-    fi
+    robust_curl "$HDP_FILE"
 done
 
 if [ "x$DISTRO" == "xubuntu" ]; then
