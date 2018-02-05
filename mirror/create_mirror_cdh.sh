@@ -7,6 +7,7 @@ fi
 
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
+source ${MIRROR_BUILD_DIR}/common/utils.sh
 
 CLOUDERA_REPO_FILE_LIST=$(<${MIRROR_BUILD_DIR}/dependencies/pnda-cdh-repo-cloudera.txt)
 
@@ -16,5 +17,5 @@ cd $CLOUDERA_REPO_FILE_DIR
 echo "$CLOUDERA_REPO_FILE_LIST" | while read CLOUDERA_REPO_FILE
 do
     echo $CLOUDERA_REPO_FILE
-    curl -LOJf --retry 5 --retry-max-time 0 $CLOUDERA_REPO_FILE
+    robust_curl "$CLOUDERA_REPO_FILE"
 done
