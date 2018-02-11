@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [1.1.0] 2018-02-10
 ### Added
 - PNDA-3562: Add pam-devel for PAM authentication on PNDA console frontend
 - PNDA-2832: Jupyter %sql magic support
