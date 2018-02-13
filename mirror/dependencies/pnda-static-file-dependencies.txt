@@ -24,3 +24,5 @@ http://central.maven.org/maven2/com/sleepycat/je/5.0.73/je-5.0.73.jar
 https://repo.continuum.io/archive/Anaconda2-4.0.0-Linux-x86_64.sh
 http://central.maven.org/maven2/org/kitesdk/kite-tools/1.0.0/kite-tools-1.0.0-binary.jar
 http://central.maven.org/maven2/org/kitesdk/kite-tools/1.0.0/kite-tools-1.0.0-binary.jar.sha1
+https://releases.hashicorp.com/consul/1.0.3/consul_1.0.3_linux_amd64.zip
+https://releases.hashicorp.com/consul/1.0.3/consul_1.0.3_SHA256SUMS
