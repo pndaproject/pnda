@@ -1,5 +1,5 @@
 platform-console-backend 1.0.0-rc.0
-platform-console-frontend 1.0.0-rc.0
+platform-console-frontend 1.0.0-rc.1
 platform-data-mgmnt 0.2.2-rc.0
 platform-deployment-manager 1.0.0-rc.0
 platform-gobblin-modules 0.1.0-rc.1
