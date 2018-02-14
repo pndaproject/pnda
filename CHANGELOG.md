@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- PNDA-3673: Added consul resources to mirror build
 
 ## [1.1.0] 2018-02-10
 ### Added
