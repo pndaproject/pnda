@@ -6,25 +6,25 @@ PNDA 4.0 is a major release containing a number of new features, improvements an
 
 In preparation for upcoming work on PNDA security, right across the platform we've introduced multi-user awareness where previously a single 'pnda' user was assumed. 
 
-Whether you're using Jupyter notebooks, delivering applications via the Deployment Manager APIs, using the PNDA console or any of the Spark, Hive, HBase or other shells PNDA will carry out work on behalf of a specific user and map that work based on the user to queues in YARN using a configurable mechanism - see the [PNDA guide](https://github.com/pndaproject/pnda-guide/blob/0.4/resourcemanagement/README.md) for details.
+Whether you're using Jupyter notebooks, delivering applications via the Deployment Manager APIs, using the PNDA console or any of the Spark, Hive, HBase or other shells, PNDA will carry out work on behalf of a specific user and map that work based on the user to queues in YARN using a configurable mechanism - see the [PNDA guide](https://github.com/pndaproject/pnda-guide/blob/0.4/resourcemanagement/README.md) for details.
 
-Also on the security front there's a mechanism for uploading certificates and keys for securing web services on PNDA and the PNDA Console has a brand new login screen.
+Also on the security front there's a mechanism for uploading certificates and keys for securing web services on PNDA, and the PNDA Console has a brand new login screen.
 
-All these changes have necessitated significant changes that have affected APIs so please read the CHANGELOG below carefully for anything that may affect you directly.
+These improvements have necessitated significant changes that have affected APIs so please read the CHANGELOGs below carefully for anything that may affect you directly.
 
 ### Spark 2
 
-For HDP clusters we now support Spark 2 alongside Spark 1 in Jupyter, Deployment Manager and shells and this works with the above mechanisms to allocate users and groups to resource allocations.
+For HDP clusters we now support Spark 2 alongside Spark 1 in Jupyter, Deployment Manager and shells, and this works with the above mechanisms to assign users and groups to resource allocations.
 
 ### Ingest
 
-The mechanics handling ingest have undergone signifcant revision. We've dropped our fork of Gobblin project and instead we now deploy the current latest release (0.11.0). The PNDA specific modules for handling ingest have been factored out into a new PNDA component, and we're using a new Kafka deserializer and packing algorithm to reduce the number of small files on the system. 
+The mechanics for handling ingest have undergone signifcant revision. We've dropped our fork of the Gobblin project and instead now deploy the current latest Gobblin release (0.11.0). The PNDA specific modules for handling ingest have been factored out into a new PNDA component, and we're using a new Kafka deserializer and packing algorithm to reduce the number of small files on the system. 
 
-In addition to this we're also including a compaction process that can be configured in conjuction with the existing ingest to generate a separate, compacted tree. Together with the existing Data Management functionality these tools can be used to organize a policy to migrate older data towards compacted and compressed archived before eventual deletion or archive from the system.
+In addition to this we're also including a compaction process that can be configured in conjuction with the existing ingest to generate a separate, compacted tree. Together with the existing PNDA Data Management functionality these tools can be used to organize a policy to migrate older data towards compacted and compressed archives before eventual removal from the system.
 
 ### And more...
 
-As usual there have been a long list of bug fixes and other improvements since the last release, please refer to the CHANGELOGs and commit logs for more details.
+As usual, there are a long list of bug fixes and other improvements since the last release, please refer to the CHANGELOGs and commit logs for more details.
 
 
 #### Updated technologies
