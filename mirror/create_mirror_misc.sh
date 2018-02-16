@@ -33,12 +33,12 @@ elif [ "x$DISTRO" == "xubuntu" ]; then
 fi
 
 cd /tmp
-robust_curl https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.tar.gz
-tar zxf logstash-5.2.2.tar.gz
-rm logstash-5.2.2.tar.gz
-cd logstash-5.2.2
+LOGSTASH_VERSION=6.2.1
+robust_curl https://artifacts.elastic.co/downloads/logstash/logstash-${LOGSTASH_VERSION}.tar.gz
+tar zxf logstash-${LOGSTASH_VERSION}.tar.gz
+rm logstash-${LOGSTASH_VERSION}.tar.gz
+cd logstash-${LOGSTASH_VERSION}
 # work around bug introduced in 5.1.1: https://discuss.elastic.co/t/5-1-1-plugin-installation-behind-proxy/70454
 JARS_SKIP='true' bin/logstash-plugin install $PLUGIN_LIST
 bin/logstash-plugin prepare-offline-pack $PLUGIN_LIST
-chmod a+r logstash-offline-plugins-5.2.2.zip
-mv logstash-offline-plugins-5.2.2.zip $STATIC_FILE_DIR/logstash-offline-plugins-5.2.2.zip
+chmod a+r logstash-offline-plugins-${LOGSTASH_VERSION}.zip
