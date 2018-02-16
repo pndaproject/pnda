@@ -20,7 +20,7 @@ For HDP clusters we now support Spark 2 alongside Spark 1 in Jupyter, Deployment
 
 The mechanics handling ingest have undergone signifcant revision. We've dropped our fork of Gobblin project and instead we now deploy the current latest release (0.11.0). The PNDA specific modules for handling ingest have been factored out into a new PNDA component, and we're using a new Kafka deserializer and packing algorithm to reduce the number of small files on the system. 
 
-In addition to this we're also including a compaction process that can be configured in conjuction with the existing ingest to generate a separate, compacted tree. Togetether with the existing Data Management functionality these tools can be used to organize a policy to migrate older data towards compacted and compressed archived before eventual deletion or archive from the system.
+In addition to this we're also including a compaction process that can be configured in conjuction with the existing ingest to generate a separate, compacted tree. Together with the existing Data Management functionality these tools can be used to organize a policy to migrate older data towards compacted and compressed archived before eventual deletion or archive from the system.
 
 ### And more...
 
@@ -88,7 +88,7 @@ We've decided to deprecate the following repositories.
 
 #### Using the ```heat-cli``` on *OpenStack*
 
-PNDA on OpenStack is designated as experimental in PNDA 4.0. We plan to do further work on this platform in future releases.
+PNDA on OpenStack is designated as experimental in PNDA 4.0. We plan to do further work on this platform in future releases given sufficient community interest and support.
 
 ### Change Log
 
