@@ -63,3 +63,6 @@ wcwidth==0.1.7
 webencodings==0.5
 wheel==0.29.0
 widgetsnbextension==2.0.0
+cycler==0.10.0
+pyparsing==2.2.0
+matplotlib==2.1.2
