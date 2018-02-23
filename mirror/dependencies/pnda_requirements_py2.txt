@@ -18,15 +18,15 @@ beautifulsoup4==4.5.3
 bitarray==0.8.1
 boto==2.46.1
 cairocffi==0.7.2
-certifi==2016.9.26
+certifi==2017.4.17
 cffi==1.9.1
-click==6.6
+click==6.7
 cm-api==14.0.0
 configparser==3.5.0
 cryptography==1.7.1
 debtcollector==1.10.0
-elasticsearch-curator==3.5.1
-elasticsearch==2.4.0
+elasticsearch-curator==5.4.1
+elasticsearch==6.1.1
 enum-compat==0.0.2
 enum34==1.1.6
 eventlet==0.20.0
@@ -117,5 +117,6 @@ urllib3==1.19.1
 wheel==0.29.0
 widgetsnbextension==2.0.0
 virtualenv==15.1.0
+voluptuous==0.11.1
 wrapt==1.10.8
 wsgiref==0.1.2
