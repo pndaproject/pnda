@@ -42,3 +42,4 @@ cd logstash-${LOGSTASH_VERSION}
 JARS_SKIP='true' bin/logstash-plugin install $PLUGIN_LIST
 bin/logstash-plugin prepare-offline-pack $PLUGIN_LIST
 chmod a+r logstash-offline-plugins-${LOGSTASH_VERSION}.zip
+mv logstash-offline-plugins-${LOGSTASH_VERSION}.zip $STATIC_FILE_DIR/logstash-offline-plugins-${LOGSTASH_VERSION}.zip	
