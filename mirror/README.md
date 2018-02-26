@@ -32,7 +32,6 @@ create_mirror_deb.sh
 create_mirror_rpm.sh
 create_mirror_misc.sh
 create_mirror_python.sh
-create_mirror_anaconda.sh
 create_mirror_cdh.sh
 ```
 
@@ -45,7 +44,6 @@ mirror_deb
 mirror_rpm
 mirror_misc
 mirror_python
-mirror_anaconda
 mirror_cloudera
 ```
 
