@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - PNDA-3673: Added consul resources to mirror build
 
+### Changed
+- PNDA-4394: Remove Anaconda CDH parcel mirror as both HDP and CDH now install Anaconda from a bundle
+
 ### Fixed
 - PNDA-4200: Fix missing matplotlib and dependencies for Jupyter python3 kernel
 
