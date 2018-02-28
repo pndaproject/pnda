@@ -68,7 +68,7 @@ declare -A bom=(
 [platform-libraries]=
 [platform-package-repository]=
 [platform-testing]=
-[platform-gobblin-modules]=
+[gobblin]=
 )
 
 # List of upstream projects
@@ -77,8 +77,6 @@ declare -A upstream=(
 [kafkamanager]=
 [jupyterproxy]=
 [kafkatool]=
-[livy]=
-[gobblin]=
 )
 
 function fill_bom {
@@ -186,4 +184,3 @@ do
 done
 
 cd ${BASE}
-

@@ -2,34 +2,6 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-### Added
-- PNDA-3673: Added consul resources to mirror build
-
-### Changed
-- PNDA-4394: Remove Anaconda CDH parcel mirror as both HDP and CDH now install Anaconda from a bundle
-
-### Fixed
-- PNDA-4200: Fix missing matplotlib and dependencies for Jupyter python3 kernel
-
-## [1.1.0] 2018-02-10
-### Added
-- PNDA-3562: Add pam-devel for PAM authentication on PNDA console frontend
-- PNDA-2832: Jupyter %sql magic support
-- PNDA-1899: Scala Spark Jupyter Integration
-- PNDA-3133: Remove Gobblin fork and use release distribution instead.
-- PNDA-3549: Include common jar and egg dependencies used by applications that run on PNDA
-- PNDA-3128: Add kafka-python (new version) and avro python packages to app-packages
-
-### Changed
-- PNDA-3579: Ignore files generated on install build tools step
-- PNDA-3530: Ambari version 2.6.0.0 and HDP version 2.6.3.0
-- PNDA-3483: Zookeeper version 3.4.11
-- PNDA-4043: Update HDP to version 2.6.4.0
-
-### Fixed
-- PNDA-3578: RPM repo can be overridden before running mirror scripts in case of non AWS environment
-- Forked: Remove conditional key import
-- PNDA-4176: Static file dependencies are not retried properly during mirror creation
 
 ## [1.0.0] 2017-11-24
 ### Added
