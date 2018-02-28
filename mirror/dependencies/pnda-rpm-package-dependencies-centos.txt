@@ -1,10 +1,10 @@
 MySQL-python-1.2.5-1.el7
 acl
-ambari-agent-2.5.1.0-159
-ambari-metrics-collector-2.5.1.0-159
-ambari-metrics-hadoop-sink-2.5.1.0-159
-ambari-metrics-monitor-2.5.1.0-159
-ambari-server-2.5.1.0-159
+ambari-agent-2.6.1.0-143
+ambari-metrics-collector-2.6.1.0-143
+ambari-metrics-hadoop-sink-2.6.1.0-143
+ambari-metrics-monitor-2.6.1.0-143
+ambari-server-2.6.1.0-143
 apr
 apr-util
 at
@@ -23,6 +23,7 @@ gnuplot
 graphite-api-1.1.3-3.el7
 httpd
 httpd-tools
+krb5-devel
 libffi-devel
 libgsasl-devel
 libtirpc-devel
@@ -38,7 +39,9 @@ patch
 openssl-1.0.2k-8.el7
 openssl-libs-1.0.2k-8.el7
 openssl-devel-1.0.2k-8.el7
+pam-devel
 policycoreutils-python
+postgresql-devel
 python-carbon
 python-chardet
 python-devel

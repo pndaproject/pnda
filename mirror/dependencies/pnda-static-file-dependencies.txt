@@ -1,16 +1,16 @@
--b oraclelicense=accept-securebackup-cookie -L http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz
+http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz oraclelicense=accept-securebackup-cookie
 http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.25/mysql-connector-java-5.1.25.jar
-http://archive.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
-http://archive.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz.sha1
+http://archive.apache.org/dist/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz
+http://archive.apache.org/dist/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz.sha1
 http://archive.apache.org/dist/kafka/0.11.0.0/kafka_2.11-0.11.0.0.tgz
 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz
 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz.sha1
-https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.tar.gz
-https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.tar.gz.sha1
-https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.0.tar.gz
-https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.0.tar.gz.sha1.txt
-https://download.elastic.co/kibana/kibana/kibana-4.1.6-linux-x64.tar.gz
-https://download.elastic.co/kibana/kibana/kibana-4.1.6-linux-x64.tar.gz.sha1.txt
+https://artifacts.elastic.co/downloads/logstash/logstash-6.2.1.tar.gz
+https://artifacts.elastic.co/downloads/logstash/logstash-6.2.1.tar.gz.sha512
+https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.1.tar.gz
+https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.1.tar.gz.sha512
+https://artifacts.elastic.co/downloads/kibana/kibana-6.2.1-linux-x86_64.tar.gz
+https://artifacts.elastic.co/downloads/kibana/kibana-6.2.1-linux-x86_64.tar.gz.sha512
 https://github.com/OpenTSDB/opentsdb/releases/download/v2.3.0/opentsdb-2.3.0.rpm
 https://github.com/OpenTSDB/opentsdb/releases/download/v2.3.0/opentsdb-2.3.0_all.deb
 https://github.com/brutasse/graphite-api/releases/download/1.1.2/graphite-api_1.1.2-1447943657-ubuntu14.04_amd64.deb
@@ -20,8 +20,9 @@ https://nodejs.org/download/release/v6.10.2/SHASUMS256.txt
 https://nodejs.org/download/release/v6.10.2/node-v6.10.2-linux-x64.tar.gz
 https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.2.0-1.x86_64.rpm
 https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.2.0_amd64.deb
-http://search.maven.org/remotecontent?filepath=com/sleepycat/je/5.0.73/je-5.0.73.jar
-https://repo.continuum.io/archive/Anaconda2-4.0.0-Linux-x86_64.sh
+http://central.maven.org/maven2/com/sleepycat/je/5.0.73/je-5.0.73.jar
+https://repo.continuum.io/archive/Anaconda2-5.1.0-Linux-x86_64.sh
 http://central.maven.org/maven2/org/kitesdk/kite-tools/1.0.0/kite-tools-1.0.0-binary.jar
 http://central.maven.org/maven2/org/kitesdk/kite-tools/1.0.0/kite-tools-1.0.0-binary.jar.sha1
-
+https://releases.hashicorp.com/consul/1.0.3/consul_1.0.3_linux_amd64.zip
+https://releases.hashicorp.com/consul/1.0.3/consul_1.0.3_SHA256SUMS

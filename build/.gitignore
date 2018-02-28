@@ -1,3 +1,6 @@
 pnda-dist
 pnda-stage
 mirror-dist
+set-pnda-env.sh
+jdk*
+spark-*
