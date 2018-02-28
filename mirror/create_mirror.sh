@@ -35,9 +35,6 @@ $MIRROR_BUILD_DIR/create_mirror_misc.sh
 $MIRROR_BUILD_DIR/create_mirror_cdh.sh
 [[ $? -ne 0 ]] && mirror_error "Problem while creating cdh package mirror"
 
-$MIRROR_BUILD_DIR/create_mirror_anaconda.sh
-[[ $? -ne 0 ]] && mirror_error "Problem while creating anaconda package mirror"
-
 $MIRROR_BUILD_DIR/create_mirror_hdp.sh
 [[ $? -ne 0 ]] && mirror_error "Problem while creating hdp package mirror"
 
