@@ -19,21 +19,35 @@ SALT_REPO_KEY2=http://repo.saltstack.com/yum/redhat/7/x86_64/2015.8/base/RPM-GPG
 AMBARI_REPO=http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.1.0/ambari.repo
 AMBARI_REPO_KEY=http://public-repo-1.hortonworks.com/ambari/centos7/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
 
-yum install -y $RPM_EPEL || true
-yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
-yum-config-manager --add-repo $MY_SQL_REPO
-yum-config-manager --add-repo $CLOUDERA_MANAGER_REPO
-yum-config-manager --add-repo $SALT_REPO
-yum-config-manager --add-repo $AMBARI_REPO
+# Create a clean root for yum with necessary system files
+mkdir -p /tmp/clean-root
+rpm --root /tmp/clean-root --initdb
+mkdir -p /tmp/scratch
+yumdownloader --destdir=/tmp/scratch redhat-release
+rpm --root /tmp/clean-root -ivh --nodeps /tmp/scratch/redhat-release*rpm
+mkdir -p /tmp/clean-root/etc/yum.repos.d
+cp /etc/yum.repos.d/*rhui* /tmp/clean-root/etc/yum.repos.d/
+
+yum install --installroot=/tmp/clean-root -y $RPM_EPEL || true
+yum-config-manager --installroot=/tmp/clean-root --enable $RPM_EXTRAS $RPM_OPTIONAL
+yum-config-manager --installroot=/tmp/clean-root --add-repo $MY_SQL_REPO
+yum-config-manager --installroot=/tmp/clean-root --add-repo $CLOUDERA_MANAGER_REPO
+yum-config-manager --installroot=/tmp/clean-root --add-repo $SALT_REPO
+yum-config-manager --installroot=/tmp/clean-root --add-repo $AMBARI_REPO
+
+mv /etc/yum.repos.d/ambari.repo /tmp/clean-root/etc/yum.repos.d/
+mv /etc/yum.repos.d/archive.cloudera.com_cm5_redhat_7_x86_64_cm_5.12.1_.repo /tmp/clean-root/etc/yum.repos.d/
+mv /etc/yum.repos.d/repo.mysql.com_yum_mysql-5.5-community_el_7_x86_64_.repo /tmp/clean-root/etc/yum.repos.d/
+mv /etc/yum.repos.d/repo.saltstack.com_yum_redhat_7_x86_64_archive_2015.8.11.repo /tmp/clean-root/etc/yum.repos.d/
 
 rm -rf $RPM_REPO_DIR
 mkdir -p $RPM_REPO_DIR
 
 cd $RPM_REPO_DIR
-cp /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 $RPM_REPO_DIR
+cp /tmp/clean-root/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 $RPM_REPO_DIR
 if [ "x$DISTRO" == "xrhel" ]; then
 	# Not present on CentOS
-	cp /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release $RPM_REPO_DIR
+	cp /tmp/clean-root/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release $RPM_REPO_DIR
 fi
 curl -LOJf $MY_SQL_REPO_KEY
 curl -LOJf $CLOUDERA_MANAGER_REPO_KEY
@@ -42,15 +56,14 @@ curl -LOJf $SALT_REPO_KEY2
 curl -LOJf $AMBARI_REPO_KEY
 
 # import repo keys
-rpm --import *
-
+rpm --root /tmp/clean-root --import *
 
 yum install -y createrepo
 
 #TODO yumdownloader doesn't always seem to download the full set of packages, for instance if git is installed, it won't download perl
 # packages correctly maybe because git already installed them. repotrack is meant to be better but I couldn't get that working.
 # yumdownloader also doesn't set its exit code when a package is not found, so this scans the log output for this case and manually exits with an error
-(yumdownloader --resolve --archlist=x86_64 --destdir $RPM_REPO_DIR $RPM_PACKAGE_LIST 2>&1) | tee -a yum-downloader.log; cmd_result=${PIPESTATUS[0]} && if [ ${cmd_result} != '0' ]; then exit ${cmd_result}; fi
+(yumdownloader --installroot=/tmp/clean-root --resolve --archlist=x86_64 --destdir $RPM_REPO_DIR $RPM_PACKAGE_LIST 2>&1) | tee -a yum-downloader.log; cmd_result=${PIPESTATUS[0]} && if [ ${cmd_result} != '0' ]; then exit ${cmd_result}; fi
 if grep -q 'No Match for argument' "yum-downloader.log"; then
     echo "missing rpm detected:"
     echo $(cat yum-downloader.log | grep 'No Match for argument')
