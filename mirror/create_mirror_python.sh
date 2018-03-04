@@ -7,7 +7,9 @@ export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 export PYTHON_REQ_DIR=$MIRROR_BUILD_DIR/dependencies
 
 if [ "x$DISTRO" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
-    yum install -y libffi-devel python34-pip python-devel gcc
+    RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    yum install -y ${RPM_EPEL}
+    yum install -y libffi-devel python34-pip python-devel gcc python34
 elif [ "x$DISTRO" == "xubuntu" ]; then
     apt-get -y update
     apt-get install -y libffi-dev python3-pip gcc
