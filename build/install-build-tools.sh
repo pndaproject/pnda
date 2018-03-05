@@ -82,8 +82,8 @@ echo "Dependency check: packages"
 
 if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
 
-    RPM_EXTRAS=rhui-REGION-rhel-server-extras
-    RPM_OPTIONAL=rhui-REGION-rhel-server-optional
+    [[ -z ${RPM_EXTRAS} ]] && export RPM_EXTRAS=rhui-REGION-rhel-server-extras
+    [[ -z ${RPM_OPTIONAL} ]] && export RPM_OPTIONAL=rhui-REGION-rhel-server-optional
     RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     NODE_REPO=https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
 
@@ -94,7 +94,7 @@ if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
     wget -O ${RPM_TMP} ${NODE_REPO}
     rpm -i --nosignature --force ${RPM_TMP}
 
-    yum install -y python-devel \
+    (yum install -y python-devel \
                    cyrus-sasl-devel \
                    gcc \
                    gcc-c++ \
@@ -107,7 +107,12 @@ if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
                    python-devel \
                    python2-pip \
                    ruby-devel \
-                   libaio # Needed for Gobblin
+                   libaio) | tee -a yum-build-deps.log; cmd_result=${PIPESTATUS[0]} && if [ ${cmd_result} != '0' ]; then exit ${cmd_result}; fi
+    if grep -q 'No package .* available.' "yum-build-deps.log"; then
+        echo "missing rpm detected:"
+        echo $(cat yum-build-deps.log | grep 'No package .* available.')
+        exit -1
+    fi
 
 elif [[ "${DISTRO}" == "ubuntu" ]]; then
 
