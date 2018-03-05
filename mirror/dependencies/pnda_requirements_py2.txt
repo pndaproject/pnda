@@ -16,7 +16,7 @@ backports.shutil_get_terminal_size==1.0.0
 backports.ssl-match-hostname==3.5.0.1
 beautifulsoup4==4.5.3
 bitarray==0.8.1
-boto==2.46.1
+boto==2.48.0
 cairocffi==0.7.2
 certifi==2017.4.17
 cffi==1.9.1
