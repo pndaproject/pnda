@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - PNDA-4200: Fix missing matplotlib and dependencies for Jupyter python3 kernel
+- PNDA-4412: When creating the python mirror, ensure that the epel repo is enabled
 
 ## [1.1.0] 2018-02-10
 ### Added
