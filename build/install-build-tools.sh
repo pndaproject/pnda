@@ -88,6 +88,7 @@ if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
     NODE_REPO=https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
 
     yum install -y $RPM_EPEL
+    yum install -y yum-utils
     yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
 
     RPM_TMP=$(mktemp || bail)

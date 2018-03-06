@@ -20,6 +20,7 @@ AMBARI_REPO=http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.
 AMBARI_REPO_KEY=http://public-repo-1.hortonworks.com/ambari/centos7/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
 
 yum install -y $RPM_EPEL || true
+yum install -y yum-utils
 yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
 yum-config-manager --add-repo $MY_SQL_REPO
 yum-config-manager --add-repo $CLOUDERA_MANAGER_REPO
