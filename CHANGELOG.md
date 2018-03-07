@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 - PNDA-4400: Update Anaconda to 5.1.0, remove Anaconda CDH parcel mirror as both HDP and CDH now install Anaconda from a bundle
 - PNDA-4394: Add various libraries to app-packages so they are available 'out of the box' to PNDA users
 - PNDA-4396: Update Kibana, Logstash and ElasticSearch to 6.2.1 for Log Server
+- PNDA-4408: Update kafka-python to 1.3.5
+- PNDA-4408: Update kafka to 0.11.0.2
 
 ### Fixed
 - PNDA-4200: Fix missing matplotlib and dependencies for Jupyter python3 kernel
