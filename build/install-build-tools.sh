@@ -193,6 +193,7 @@ pip2 install nose==1.3.7
 pip2 install mock==2.0.0
 pip2 install pylint==1.6.4
 pip2 install python-swiftclient==3.1.0
+pip2 install tornado==4.4.2
 pip2 install tornado-cors==0.6.0
 pip2 install Tornado-JSON==1.2.2
 pip2 install boto==2.40.0
@@ -201,7 +202,7 @@ pip2 install impyla==0.13.8
 pip2 install eventlet==0.19.0
 pip2 install kazoo==2.2.1
 pip2 install avro==1.8.1
-pip2 install kafka-python==0.9.4
+pip2 install kafka-python==1.3.5
 pip2 install prettytable==0.7.2
 pip2 install pyhive==0.2.1
 pip2 install thrift_sasl==0.2.1
