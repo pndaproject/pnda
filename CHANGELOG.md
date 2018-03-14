@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - PNDA-3673: Added consul resources to mirror build
+- PNDA-4427: Add Flink software to PNDA build and mirror processes
 
 ### Changed
 - PNDA-4400: Update Anaconda to 5.1.0, remove Anaconda CDH parcel mirror as both HDP and CDH now install Anaconda from a bundle
@@ -11,10 +12,14 @@ All notable changes to this project will be documented in this file.
 - PNDA-4396: Update Kibana, Logstash and ElasticSearch to 6.2.1 for Log Server
 - PNDA-4408: Update kafka-python to 1.3.5
 - PNDA-4408: Update kafka to 0.11.0.2
+- PNDA-4410: Allow rpm repo names to be set using environment variables
+- PNDA-4415: Update Boto to 2.48.0
 
 ### Fixed
 - PNDA-4200: Fix missing matplotlib and dependencies for Jupyter python3 kernel
 - PNDA-4412: When creating the python mirror, ensure that the epel repo is enabled
+- PNDA-4413: Install yum-utils in mirror and build scripts
+- PNDA-4441: specify tornado version and update kafka-python version in build deps
 
 ## [1.1.0] 2018-02-10
 ### Added
