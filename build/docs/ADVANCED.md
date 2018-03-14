@@ -32,6 +32,7 @@ It is possible to use build-pnda.sh to build PNDA components & upstream projects
 |jupyterproxy|
 |livy|
 |gobblin|
+|flink|
 
 #### Examples
 
@@ -64,6 +65,7 @@ More complex BOM specifying various component versions, PNDA release versions an
        jupyterproxy UPSTREAM(1.3.1)
        livy UPSTREAM(0.3.0)
        gobblin UPSTREAM(0.11.0)
+       flink UPSTREAM(1.4.0)
 ```
 
 Invocation example.
