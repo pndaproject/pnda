@@ -6,6 +6,7 @@ build-essential
 cloudera-manager-agent=5.12.1-1.cm5121.p0.6~trusty-cm5
 cloudera-manager-daemons=5.12.1-1.cm5121.p0.6~trusty-cm5
 cloudera-manager-server=5.12.1-1.cm5121.p0.6~trusty-cm5
+curl
 debconf-utils
 g++
 git
