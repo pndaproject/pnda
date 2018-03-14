@@ -12,6 +12,7 @@ bzip2
 cloudera-manager-agent-5.12.1-1.cm5121.p0.6.el7
 cloudera-manager-daemons-5.12.1-1.cm5121.p0.6.el7
 cloudera-manager-server-5.12.1-1.cm5121.p0.6.el7
+curl
 czmq-devel
 cyrus-sasl-devel
 fuse-sshfs
