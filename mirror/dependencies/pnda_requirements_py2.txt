@@ -30,6 +30,7 @@ elasticsearch==6.1.1
 enum-compat==0.0.2
 enum34==1.1.6
 eventlet==0.20.0
+fastavro==0.17.9
 findspark==1.1.0
 funcsigs==1.0.2
 functools32==3.2.3.post2
