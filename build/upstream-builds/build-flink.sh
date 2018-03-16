@@ -11,6 +11,7 @@
 
 MODE=${1}
 ARG=${2}
+HADOOP_DISTRIBUTION=${3}
 
 EXCLUDES="-x test"
 set -e
@@ -62,20 +63,16 @@ mkdir -p pnda-build
 
 # Build the package using maven
 cd flink-release-${FLINK_VERSION}
-for HADOOP_DISTRIBUTION in CDH HDP
-do
-    if [[ "${HADOOP_DISTRIBUTION}" == "CDH" ]]; then
-        HADOOP_VERSION=2.6.0-cdh5.9.0
-    fi
-    if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
-        HADOOP_VERSION=2.7.3.2.6.4.0-91
-    fi
+if [[ "${HADOOP_DISTRIBUTION}" == "CDH" ]]; then
+    HADOOP_VERSION=2.6.0-cdh5.9.0
+fi
+if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
+    HADOOP_VERSION=2.7.3.2.6.4.0-91
+fi
 
-    mvn clean install -DskipTests -Pvendor-repos -Dhadoop.version="${HADOOP_VERSION}"
-    tar -cvf flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz -C ./flink-dist/target/flink-${FLINK_VERSION}-bin/flink-${FLINK_VERSION} .
-    mv ./flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz ../pnda-build/
-    sha512sum ../pnda-build/flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz > ../pnda-build/flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz.sha512.txt
-
-done
+mvn clean install -DskipTests -Pvendor-repos -Dhadoop.version="${HADOOP_VERSION}"
+tar -cvf flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz -C ./flink-dist/target/flink-${FLINK_VERSION}-bin/flink-${FLINK_VERSION} .
+mv ./flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz ../pnda-build/
+sha512sum ../pnda-build/flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz > ../pnda-build/flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz.sha512.txt
 
 
