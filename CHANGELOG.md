@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-3673: Added consul resources to mirror build
 - PNDA-4427: Add Flink software to PNDA build and mirror processes
 - PNDA-4452: Add curl to mirror
+- PNDA-4417: Add fastavro to list of python dependencies
 
 ### Changed
 - PNDA-4400: Update Anaconda to 5.1.0, remove Anaconda CDH parcel mirror as both HDP and CDH now install Anaconda from a bundle
