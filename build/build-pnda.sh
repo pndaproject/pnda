@@ -39,7 +39,7 @@
 
 MODE=${1}
 ARG=${2}
-
+export BUILD_DIR=${PWD}
 export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 if [[ "${DISTRO}" == "rhel" ]]; then
   echo "Use of Red Hat software is governed by your agreement with Red Hat."
@@ -79,7 +79,8 @@ declare -A upstream=(
 [kafkatool]=
 [livy]=
 [gobblin]=
-[flink]=
+[flink-hdp]=
+[flink-cdh]=
 )
 
 function fill_bom {
@@ -152,39 +153,9 @@ PNDA_DIST=${BASE}/pnda-dist
 mkdir -p ${PNDA_DIST}
 mkdir -p ${PNDA_STAGE}
 
-cd ${PNDA_STAGE}
-
-for repo in ${!bom[@]}
-do
-    git clone --branch ${bom[${repo}]} https://github.com/pndaproject/${repo}.git
-    cd ${repo}
-    if [[ ${MODE} == "RELEASE" ]]; then
-        VERSION=$(git describe --abbrev=0 --tags)
-    else
-        VERSION=${bom[${repo}]}
-    fi
-    ./build.sh ${VERSION}
-    [[ $? -ne 0 ]] && build_error
-    cd ..
-    mv ${repo}/pnda-build/* ${PNDA_DIST}/
-done
-
-for project in ${!upstream[@]}
-do
-    MODE="UPSTREAM"
-    VERSION=$(echo ${upstream[${project}]} | grep -Po '(?<=^UPSTREAM\().*(?=\)$)')
-    if [[ -z ${VERSION} ]]; then
-        VERSION=${upstream[${project}]}
-        MODE="PNDA"
-    fi
-    mkdir -p build-${project}
-    cp ${UPSTREAM_BUILDS}/build-${project}.sh build-${project}/
-    cd build-${project}
-    ./build-${project}.sh ${MODE} ${VERSION}
-    [[ $? -ne 0 ]] && build_error
-    cd ..
-    mv build-${project}/pnda-build/* ${PNDA_DIST}/
-done
+parallel --joblog ${PNDA_STAGE}/build-log-pndarepo.txt --workdir "$BUILD_DIR" ./build-pnda-repo.sh {} ${MODE} ${bom[${repo}]} ${PNDA_DIST} ${PNDA_STAGE} ::: ${!bom[@]}
+[[ $? -ne 0 ]] && build_error
+parallel --joblog ${PNDA_STAGE}/build-log-upstream.txt --workdir "$BUILD_DIR" ./build-upstream.sh {} ${upstream[${project}]} ${PNDA_DIST} ${PNDA_STAGE} ${UPSTREAM_BUILDS} ::: ${!upstream[@]}
+[[ $? -ne 0 ]] && build_error
 
 cd ${BASE}
-

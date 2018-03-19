@@ -108,6 +108,7 @@ if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
                    python-devel \
                    python2-pip \
                    ruby-devel \
+                   parallel \
                    libaio) | tee -a yum-build-deps.log; cmd_result=${PIPESTATUS[0]} && if [ ${cmd_result} != '0' ]; then exit ${cmd_result}; fi
     if grep -q 'No package .* available.' "yum-build-deps.log"; then
         echo "missing rpm detected:"
@@ -133,6 +134,7 @@ elif [[ "${DISTRO}" == "ubuntu" ]]; then
                    libpam0g-dev \
                    python-pip \
                    ruby-dev \
+                   parallel \
                    libaio1 # Needed for Gobblin
 fi
 
@@ -178,6 +180,17 @@ if [[ $(mvn -version 2>&1) != *"Apache Maven 3.0.5"* ]]; then
 else
     echo "maven 3.0.5 found in /usr/share"
 fi
+
+# Patch mvn to always use a private .m2 directory as the .m2
+# directory is not safe for concurrent access
+cat > mvn-private-m2.sh <<'EOF'
+#!/bin/bash
+export MAVEN_OPTS="-Dmaven.repo.local=${PWD}/.m2"
+/etc/alternatives/mvn $@
+EOF
+chmod a+x mvn-private-m2.sh
+rm -rf /usr/bin/mvn
+ln -s ${PWD}/mvn-private-m2.sh /usr/bin/mvn
 
 # Python pip libraries used in builds and tests
 #
