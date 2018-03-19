@@ -75,10 +75,10 @@ sed -i "$line_number"'i\'"$hdp_repo_1"'\n'"$hdp_repo_2" defaultEnvironment.gradl
 for HADOOP_DISTRIBUTION in CDH HDP
 do
     if [[ "${HADOOP_DISTRIBUTION}" == "CDH" ]]; then
-        HADOOP_VERSION=2.6.0-cdh5.9.0
+        HADOOP_VERSION=$(wget -qO- https://raw.githubusercontent.com/pndaproject/platform-salt/${ARG}/pillar/services.sls | shyaml get-value cloudera.version)
     fi
     if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
-        HADOOP_VERSION=2.7.3.2.6.4.0-91
+        HADOOP_VERSION=$(wget -qO- https://raw.githubusercontent.com/pndaproject/platform-salt/${ARG}/pillar/services.sls | shyaml get-value hdp.version)
     fi
 
     ./gradlew build -Pversion="${GB_VERSION}-${HADOOP_DISTRIBUTION}" -PhadoopVersion="${HADOOP_VERSION}" -PexcludeHadoopDeps -PexcludeHiveDeps ${EXCLUDES}

@@ -64,15 +64,16 @@ mkdir -p pnda-build
 # Build the package using maven
 cd flink-release-${FLINK_VERSION}
 if [[ "${HADOOP_DISTRIBUTION}" == "CDH" ]]; then
-    HADOOP_VERSION=2.6.0-cdh5.9.0
+    HADOOP_VERSION=$(wget -qO- https://raw.githubusercontent.com/pndaproject/platform-salt/${ARG}/pillar/services.sls | shyaml get-value cloudera.hadoop_version)
 fi
 if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
-    HADOOP_VERSION=2.7.3.2.6.4.0-91
+    HADOOP_VERSION=$(wget -qO- https://raw.githubusercontent.com/pndaproject/platform-salt/${ARG}/pillar/services.sls | shyaml get-value hdp.hadoop_version)
 fi
 
 mvn clean install -DskipTests -Pvendor-repos -Dhadoop.version="${HADOOP_VERSION}"
 tar -cvf flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz -C ./flink-dist/target/flink-${FLINK_VERSION}-bin/flink-${FLINK_VERSION} .
 mv ./flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz ../pnda-build/
 sha512sum ../pnda-build/flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz > ../pnda-build/flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz.sha512.txt
+
 
 
