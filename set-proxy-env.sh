@@ -1,6 +1,10 @@
+function end {
+  [ "${BASH_SOURCE[0]}" == "$0" ] && exit $1 || return $1
+}
+
 if [ "x$http_proxy" == "x" ] || [ "x$https_proxy" == "x" ]; then
   echo 'System proxies ($http_proxy and $https_proxy) must first be set'
-  exit
+  end -1
 fi
 
 HTTP_PROXY_HOST=`echo $http_proxy | awk -F/ '{print $3}' | awk -F: '{print $1}'`
