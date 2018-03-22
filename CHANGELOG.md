@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-4412: When creating the python mirror, ensure that the epel repo is enabled
 - PNDA-4413: Install yum-utils in mirror and build scripts
 - PNDA-4441: specify tornado version and update kafka-python version in build deps
+- PNDA-4217: Exit cleanly whether sourced or executed
 
 ## [1.1.0] 2018-02-10
 ### Added
