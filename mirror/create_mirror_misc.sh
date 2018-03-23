@@ -8,6 +8,8 @@ fi
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
 
+export ANACONDA_VERSION="5.1.0"
+
 STATIC_FILE_LIST=$(<${MIRROR_BUILD_DIR}/dependencies/pnda-static-file-dependencies.txt)
 PLUGIN_LIST=$(<${MIRROR_BUILD_DIR}/dependencies/pnda-logstash-plugin-dependencies.txt)
 source ${MIRROR_BUILD_DIR}/common/utils.sh
@@ -17,12 +19,12 @@ mkdir -p $STATIC_FILE_DIR
 cd $STATIC_FILE_DIR
 echo "$STATIC_FILE_LIST" | while read STATIC_FILE
 do
-    echo $STATIC_FILE
-    robust_curl "$STATIC_FILE"
+    eval echo "$STATIC_FILE"
+    eval robust_curl "$STATIC_FILE"
 done
 cat SHASUMS256.txt | grep node-v6.10.2-linux-x64.tar.gz > node-v6.10.2-linux-x64.tar.gz.sha1.txt
 sha512sum je-5.0.73.jar > je-5.0.73.jar.sha512.txt
-sha512sum Anaconda2-5.1.0-Linux-x86_64.sh > Anaconda2-5.1.0-Linux-x86_64.sh.sha512.txt
+sha512sum Anaconda2-${ANACONDA_VERSION}-Linux-x86_64.sh > Anaconda2-${ANACONDA_VERSION}-Linux-x86_64.sh.sha512.txt
 
 if [ "x$DISTRO" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
     yum install -y java-1.7.0-openjdk
