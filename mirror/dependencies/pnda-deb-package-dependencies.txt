@@ -1,11 +1,11 @@
 acl
-ambari-agent=2.6.1.0-143
-ambari-metrics-assembly=2.6.1.0-143
-ambari-server=2.6.1.0-143
+ambari-agent=${AMBARI_PACKAGE_VERSION}
+ambari-metrics-assembly=${AMBARI_PACKAGE_VERSION}
+ambari-server=${AMBARI_PACKAGE_VERSION}
 build-essential
-cloudera-manager-agent=5.12.1-1.cm5121.p0.6~trusty-cm5
-cloudera-manager-daemons=5.12.1-1.cm5121.p0.6~trusty-cm5
-cloudera-manager-server=5.12.1-1.cm5121.p0.6~trusty-cm5
+cloudera-manager-agent=${CLOUDERA_MANAGER_PACKAGE_VERSION}~trusty-cm5
+cloudera-manager-daemons=${CLOUDERA_MANAGER_PACKAGE_VERSION}~trusty-cm5
+cloudera-manager-server=${CLOUDERA_MANAGER_PACKAGE_VERSION}~trusty-cm5
 curl
 debconf-utils
 g++
