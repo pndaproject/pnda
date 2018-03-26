@@ -7,7 +7,7 @@ STATIC_FILE_DIR=$MIRROR_OUTPUT_DIR/mirror_apps
 mkdir -p $STATIC_FILE_DIR
 cd $STATIC_FILE_DIR
 
-STATIC_FILE_LIST_APP=$(<${MIRROR_BUILD_DIR}/dependencies/pnda-static-file-app-dependencies.txt)
+STATIC_FILE_LIST_APP=$(envsubst < ${MIRROR_BUILD_DIR}/dependencies/pnda-static-file-app-dependencies.txt)
 cd $STATIC_FILE_DIR
 echo "$STATIC_FILE_LIST_APP" | while read STATIC_FILE
 do
