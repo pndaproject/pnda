@@ -1,6 +1,7 @@
 #!/bin/bash -ev
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
+source dependencies/versions.sh
 
 STATIC_FILE_DIR=$MIRROR_OUTPUT_DIR/mirror_apps
 mkdir -p $STATIC_FILE_DIR

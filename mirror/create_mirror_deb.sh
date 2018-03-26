@@ -3,19 +3,20 @@ export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
+source dependencies/versions.sh
 
-DEB_PACKAGE_LIST=$(<${MIRROR_BUILD_DIR}/dependencies/pnda-deb-package-dependencies.txt)
+DEB_PACKAGE_LIST=$(envsubst < ${MIRROR_BUILD_DIR}/dependencies/pnda-deb-package-dependencies.txt)
 
 export DEBIAN_FRONTEND=noninteractive
 DEB_REPO_DIR=$MIRROR_OUTPUT_DIR/mirror_deb
 
-echo 'deb [arch=amd64] https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/ trusty-cm5.12.1 contrib' > /etc/apt/sources.list.d/cloudera-manager.list
+echo "deb [arch=amd64] https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/ trusty-cm${CLOUDERA_MANAGER_VERSION} contrib" > /etc/apt/sources.list.d/cloudera-manager.list
 curl -L 'https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/archive.key' | apt-key add -
 
-echo 'deb [arch=amd64] http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2015.8.11/ trusty main' > /etc/apt/sources.list.d/saltstack.list
-curl -L 'http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2015.8.11/SALTSTACK-GPG-KEY.pub' | apt-key add -
+echo "deb [arch=amd64] http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/${SALTSTACK_VERSION}/ trusty main" > /etc/apt/sources.list.d/saltstack.list
+curl -L "http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/${SALTSTACK_VERSION}/SALTSTACK-GPG-KEY.pub" | apt-key add -
 
-echo 'deb http://public-repo-1.hortonworks.com/ambari/ubuntu14/2.x/updates/2.6.1.0 Ambari main' > /etc/apt/sources.list.d/ambari.list
+echo "deb http://public-repo-1.hortonworks.com/ambari/ubuntu14/2.x/updates/${AMBARI_VERSION} Ambari main" > /etc/apt/sources.list.d/ambari.list
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD
 
 apt-get -y update
