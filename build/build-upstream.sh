@@ -34,6 +34,7 @@ fi
 mkdir -p build-${project}
 cp ${upstream_builds_dir}/*.sh build-${project}/
 cd build-${project}
-./build-${project}.sh ${MODE} ${VERSION}
-[[ $? -ne 0 ]] && build_error
+./build-${project}.sh ${MODE} ${VERSION} | tee ${stage_dir}/build-${project}.log
+build_res=${PIPESTATUS[0]}
+[[ $build_res -ne 0 ]] && build_error
 mv ${stage_dir}/build-${project}/pnda-build/* ${output_dir}/
