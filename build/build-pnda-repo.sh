@@ -32,7 +32,8 @@ if [[ ${mode} == "RELEASE" ]]; then
 else
     VERSION=${branch}
 fi
-./build.sh ${VERSION}
-[[ $? -ne 0 ]] && build_error
+./build.sh ${VERSION} | tee ${stage_dir}/build-${repo}.log
+build_res=${PIPESTATUS[0]}
+[[ $build_res -ne 0 ]] && build_error
 cd ..
 mv ${repo}/pnda-build/* ${output_dir}/
