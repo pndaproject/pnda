@@ -31,6 +31,7 @@ libtirpc-devel
 libxslt-devel
 libxml2-python
 libxml2-devel
+m4
 mailcap
 mysql-community-server-5.5.54-2.el7
 nginx
