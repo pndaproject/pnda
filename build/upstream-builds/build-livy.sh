@@ -33,10 +33,6 @@ elif [[ ${MODE} == "UPSTREAM" ]]; then
     LV_VERSION=${ARG}
 fi
 
-
-# Building Livy requires specific version of setuptools (>=30.0.0). Upgrading setuptools to latest version as existing version does not match the specification.
-pip2 install setuptools --upgrade
-
 wget https://github.com/cloudera/livy/archive/v${LV_VERSION}.tar.gz
 tar xzf v${LV_VERSION}.tar.gz
 
