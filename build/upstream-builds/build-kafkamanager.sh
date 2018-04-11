@@ -49,7 +49,18 @@ fi
 
 mkdir -p pnda-build
 cd kafka-manager-${KM_VERSION}
-sbt clean dist
+ATTEMPT=0
+RETRY=3
+until [[ ${ATTEMPT} -ge ${RETRY} ]]
+do
+    sbt clean dist < /dev/null && break
+    ATTEMPT=$[${ATTEMPT}+1]
+    sleep 1
+done
+if [[ ${ATTEMPT} -ge ${RETRY} ]]; then
+    echo "Failed to build Kafka Manager after ${RETRY} retries"
+    exit -1
+fi
 cd ..
 mv kafka-manager-${KM_VERSION}/target/universal/kafka-manager-${KM_VERSION}.zip pnda-build/
 sha512sum pnda-build/kafka-manager-${KM_VERSION}.zip > pnda-build/kafka-manager-${KM_VERSION}.zip.sha512.txt
