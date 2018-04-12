@@ -193,7 +193,11 @@ rm -rf /usr/bin/mvn
 ln -s ${PWD}/mvn-private-m2.sh /usr/bin/mvn
 
 # Python pip libraries used in builds and tests
-#
+# Firstly, bring pip and setuptools up to date
+curl -LOJf https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
+pip2 install --upgrade setuptools
+
 pip2 install spur==0.3.12
 pip2 install starbase==0.3.2
 pip2 install happybase==1.0.0
@@ -210,7 +214,6 @@ pip2 install tornado==4.4.2
 pip2 install tornado-cors==0.6.0
 pip2 install Tornado-JSON==1.2.2
 pip2 install boto==2.40.0
-pip2 install setuptools==28.8.0 --upgrade
 pip2 install impyla==0.13.8
 pip2 install eventlet==0.19.0
 pip2 install kazoo==2.2.1
