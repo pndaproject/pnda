@@ -7,14 +7,14 @@ These notes cover the procedure for maintaining the requirements files which dri
 You will need python 2.7 and python 3.4 with also pip2 / pip3 version 9.0.1+ & github3 for using GitHub API:
 ```sh
 sudo -i
-# Ubuntu only, already install in RHEL
-apt-get install libffi-dev
 
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 pip2 install setuptools==34.2.0
 pip2 install github3.py
-apt-get install python3-pip
+RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install -y $RPM_EPEL || true
+yum install -y python34-pip
 easy_install3 pip==9.0.1
 pip3 install setuptools==34.2.0
 ``` 

@@ -1,10 +1,4 @@
 #!/bin/bash -ev
-export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
-
-if [[ "${DISTRO}" == "ubuntu" ]]; then
-    apt-get install -y apt-transport-https curl
-fi
-
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
 source dependencies/versions.sh
@@ -26,13 +20,8 @@ cat SHASUMS256.txt | grep node-v${NODE_VERSION}-linux-x64.tar.gz > node-v${NODE_
 sha512sum je-${JE_VERSION}.jar > je-${JE_VERSION}.jar.sha512.txt
 sha512sum Anaconda2-${ANACONDA_VERSION}-Linux-x86_64.sh > Anaconda2-${ANACONDA_VERSION}-Linux-x86_64.sh.sha512.txt
 
-if [ "x$DISTRO" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
-    yum install -y java-1.7.0-openjdk
-    yum install -y postgresql-devel
-elif [ "x$DISTRO" == "xubuntu" ]; then
-    apt-get install -y default-jre
-    apt-get install -y libpq-dev
-fi
+yum install -y java-1.7.0-openjdk
+yum install -y postgresql-devel
 
 cd /tmp
 robust_curl https://artifacts.elastic.co/downloads/logstash/logstash-${LOGSTASH_VERSION}.tar.gz

@@ -1,12 +1,6 @@
 #!/bin/bash
 echo "Usage: ./update_mirror_python.sh /path/to/mirror_python a-package [another-package ...]"
-DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
-if [ "x$DISTRO" == "xrhel" ]; then
-    yum install -y libffi-devel gcc
-elif [ "x$DISTRO" == "xubuntu" ]; then
-    apt-get -y update
-    apt-get install -y libffi-dev gcc
-fi
+yum install -y libffi-devel gcc
 
 curl -LOJf https://bootstrap.pypa.io/get-pip.py
 python get-pip.py

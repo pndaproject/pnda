@@ -10,14 +10,11 @@ https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${LOGSTASH_VE
 https://artifacts.elastic.co/downloads/kibana/kibana-${LOGSTASH_VERSION}-linux-x86_64.tar.gz
 https://artifacts.elastic.co/downloads/kibana/kibana-${LOGSTASH_VERSION}-linux-x86_64.tar.gz.sha512
 https://github.com/OpenTSDB/opentsdb/releases/download/v2.3.0/opentsdb-2.3.0.rpm
-https://github.com/OpenTSDB/opentsdb/releases/download/v2.3.0/opentsdb-2.3.0_all.deb
-https://github.com/brutasse/graphite-api/releases/download/1.1.2/graphite-api_1.1.2-1447943657-ubuntu14.04_amd64.deb
 https://github.com/klyr/jupyter-spark/releases/download/0.3.0-patch/jupyter-spark-0.3.0-patch.tar.gz
 https://github.com/mk23/jmxproxy/releases/download/jmxproxy.3.2.0/jmxproxy-3.2.0.jar
 https://nodejs.org/download/release/v6.10.2/SHASUMS256.txt
 https://nodejs.org/download/release/v6.10.2/node-v6.10.2-linux-x64.tar.gz
 https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.2.0-1.x86_64.rpm
-https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.2.0_amd64.deb
 http://central.maven.org/maven2/com/sleepycat/je/5.0.73/je-5.0.73.jar
 https://repo.continuum.io/archive/Anaconda2-${ANACONDA_VERSION}-Linux-x86_64.sh
 http://central.maven.org/maven2/org/kitesdk/kite-tools/1.0.0/kite-tools-1.0.0-binary.jar

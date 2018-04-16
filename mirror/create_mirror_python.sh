@@ -1,6 +1,4 @@
 #!/bin/bash -ev
-export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
-
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
 [[ -z ${MIRROR_OUTPUT_DIR} ]] && export MIRROR_OUTPUT_DIR=${PWD}/mirror-dist
 source dependencies/versions.sh
@@ -10,16 +8,11 @@ yum install -y $RPM_EPEL || true
 
 export PYTHON_REQ_DIR=$MIRROR_BUILD_DIR/dependencies
 
-if [ "x$DISTRO" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
-    (yum install -y libffi-devel postgresql-devel python34 python34-pip python-devel gcc) | tee -a yum-python-deps.log; cmd_result=${PIPESTATUS[0]} && if [ ${cmd_result} != '0' ]; then exit ${cmd_result}; fi
-    if grep -q 'No package .* available.' "yum-python-deps.log"; then
-        echo "missing rpm detected:"
-        echo $(cat yum-python-deps.log | grep 'No package .* available.')
-        exit -1
-    fi
-elif [ "x$DISTRO" == "xubuntu" ]; then
-    apt-get -y update
-    apt-get install -y libffi-dev python3-pip gcc
+(yum install -y libffi-devel postgresql-devel python34 python34-pip python-devel gcc) | tee -a yum-python-deps.log; cmd_result=${PIPESTATUS[0]} && if [ ${cmd_result} != '0' ]; then exit ${cmd_result}; fi
+if grep -q 'No package .* available.' "yum-python-deps.log"; then
+    echo "missing rpm detected:"
+    echo $(cat yum-python-deps.log | grep 'No package .* available.')
+    exit -1
 fi
 
 curl -LOJf https://bootstrap.pypa.io/get-pip.py

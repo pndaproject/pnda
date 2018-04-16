@@ -35,7 +35,7 @@
 #
 # Please refer to README.md in this directory for more details
 #
-# Note: this script uses bash 4 features and has been tested on Ubuntu 14.04
+# Note: this script uses bash 4 features and has been tested on CentOS 7
 
 MODE=${1}
 ARG=${2}

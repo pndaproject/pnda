@@ -5,7 +5,7 @@ In this directory you will find tools that install necessary build pre-requisite
 All scripts have been tested on the following environment -
 
 - AWS m3.large instance (2 CPUs, 7.5GB memory and 32GB SSD storage)
-- AMI: ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-20160714 (ami-ed82e39e)
+- AMI: CentOS 7 (ami-6e28b517)
 
 ## Preparing the build environment
 

@@ -1,5 +1,3 @@
 https://archive.cloudera.com/cdh5/parcels/${CLOUDERA_CDH_VERSION}/${CLOUDERA_CDH_PARCEL_VERSION}-el7.parcel
 https://archive.cloudera.com/cdh5/parcels/${CLOUDERA_CDH_VERSION}/${CLOUDERA_CDH_PARCEL_VERSION}-el7.parcel.sha1
-https://archive.cloudera.com/cdh5/parcels/${CLOUDERA_CDH_VERSION}/${CLOUDERA_CDH_PARCEL_VERSION}-trusty.parcel
-https://archive.cloudera.com/cdh5/parcels/${CLOUDERA_CDH_VERSION}/${CLOUDERA_CDH_PARCEL_VERSION}-trusty.parcel.sha1
 https://archive.cloudera.com/cdh5/parcels/${CLOUDERA_CDH_VERSION}/manifest.json
