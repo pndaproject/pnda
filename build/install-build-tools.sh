@@ -13,8 +13,7 @@
 #   under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 #   ANY KIND, either express or implied.
 #
-#   This script checks for and installs dependencies required to build PNDA on a Ubuntu 14.04 system.
-#   For other systems, please refer to the installation instructions of the respective technologies.
+#   This script checks for and installs dependencies required to build PNDA
 #
 #   JAVA_MIRROR - define this environment variable to download the Java JDK from an alternative location
 
@@ -47,10 +46,7 @@ if [ "x${DISTRO}" == "xrhel" ]; then
   esac
 fi
 
-if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
-  yum install -y wget
-fi
-
+yum install -y wget
 
 # Java 1.8.0_131
 #
@@ -80,62 +76,38 @@ fi
 #
 echo "Dependency check: packages"
 
-if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
+[[ -z ${RPM_EXTRAS} ]] && export RPM_EXTRAS=rhui-REGION-rhel-server-extras
+[[ -z ${RPM_OPTIONAL} ]] && export RPM_OPTIONAL=rhui-REGION-rhel-server-optional
+RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+NODE_REPO=https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
 
-    [[ -z ${RPM_EXTRAS} ]] && export RPM_EXTRAS=rhui-REGION-rhel-server-extras
-    [[ -z ${RPM_OPTIONAL} ]] && export RPM_OPTIONAL=rhui-REGION-rhel-server-optional
-    RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    NODE_REPO=https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
+yum install -y $RPM_EPEL
+yum install -y yum-utils
+yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
 
-    yum install -y $RPM_EPEL
-    yum install -y yum-utils
-    yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
+RPM_TMP=$(mktemp || bail)
+wget -O ${RPM_TMP} ${NODE_REPO}
+rpm -i --nosignature --force ${RPM_TMP}
 
-    RPM_TMP=$(mktemp || bail)
-    wget -O ${RPM_TMP} ${NODE_REPO}
-    rpm -i --nosignature --force ${RPM_TMP}
-
-    (yum install -y python-devel \
-                   cyrus-sasl-devel \
-                   gcc \
-                   gcc-c++ \
-                   git \
-                   nodejs \
-                   bc \
-                   curl \
-                   pam-devel \
-                   python-setuptools \
-                   python-devel \
-                   python2-pip \
-                   ruby-devel \
-                   parallel \
-                   libaio) | tee -a yum-build-deps.log; cmd_result=${PIPESTATUS[0]} && if [ ${cmd_result} != '0' ]; then exit ${cmd_result}; fi
-    if grep -q 'No package .* available.' "yum-build-deps.log"; then
-        echo "missing rpm detected:"
-        echo $(cat yum-build-deps.log | grep 'No package .* available.')
-        exit -1
-    fi
-
-elif [[ "${DISTRO}" == "ubuntu" ]]; then
-
-    echo 'deb [arch=amd64] https://deb.nodesource.com/node_6.x trusty main' > /etc/apt/sources.list.d/nodesource.list
-    curl -L 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key' | apt-key add -
-
-    apt-get update -y
-    apt-get install -y python-dev \
-                   libsasl2-dev \
-                   gcc \
-                   git \
-                   nodejs \
-                   bc \
-                   curl \
-                   python-setuptools \
-                   apt-transport-https \
-                   libpam0g-dev \
-                   python-pip \
-                   ruby-dev \
-                   parallel \
-                   libaio1 # Needed for Gobblin
+(yum install -y python-devel \
+                cyrus-sasl-devel \
+                gcc \
+                gcc-c++ \
+                git \
+                nodejs \
+                bc \
+                curl \
+                pam-devel \
+                python-setuptools \
+                python-devel \
+                python2-pip \
+                ruby-devel \
+                parallel \
+                libaio) | tee -a yum-build-deps.log; cmd_result=${PIPESTATUS[0]} && if [ ${cmd_result} != '0' ]; then exit ${cmd_result}; fi
+if grep -q 'No package .* available.' "yum-build-deps.log"; then
+    echo "missing rpm detected:"
+    echo $(cat yum-build-deps.log | grep 'No package .* available.')
+    exit -1
 fi
 
 if [ ! -f /usr/bin/node ]; then
@@ -147,23 +119,8 @@ fi
 #
 echo "Dependency check: sbt"
 
-if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
-
-    wget -qO- https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo
-    yum install sbt-0.13.9 -y
-
-elif [[ "${DISTRO}" == "ubuntu" ]]; then
-
-    if [ ! -f /etc/apt/sources.list.d/sbt.list ]; then
-        echo "WARN: Unable to find sbt, going to install it"
-        echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
-        apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
-        apt-get update -y
-        apt-get install sbt=0.13.13 -y
-    else
-        echo "sbt.list found in /etc/apt/sources.list.d"
-    fi
-fi
+wget -qO- https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo
+yum install sbt-0.13.9 -y
 
 # Maven 3.0.5
 # 
