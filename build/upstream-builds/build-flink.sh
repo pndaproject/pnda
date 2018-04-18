@@ -71,6 +71,17 @@ if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
 fi
 
 mvn clean install -DskipTests -Pvendor-repos -Dhadoop.version="${HADOOP_VERSION}"
+
+if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
+    JAR=$(<../../../upstream-builds/dependencies/upstream-flink-hdp-dependencies.txt)
+    FLINK_LIB_DIR="./flink-dist/target/flink-${FLINK_VERSION}-bin/flink-${FLINK_VERSION}/lib"
+    if [ -d $FLINK_LIB_DIR ]; then
+        wget $JAR -P $FLINK_LIB_DIR
+    else
+        error 
+    fi
+fi
+
 tar -cvf flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz -C ./flink-dist/target/flink-${FLINK_VERSION}-bin/flink-${FLINK_VERSION} .
 mv ./flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz ../pnda-build/
 sha512sum ../pnda-build/flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz > ../pnda-build/flink-${FLINK_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz.sha512.txt
