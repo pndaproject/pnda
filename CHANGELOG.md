@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-4415: Update Boto to 2.48.0
 - PNDA-4515: Retry Kafka Manager build on failure
 - PNDA-4122: Remove scalable ELK
+- PNDA-4525: Deprecate Ubuntu 14.04
 
 ### Fixed
 - PNDA-4200: Fix missing matplotlib and dependencies for Jupyter python3 kernel
