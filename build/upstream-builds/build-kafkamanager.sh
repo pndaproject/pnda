@@ -20,7 +20,7 @@ function error {
 }
 
 echo -n "sbt: "
-if [[ $(sbt about 2>&1) != *"This is sbt 0.13"* ]]; then
+if [[ $(setsid sbt about 2>&1) != *"This is sbt 0.13"* ]]; then
     error
 else
     echo "OK"
