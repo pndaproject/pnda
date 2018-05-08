@@ -15,6 +15,7 @@ cloudera-manager-server-${CLOUDERA_MANAGER_PACKAGE_VERSION}.el7
 curl
 czmq-devel
 cyrus-sasl-devel
+expect
 fuse-sshfs
 gcc
 gcc-c++
