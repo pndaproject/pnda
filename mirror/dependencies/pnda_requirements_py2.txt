@@ -95,7 +95,7 @@ requests==2.12.4
 requests_kerberos==0.11.0
 rfc3986==0.4.1
 sasl==0.2.1
-setuptools==34.3.3
+setuptools==39.1.0
 simplejson==3.10.0
 singledispatch==3.4.0.3
 six==1.10.0
