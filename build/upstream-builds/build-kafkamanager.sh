@@ -53,7 +53,7 @@ ATTEMPT=0
 RETRY=3
 until [[ ${ATTEMPT} -ge ${RETRY} ]]
 do
-    sbt clean dist < /dev/null && break
+    setsid sbt clean dist < /dev/null && break
     ATTEMPT=$[${ATTEMPT}+1]
     sleep 1
 done
