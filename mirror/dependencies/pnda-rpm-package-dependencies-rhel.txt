@@ -59,6 +59,7 @@ salt-master-2015.8.11-1.el7
 salt-minion-2015.8.11-1.el7
 selinux-policy-targeted
 snappy-devel
+swig
 systemd-python
 unzip
 uwsgi
