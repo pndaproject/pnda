@@ -1,0 +1,20 @@
+{
+    "username": "centos",
+    "password": "centos",
+    "esxi_host": "XXX",
+    "pnda_repo": "https://github.com/pndaproject/pnda",
+    "pnda_branch": "develop",
+    "build_mode": "BRANCH",
+    "build_arg": "develop",
+    "vsphere_host": "XXX",
+    "vsphere_dc": "XXX",
+    "vsphere_cluster": "XXX",
+    "vsphere_user": "XXX",
+    "vsphere_password": "XXXX",
+    "vsphere_portgroup": "XXX",
+    "vsphere_datastore": "XXX",
+    "vm_name_mirror": "pnda_template_mirror",
+    "vm_name_base": "pnda_template_base",
+    "vm_name_datanode": "pnda_template_datanode",
+    "vm_name_kafka": "pnda_template_kafka"
+}
