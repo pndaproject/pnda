@@ -29,10 +29,17 @@ fi
 tar zxf HDP-2.6.4.0-centos7-rpm.tar.gz
 tar zxf HDP-2.6.4.0-ubuntu14-deb.tar.gz
 
-mkdir -p HDP-UTILS-1.1.0.22/repos/ubuntu14/
-tar zxf HDP-UTILS-1.1.0.22-ubuntu14.tar.gz -C 'HDP-UTILS-1.1.0.22/repos/ubuntu14/'
-mkdir -p HDP-UTILS-1.1.0.22/repos/centos7/
-tar zxf HDP-UTILS-1.1.0.22-centos7.tar.gz -C 'HDP-UTILS-1.1.0.22/repos/centos7/'
+# HDP utils directory structure was changed, so fix it up to match what PNDA is expecting
+tar zxf HDP-UTILS-1.1.0.22-ubuntu14.tar.gz
+mkdir -p HDP-UTILS-1.1.0.22/repos/
+mv HDP-UTILS/ubuntu14/1.1.0.22 HDP-UTILS-1.1.0.22/repos/ubuntu14
+rm -rf HDP-UTILS
+
+# HDP utils directory structure was changed, so fix it up to match what PNDA is expecting
+tar zxf HDP-UTILS-1.1.0.22-centos7.tar.gz
+mkdir -p HDP-UTILS-1.1.0.22/repos/
+mv HDP-UTILS/centos7/1.1.0.22 HDP-UTILS-1.1.0.22/repos/centos7
+rm -rf HDP-UTILS
 
 rm -f HDP-2.6.4.0-centos7-rpm.tar.gz
 rm -f HDP-2.6.4.0-ubuntu14-deb.tar.gz
