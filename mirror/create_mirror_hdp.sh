@@ -17,9 +17,13 @@ do
 done
 
 tar zxf HDP-${HDP_VERSION}-centos7-rpm.tar.gz
+tar zxf HDP-UTILS-${HDP_UTILS_VERSION}-centos7.tar.gz
 
-mkdir -p HDP-UTILS-${HDP_UTILS_VERSION}/repos/centos7/
-tar zxf HDP-UTILS-${HDP_UTILS_VERSION}-centos7.tar.gz -C "HDP-UTILS-${HDP_UTILS_VERSION}/repos/centos7/"
+# HDP utils directory structure was changed, so fix it up to match what PNDA is expecting
+mkdir -p HDP-UTILS-${HDP_UTILS_VERSION}/repos/
+mv HDP-UTILS/centos7/${HDP_UTILS_VERSION} HDP-UTILS-${HDP_UTILS_VERSION}/repos/centos7
+rm -rf HDP-UTILS
+
 
 rm -f HDP-${HDP_VERSION}-centos7-rpm.tar.gz
 rm -f HDP-UTILS-${HDP_UTILS_VERSION}-centos7.tar.gz
