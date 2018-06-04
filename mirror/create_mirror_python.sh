@@ -17,10 +17,10 @@ fi
 
 curl -LOJf https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
-pip2 install setuptools==34.2.0
+pip2 install setuptools==39.1.0
 pip2 install github3.py
 python3 get-pip.py
-pip3 install setuptools==34.2.0
+pip3 install setuptools==39.1.0
 rm get-pip.py
 
 python $MIRROR_BUILD_DIR/tools/python_download_packages.py
