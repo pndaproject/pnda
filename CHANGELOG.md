@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-4515: Retry Kafka Manager build on failure
 - PNDA-4122: Remove scalable ELK
 - PNDA-4525: Deprecate Ubuntu 14.04
+- PNDA-4673: Provide python JDBC libraries instead of PyHive in the python mirror
 
 ### Fixed
 - PNDA-4200: Fix missing matplotlib and dependencies for Jupyter python3 kernel
