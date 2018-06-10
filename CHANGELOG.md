@@ -1,7 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.1.1] 2018-06-11
+### Fixed
+- PNDA-4441: Specify tornado version and update kafka-python version in build deps
+- PNDA-4507: Update pip and setuptools before python installation
+- PNDA-4608: Mismatch setuptools version in mirror and build
+- PNDA-4622: Update OpenSSL version for CentOS
+- PNDA-4666: Account for new dir structure inside HDP-UTILS
 
 ## [1.1.0] 2018-02-10
 ### Added
