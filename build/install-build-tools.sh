@@ -178,6 +178,7 @@ pip2 install avro==1.8.1
 pip2 install kafka-python==1.3.5
 pip2 install prettytable==0.7.2
 pip2 install thrift_sasl==0.2.1
+pip2 install JayDeBeApi==1.1.1
 # grunt-cli needs to be installed globally
 
 [[ -e ~/tmp ]] && TMP_EXISTS=true
