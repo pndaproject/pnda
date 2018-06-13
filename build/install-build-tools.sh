@@ -98,6 +98,8 @@ rpm -i --nosignature --force ${RPM_TMP}
                 bc \
                 curl \
                 pam-devel \
+                pcre-static \
+                pcre-devel \
                 python-setuptools \
                 python-devel \
                 python2-pip \

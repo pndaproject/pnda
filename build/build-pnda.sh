@@ -81,6 +81,7 @@ declare -A upstream=(
 [gobblin]=
 [flink-hdp]=
 [flink-cdh]=
+[haproxy]=
 )
 
 function fill_bom {
