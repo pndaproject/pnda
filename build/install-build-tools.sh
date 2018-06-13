@@ -179,6 +179,7 @@ curl -LOJf https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 pip2 install --upgrade setuptools
 
+pip2 install six==1.10.0 --ignore-installed
 pip2 install spur==0.3.12
 pip2 install starbase==0.3.2
 pip2 install happybase==1.0.0
