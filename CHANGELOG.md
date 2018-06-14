@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-4608: Mismatch setuptools version in mirror and build
 - PNDA-4622: Update OpenSSL version for CentOS
 - PNDA-4666: Account for new dir structure inside HDP-UTILS
+- PNDA-4706 Ubuntu Build: mock package fails to install
 
 ## [1.1.0] 2018-02-10
 ### Added
