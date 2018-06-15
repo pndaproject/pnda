@@ -39,6 +39,8 @@ rm -rf HDP-UTILS
 tar zxf HDP-UTILS-1.1.0.22-centos7.tar.gz
 mkdir -p HDP-UTILS-1.1.0.22/repos/
 mv HDP-UTILS/centos7/1.1.0.22 HDP-UTILS-1.1.0.22/repos/centos7
+mkdir HDP-UTILS-1.1.0.22/repos/ubuntu14/dists/HDP-UTILS
+cp -R HDP/ubuntu14/2.6.4.0-91/dists/HDP/* HDP-UTILS-1.1.0.22/repos/ubuntu14/dists/HDP-UTILS/
 rm -rf HDP-UTILS
 
 rm -f HDP-2.6.4.0-centos7-rpm.tar.gz
