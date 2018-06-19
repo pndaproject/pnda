@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-4452: Add curl to mirror
 - PNDA-4417: Add fastavro to list of python dependencies
 - PNDA-4558: Add Knox 1.0.0 to mirror
+- PNDA-4598: Add ldap client rpm packages to mirror
 
 ### Changed
 - PNDA-4400: Update Anaconda to 5.1.0, remove Anaconda CDH parcel mirror as both HDP and CDH now install Anaconda from a bundle
