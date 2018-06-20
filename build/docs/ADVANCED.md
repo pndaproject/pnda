@@ -33,6 +33,7 @@ It is possible to use build-pnda.sh to build PNDA components & upstream projects
 |livy|
 |gobblin|
 |flink|
+|haproxy|
 
 #### Examples
 
@@ -66,6 +67,7 @@ More complex BOM specifying various component versions, PNDA release versions an
        livy UPSTREAM(0.3.0)
        gobblin UPSTREAM(0.11.0)
        flink UPSTREAM(1.4.0)
+       haproxy UPSTREAM(1.8.9)
 ```
 
 Invocation example.
