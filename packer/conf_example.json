@@ -6,6 +6,12 @@
     "pnda_branch": "develop",
     "build_mode": "BRANCH",
     "build_arg": "develop",
+
+    "vm_name_mirror": "pnda_template_mirror",
+    "vm_name_base": "pnda_template_base",
+    "vm_name_datanode": "pnda_template_datanode",
+    "vm_name_kafka": "pnda_template_kafka",
+
     "vsphere_host": "XXX",
     "vsphere_dc": "XXX",
     "vsphere_cluster": "XXX",
@@ -13,8 +19,13 @@
     "vsphere_password": "XXXX",
     "vsphere_portgroup": "XXX",
     "vsphere_datastore": "XXX",
-    "vm_name_mirror": "pnda_template_mirror",
-    "vm_name_base": "pnda_template_base",
-    "vm_name_datanode": "pnda_template_datanode",
-    "vm_name_kafka": "pnda_template_kafka"
+
+    "aws_access_key": "YYY",
+    "aws_secret_key": "YYY",
+    "aws_region": "YYY",
+    "aws_mirror_instance_type": "YYY",
+    "aws_ami_id": "YYY",
+    "aws_subnet_id": "YYY",
+    "aws_ssh_keypair_name": "YYY",
+    "aws_ssh_private_key_file": "YYY"
 }
