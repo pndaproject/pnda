@@ -97,6 +97,7 @@ rpm -i --nosignature --force ${RPM_TMP}
                 nodejs \
                 bc \
                 curl \
+                openssl-devel \
                 pam-devel \
                 pcre-static \
                 pcre-devel \

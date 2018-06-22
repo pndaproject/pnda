@@ -32,12 +32,14 @@ elif [[ ${MODE} == "UPSTREAM" ]]; then
     HA_VERSION=${ARG}
 fi
 
-wget wget https://www.haproxy.org/download/1.8/src/haproxy-${HA_VERSION}.tar.gz
+wget https://www.haproxy.org/download/1.8/src/haproxy-${HA_VERSION}.tar.gz
 tar xzf haproxy-${HA_VERSION}.tar.gz
 
 mkdir -p pnda-build
 cd haproxy-${HA_VERSION}
-make TARGET=linux2628
+make \
+  TARGET=linux2628 CPU=generic CC=gcc CFLAGS="-O2 -g -fno-strict-aliasing -DTCP_USER_TIMEOUT=18" \
+  USE_LINUX_TPROXY=1 USE_ZLIB=1 USE_REGPARM=1 USE_OPENSSL=1 USE_PCRE=1
 
 cd ..
 tar czf haproxy-${HA_VERSION}.tar.gz haproxy-${HA_VERSION}
