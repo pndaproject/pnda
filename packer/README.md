@@ -43,7 +43,7 @@ Run the following command:
 ```sh
 export PACKER_LOG=1
 export PACKER_LOG_PATH=centos_mirror.log
-sudo ./packer build -var-file=myenv_conf.json vmware_centos_mirror.json
+sudo ./packer build -var-file=myenv_conf.json vmware/centos_mirror.json
 ```
 
 ## Build the PNDA base template
@@ -55,9 +55,9 @@ Run the following command:
 ssh-keygen -b 2048 -t rsa -f key_name.pem -q -N ""
 export PACKER_LOG=1
 export PACKER_LOG_PATH=centos_base.log
-./packer build -var-file=myenv_conf.json vmware_centos_base.json
+./packer build -var-file=myenv_conf.json vmware/centos_base.json
 export PACKER_LOG_PATH=centos_datanode.log
-./packer build -var-file=myenv_conf.json vmware_centos_datanode.json
+./packer build -var-file=myenv_conf.json vmware/centos_datanode.json
 export PACKER_LOG_PATH=centos_kafka.log
-./packer build -var-file=myenv_conf.json vmware_centos_kafka.json
+./packer build -var-file=myenv_conf.json vmware/centos_kafka.json
 ```
