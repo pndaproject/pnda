@@ -9,7 +9,6 @@ Please refer to [this table](validation-4.0.1.md) to understand what infrastrutu
 |---|---|---|
 |[example-applications](#example-applications)|0.5.0|10 Feb 2018|
 |[example-kafka-clients](#example-kafka-clients)|0.2.3|24 Nov 2017|
-|[gobblin](#gobblin)|0.1.6|24 Nov 2017|
 |[logstash-codec-pnda-avro](#logstash-codec-pnda-avro)|0.1.1|24 Nov 2017|
 |[platform-console-backend](#platform-console-backend)|1.0.0|10 Feb 2018|
 |[platform-console-frontend](#platform-console-frontend)|1.0.0|10 Feb 2018|
@@ -19,11 +18,9 @@ Please refer to [this table](validation-4.0.1.md) to understand what infrastrutu
 |[platform-libraries](#platform-libraries)|0.1.5|10 Feb 2018|
 |[platform-package-repository](#platform-package-repository)|0.3.2|10 Feb 2018|
 |[platform-salt](#platform-salt)|4.0.1|11 Jun 2018|
-|[platform-salt-cloud](#platform-salt-cloud)|1.0.0|21 Oct 2016|
 |[platform-testing](#platform-testing)|0.5.0|10 Feb 2018|
 |[platform-tools](#platform-tools)|0.1.2|24 Nov 2017|
 |[pnda](#pnda)|1.1.1|11 Jun 2018|
-|[pnda-aws-templates](#pnda-aws-templates)|1.3.0|01 Aug 2017|
 |[pnda-cli](#pnda-cli)|1.1.1|11 Jun 2018|
 |[pnda-dib-elements](#pnda-dib-elements)|0.3.0|11 Jun 2018|
 |[pnda-guide](#pnda-guide)|0.4.0|10 Feb 2018|
@@ -37,9 +34,6 @@ Please refer to [this table](validation-4.0.1.md) to understand what infrastrutu
 - Unchanged in this PNDA release
  
 #### [example-kafka-clients](https://github.com/pndaproject/example-kafka-clients)
-- Unchanged in this PNDA release
- 
-#### [gobblin](https://github.com/pndaproject/gobblin)
 - Unchanged in this PNDA release
  
 #### [logstash-codec-pnda-avro](https://github.com/pndaproject/logstash-codec-pnda-avro)
@@ -71,10 +65,7 @@ Please refer to [this table](validation-4.0.1.md) to understand what infrastrutu
 ##### Fixed
 - PNDA-4443: Fix infinite loop in the wrapper for centos
 - PNDA-4511: Refactor the yarn client cli wrappers to manipulate the PATH env
- 
-#### [platform-salt-cloud](https://github.com/pndaproject/platform-salt-cloud)
-- Unchanged in this PNDA release
- 
+
 #### [platform-testing](https://github.com/pndaproject/platform-testing)
 - Unchanged in this PNDA release
  
@@ -90,9 +81,6 @@ Please refer to [this table](validation-4.0.1.md) to understand what infrastrutu
 - PNDA-4666: Account for new dir structure inside HDP-UTILS
 - PNDA-4706: Ubuntu Build: mock package fails to install
 - PNDA-4707: HDP Cluster creation fails with Ubuntu in AWS
- 
-#### [pnda-aws-templates](https://github.com/pndaproject/pnda-aws-templates)
-- Unchanged in this PNDA release
  
 #### [pnda-cli](https://github.com/pndaproject/pnda-cli)
 ##### Fixed
