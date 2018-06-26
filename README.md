@@ -17,4 +17,4 @@ This repository holds release notes and other tools and information pertaining t
 
 ## Creating PNDA
 
-Please follow [these instructions]:(CREATING_PNDA.md) to create PNDA clusters in your target environment.
+Please follow [these instructions](CREATING_PNDA.md) to create PNDA clusters in your target environment.
