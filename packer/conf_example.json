@@ -24,6 +24,8 @@
     "aws_secret_key": "YYY",
     "aws_region": "YYY",
     "aws_mirror_instance_type": "YYY",
+    "aws_base_instance_type": "YYY",
+    "aws_base_ami_name": "YYY",
     "aws_ami_id": "YYY",
     "aws_subnet_id": "YYY",
     "aws_ssh_keypair_name": "YYY",
