@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-4558: Add Knox 1.0.0 to mirror
 - PNDA-4598: Add ldap client rpm packages to mirror
 - PNDA-4643: Enable TLS and other options/optimizations support in haproxy
+- PNDA-4736: Create code to create base AMI for use in EC2
 
 ### Changed
 - PNDA-4400: Update Anaconda to 5.1.0, remove Anaconda CDH parcel mirror as both HDP and CDH now install Anaconda from a bundle
