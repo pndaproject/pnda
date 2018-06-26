@@ -32,7 +32,7 @@ The following cluster types have been validated for this release.
 - **Hadoop**: Hadoop distribution
 - **Airgapped**: Provisioned in an environment without Internet access
 
-Note that airgapped installation for AWS can be simulated by using the default settings in the 'connectivity' section of the pnda_env.yaml configuration file - i.e. set REJECT_OUTBOUND to YES, ADD_ONLINE_REPOS to NO and CLIENT_IP to your client address and PNDA will configure each node appropriately. For Openstack deployment, iptables to be configured in the Network node on the External network interface.
+Note that airgapped installation for AWS can be simulated by using the default settings in the 'connectivity' section of the pnda_env.yaml configuration file - i.e. set REJECT_OUTBOUND to YES, ADD_ONLINE_REPOS to NO and CLIENT_IP to your client address and PNDA will configure each node appropriately. For Openstack deployment, airgapped installation can be simulated by configuring iptables appropriately on the Network Node for the external network interface.
 
 ### Known issues
 
