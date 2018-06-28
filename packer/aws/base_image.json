@@ -7,10 +7,13 @@
         "secret_key": "{{user `aws_secret_key`}}",
         "region": "{{user `aws_region`}}",
         "source_ami": "{{user `aws_ami_id`}}",
-        "instance_type": "{{user `aws_mirror_instance_type`}}",
+        "instance_type": "{{user `aws_base_instance_type`}}",
         "subnet_id": "{{user `aws_subnet_id`}}",
-        "ssh_username": "centos",
-        "ami_name": "{{user `aws_base_ami_name`}}",
+        "ssh_username": "{{user `aws_ami_username`}}",
+        "ami_name": "{{user `aws_base_ami_name`}}_{{timestamp}}",
+        "tags": {
+          "Extra": "{{user `aws_ami_tags`}}"
+        },
         "launch_block_device_mappings": [
           {
             "device_name": "/dev/sda1",
@@ -34,7 +37,7 @@
     "provisioners": [
       {
         "type": "shell",
-        "execute_command": "{{.Vars}} sudo -E -S bash '{{.Path}}'",
+        "execute_command": "{{.Vars}} sudo -E -S bash '{{.Path}}' {{user `aws_ami_os`}}",
         "script": "scripts/ifname.sh"
       }
     ],
