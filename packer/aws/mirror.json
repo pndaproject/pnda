@@ -9,14 +9,17 @@
         "source_ami": "{{user `aws_ami_id`}}",
         "instance_type": "{{user `aws_mirror_instance_type`}}",
         "subnet_id": "{{user `aws_subnet_id`}}",
-        "ssh_username": "centos",
-        "ami_name": "pnda_mirror_{{user `pnda_branch`}}",
+        "ssh_username": "{{user `aws_ami_username`}}",
+        "ami_name": "pnda_mirror_{{user `pnda_branch`}}_{{timestamp}}",
+        "tags": {
+          "Extra": "{{user `aws_ami_tags`}}"
+        },
         "launch_block_device_mappings": [
           {
             "device_name": "/dev/sda1",
             "delete_on_termination": true,
             "encrypted": false,
-            "volume_size": "100",
+            "volume_size": "40",
             "volume_type": "gp2"
           }
         ],
@@ -25,7 +28,7 @@
             "device_name": "/dev/sda1",
             "delete_on_termination": true,
             "encrypted": false,
-            "volume_size": "100",
+            "volume_size": "40",
             "volume_type": "gp2"
           }
         ]
