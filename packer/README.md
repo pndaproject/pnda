@@ -87,26 +87,27 @@ In order to build the AMI in AWS, you will need to change the aws_* parameters o
 "aws_ami_tags": "ci",
 ...
 ```
-* aws_ami_id could be either ami-7c491f05 for RHEL 7.5 or ami-3548444c for CentOS 7.5
+* aws_ami_id could be either ami-7c491f05 for RHEL 7.5 or ami-3548444c for CentOS 7.5, only for the base AMI, the mirror AMI should use the base AMI generated
 * aws_ami_os should be either centos or rhel, in order to be use on the provisioning script ifname.sh
 * aws_ami_username should be ec2-user on RHEL or centos for CentOS
 * aws_base_ami_name could be then pnda_rhel_base_7.5 or pnda_centos_base_7.5, a timestamp suffix is automatically added to ensure that you've got an unique identifier
-* aws_ami_tags is an extra tag setup on the AMI if needed, you can specify ci or something else if needed, helpful for filtering AMIs
-
-### PNDA mirror AMI
-
-The PNDA mirror AMI is split in 2 parts in order to optimize the build, so the first part is currently the mirror where we will run create_mirror.sh script and the second part will include the PNDA & upstream components.
-Run the following command:
-```sh
-export PACKER_LOG=1
-export PACKER_LOG_PATH=aws_centos_mirror.log
-./packer build -var-file=myenv_conf.json aws/centos_mirror.json
-./packer build -var-file=myenv_conf.json aws/centos_mirror_build.json
-```
+* aws_ami_tags is an extra tag setup on the AMI if needed, you can specify ci or something else if needed, helpful for filtering AMIs. For the mirror build, ensure to have a unique tag as this will be used on filtering the image on the second step to include PNDA components and start from the base mirror image
 
 ### PNDA base AMI
 ```sh
 export PACKER_LOG=1
-export PACKER_LOG_PATH=aws_centos_base.log
+export PACKER_LOG_PATH=aws_base.log
 ./packer build -var-file=myenv_conf.json aws/base_image.json
+```
+
+### PNDA mirror AMI
+
+The PNDA mirror AMI is split in 2 parts in order to optimize the build, so the first part is currently the mirror where we will run create_mirror.sh script and the second part will include the PNDA & upstream components. Do not forget to update the AMI id on your configuration as the AMI id previously generated.
+
+Run the following command:
+```sh
+export PACKER_LOG=1
+export PACKER_LOG_PATH=aws_mirror.log
+./packer build -var-file=myenv_conf.json aws/centos_mirror.json
+./packer build -var-file=myenv_conf.json aws/centos_mirror_build.json
 ```
