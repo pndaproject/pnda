@@ -10,7 +10,7 @@
         "instance_type": "{{user `aws_base_instance_type`}}",
         "subnet_id": "{{user `aws_subnet_id`}}",
         "ssh_username": "{{user `aws_ami_username`}}",
-        "ami_name": "{{user `aws_base_ami_name`}}_{{timestamp}}",
+        "ami_name": "{{user `aws_ami_name`}}_base_{{user `aws_ami_os`}}_{{timestamp}}",
         "tags": {
           "Extra": "{{user `aws_ami_tags`}}"
         },
