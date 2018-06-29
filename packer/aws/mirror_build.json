@@ -6,15 +6,7 @@
         "access_key": "{{user `aws_access_key`}}",
         "secret_key": "{{user `aws_secret_key`}}",
         "region": "{{user `aws_region`}}",
-        "source_ami_filter": {
-          "filters": {
-            "virtualization-type": "hvm",
-            "name": "pnda_mirror_{{user `pnda_branch`}}_*",
-            "root-device-type": "ebs",
-            "tag:Extra": "{{user `aws_ami_tags`}}"
-          },
-          "most_recent": true
-        },
+        "source_ami": "{{user `aws_ami_id`}}",
         "instance_type": "{{user `aws_mirror_instance_type`}}",
         "subnet_id": "{{user `aws_subnet_id`}}",
         "ssh_username": "{{user `aws_ami_username`}}",
