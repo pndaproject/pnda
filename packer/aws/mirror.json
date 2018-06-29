@@ -43,7 +43,8 @@
           "PNDA_REPO={{user `pnda_repo`}}",
           "PNDA_BRANCH={{user `pnda_branch`}}",
           "BUILD_MODE={{user `build_mode`}}",
-          "BUILD_ARG={{user `build_arg`}}"
+          "BUILD_ARG={{user `build_arg`}}",
+          "OS_USER={{user `aws_ami_username`}}"
         ]
       }
     ],
