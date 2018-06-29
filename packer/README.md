@@ -77,7 +77,7 @@ In order to build the AMI in AWS, you will need to change the aws_* parameters o
 "aws_region": "YYY",
 "aws_mirror_instance_type": "c5d.4xlarge",
 "aws_base_instance_type": "c5d.4xlarge",
-"aws_base_ami_name": "pnda_centos_base_7.5",
+"aws_ami_name": "pnda",
 "aws_ami_id": "ami-3548444c",
 "aws_ami_os": "rhel",
 "aws_ami_username": "ec2-user",
@@ -90,7 +90,7 @@ In order to build the AMI in AWS, you will need to change the aws_* parameters o
 * aws_ami_id could be either ami-7c491f05 for RHEL 7.5 or ami-3548444c for CentOS 7.5, only for the base AMI, the mirror AMI should use the base AMI generated
 * aws_ami_os should be either centos or rhel, in order to be use on the provisioning script ifname.sh
 * aws_ami_username should be ec2-user on RHEL or centos for CentOS
-* aws_base_ami_name could be then pnda_rhel_base_7.5 or pnda_centos_base_7.5, a timestamp suffix is automatically added to ensure that you've got an unique identifier
+* aws_ami_name could be then pnda, a timestamp suffix is automatically added to ensure that you've got an unique identifier
 * aws_ami_tags is an extra tag setup on the AMI if needed, you can specify ci or something else if needed, helpful for filtering AMIs. For the mirror build, ensure to have a unique tag as this will be used on filtering the image on the second step to include PNDA components and start from the base mirror image
 
 ### PNDA base AMI

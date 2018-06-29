@@ -25,7 +25,7 @@
     "aws_region": "YYY",
     "aws_mirror_instance_type": "YYY",
     "aws_base_instance_type": "YYY",
-    "aws_base_ami_name": "YYY",
+    "aws_ami_name": "YYY",
     "aws_ami_id": "YYY",
     "aws_ami_os": "YYY",
     "aws_subnet_id": "YYY",

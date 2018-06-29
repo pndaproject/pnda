@@ -10,7 +10,7 @@
         "instance_type": "{{user `aws_mirror_instance_type`}}",
         "subnet_id": "{{user `aws_subnet_id`}}",
         "ssh_username": "{{user `aws_ami_username`}}",
-        "ami_name": "pnda_mirror_build_{{user `pnda_branch`}}_{{timestamp}}",
+        "ami_name": "{{user `aws_ami_name`}}_mirror_build_{{user `aws_ami_os`}}_{{user `pnda_branch`}}_{{timestamp}}",
         "tags": {
           "Extra": "{{user `aws_ami_tags`}}"
         },
