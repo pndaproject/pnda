@@ -40,9 +40,9 @@ ntp-4.2.6p5
 pam-devel
 patch
 openldap-clients
-openssl-1.0.2k-8.el7
-openssl-libs-1.0.2k-8.el7
-openssl-devel-1.0.2k-8.el7
+openssl-1.0.2k-12.el7
+openssl-libs-1.0.2k-12.el7
+openssl-devel-1.0.2k-12.el7
 nss-pam-ldapd
 policycoreutils-python
 postgresql-devel
