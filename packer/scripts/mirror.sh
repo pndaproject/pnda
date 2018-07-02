@@ -11,7 +11,6 @@ PB=$PNDA_BRANCH
 CANONICAL_PB=${PB/\\//-}
 tar zxf pnda-$CANONICAL_PB.tar.gz
 ln -s pnda-$CANONICAL_PB pnda
-USER=centos
 
 # Build the mirror
 cd pnda/mirror
@@ -24,4 +23,4 @@ EOF
 [[ $? -ne 0 ]] && mirror_error "Problem while creating mirror"
 
 # cleaning up pnda
-sudo rm -rf /home/${USER}/pnda*
+sudo rm -rf /home/${OS_USER}/pnda*

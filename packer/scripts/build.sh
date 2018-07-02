@@ -12,12 +12,12 @@ tar zxf pnda-$CANONICAL_PB.tar.gz
 ln -s pnda-$CANONICAL_PB pnda
 
 # Install build machine and component package server pre-reqs
-USER=centos
+
 yum install -y git httpd
 chkconfig httpd on
 
 bash -c "echo '127.0.1.1 $(hostname)' | cat >> /etc/hosts"
-cd /home/${USER}
+cd /home/${OS_USER}
 
 # Install build machine software
 pnda/build/install-build-tools.sh << EOF
@@ -36,11 +36,11 @@ EOF
 # Stage built PNDA components on HTTP server
 echo "Before copying to http server home"
 ls -lah /var/www/html/
-ls -lah /home/${USER}/pnda/build/pnda-dist/
-mv /home/${USER}/pnda/build/pnda-dist/* /var/www/html/
+ls -lah /home/${OS_USER}/pnda/build/pnda-dist/
+mv /home/${OS_USER}/pnda/build/pnda-dist/* /var/www/html/
 
 restorecon -r /var/www/html
 sudo service httpd start
 
 # cleaning up pnda
-sudo rm -rf /home/${USER}/pnda*
+sudo rm -rf /home/${OS_USER}/pnda*
