@@ -36,6 +36,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-4666: Account for new dir structure inside HDP-UTILS
 - PNDA-4608: Mismatch setuptools version in mirror and build
 - PNDA-4759: DRYer implentation that allows use of CentOS or RHEL
+- PNDA-4764: adding OS_USER parameter for the mirror script on packer
 
 ## [1.1.0] 2018-02-10
 ### Added
