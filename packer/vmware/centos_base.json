@@ -7,7 +7,7 @@
         "type": "vmware-iso",
         "communicator": "ssh",
         "ssh_pty": "true",
-        "headless": false,
+        "headless": true,
         "disk_size": 50000,
         "disk_additional_size": [2000,5000],
         "guest_os_type": "centos-64",
@@ -80,7 +80,7 @@
     "post-processors": [
       {
         "type": "shell-local",
-        "inline": [ "/Applications/VMware\\ OVF\\ Tool/ovftool output-{{user `vm_name_base`}}/{{user `vm_name_base`}}.vmx output-{{user `vm_name_base`}}/{{user `vm_name_base`}}.ova" ]
+        "inline": [ "ovftool output-{{user `vm_name_base`}}/{{user `vm_name_base`}}.vmx output-{{user `vm_name_base`}}/{{user `vm_name_base`}}.ova" ]
        },
       {
         "type": "vsphere",

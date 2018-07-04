@@ -56,6 +56,11 @@
         "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
       },
       {
+        "destination": "/tmp/",
+        "source": "scripts/mirror_env.sh",
+        "type": "file"
+      },
+      {
         "type": "shell",
         "execute_command": "{{.Vars}} sudo -E -S bash '{{.Path}}'",
         "script": "scripts/mirror.sh",
@@ -63,7 +68,8 @@
           "PNDA_REPO={{user `pnda_repo`}}",
           "PNDA_BRANCH={{user `pnda_branch`}}",
           "BUILD_MODE={{user `build_mode`}}",
-          "BUILD_ARG={{user `build_arg`}}"
+          "BUILD_ARG={{user `build_arg`}}",
+          "MIRROR_ENV={{user `mirror_env`}}"
         ]
       },
       {
@@ -81,7 +87,7 @@
     "post-processors": [
       {
         "type": "shell-local",
-        "inline": [ "/Applications/VMware\\ OVF\\ Tool/ovftool output-{{user `vm_name_mirror`}}/{{user `vm_name_mirror`}}.vmx output-{{user `vm_name_mirror`}}/{{user `vm_name_mirror`}}.ova" ]
+        "inline": [ "ovftool output-{{user `vm_name_mirror`}}/{{user `vm_name_mirror`}}.vmx output-{{user `vm_name_mirror`}}/{{user `vm_name_mirror`}}.ova" ]
       },
       {
         "type": "vsphere",
