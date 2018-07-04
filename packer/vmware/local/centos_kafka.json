@@ -1,29 +1,29 @@
 {
     "builders": [
       {
-        "name": "{{user `vm_name_base`}}",
-        "vm_name": "{{user `vm_name_base`}}",
-        "vmdk_name": "{{user `vm_name_base`}}",
+        "name": "{{user `vm_name_kafka`}}",
+        "vm_name": "{{user `vm_name_kafka`}}",
+        "vmdk_name": "{{user `vm_name_kafka`}}",
         "type": "vmware-iso",
         "communicator": "ssh",
         "ssh_pty": "true",
         "headless": false,
         "disk_size": 50000,
-        "disk_additional_size": [2000,5000],
+        "disk_additional_size": [2000,5000,5000],
         "guest_os_type": "centos-64",
         "iso_url": "./iso/CentOS-7-x86_64-Minimal-1804.iso",
         "iso_checksum": "13675c6f74880e7ff3481b91bdaf925ce81bda8f",
         "iso_checksum_type": "sha1",
         "shutdown_command": "sudo -S /usr/sbin/shutdown -h now",
+        "format": "ovf",
         "ssh_username": "{{user `username`}}",
         "ssh_password": "{{user `password`}}",
         "ssh_read_write_timeout": "10m",
-        "ssh_wait_timeout": "10000s",
         "ssh_timeout": "15m",
         "tools_upload_flavor": "linux",
         "vnc_disable_password": true,
         "keep_registered": true,
-        "skip_export": false,
+        "skip_export": true,
         "http_directory": ".",
         "boot_wait": "7s",
         "vmx_data": {
@@ -56,46 +56,23 @@
           "scripts/open-vm-tools.sh"
         ],
         "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-      },
-      {
-        "type": "shell",
-        "scripts": [
-          "scripts/ssh_conf.sh"
-        ],
-        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-      },
-      {
-        "destination": "/tmp/",
-        "source": "./key_name.pem.pub",
-        "type": "file"
-      },
-      {
-        "type": "shell",
-        "scripts": [
-          "scripts/authorized_keys.sh"
-        ],
-        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
       }
     ],
     "post-processors": [
-      {
-        "type": "shell-local",
-        "inline": [ "/Applications/VMware\\ OVF\\ Tool/ovftool output-{{user `vm_name_base`}}/{{user `vm_name_base`}}.vmx output-{{user `vm_name_base`}}/{{user `vm_name_base`}}.ova" ]
-       },
-      {
-        "type": "vsphere",
-        "host": "{{user `vsphere_host`}}",
-        "username": "{{user `vsphere_user`}}",
-        "password": "{{user `vsphere_password`}}",
-        "insecure": true,
-        "vm_name": "{{user `vm_name_base`}}",
-        "datacenter": "{{user `vsphere_dc`}}",
-        "cluster": "{{user `vsphere_cluster`}}",
-        "datastore": "{{user `vsphere_datastore`}}",
-        "disk_mode": "thin",
-        "vm_network": "{{user `vsphere_portgroup`}}",
-        "overwrite": true
-      }
+        {
+            "type": "vsphere",
+            "host": "{{user `vsphere_host`}}",
+            "username": "{{user `vsphere_user`}}",
+            "password": "{{user `vsphere_password`}}",
+            "insecure": true,
+            "vm_name": "{{user `vm_name_kafka`}}",
+            "datacenter": "{{user `vsphere_dc`}}",
+            "cluster": "{{user `vsphere_cluster`}}",
+            "datastore": "{{user `vsphere_datastore`}}",
+            "disk_mode": "thin",
+            "vm_network": "{{user `vsphere_portgroup`}}",
+            "overwrite": false
+        }
     ],
     "variables": {
       "template_name": "{{env `PACKER_VM_NAME`}}",

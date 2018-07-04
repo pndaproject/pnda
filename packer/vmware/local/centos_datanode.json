@@ -1,9 +1,9 @@
 {
     "builders": [
       {
-        "name": "{{user `vm_name_kafka`}}",
-        "vm_name": "{{user `vm_name_kafka`}}",
-        "vmdk_name": "{{user `vm_name_kafka`}}",
+        "name": "{{user `vm_name_datanode`}}",
+        "vm_name": "{{user `vm_name_datanode`}}",
+        "vmdk_name": "{{user `vm_name_datanode`}}",
         "type": "vmware-iso",
         "communicator": "ssh",
         "ssh_pty": "true",
@@ -56,25 +56,6 @@
           "scripts/open-vm-tools.sh"
         ],
         "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-      },
-      {
-        "type": "shell",
-        "scripts": [
-          "scripts/ssh_conf.sh"
-        ],
-        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-      },
-      {
-        "destination": "/tmp/",
-        "source": "./key_name.pem.pub",
-        "type": "file"
-      },
-      {
-        "type": "shell",
-        "scripts": [
-          "scripts/authorized_keys.sh"
-        ],
-        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
       }
     ],
     "post-processors": [
@@ -84,7 +65,7 @@
             "username": "{{user `vsphere_user`}}",
             "password": "{{user `vsphere_password`}}",
             "insecure": true,
-            "vm_name": "{{user `vm_name_kafka`}}",
+            "vm_name": "{{user `vm_name_datanode`}}",
             "datacenter": "{{user `vsphere_dc`}}",
             "cluster": "{{user `vsphere_cluster`}}",
             "datastore": "{{user `vsphere_datastore`}}",
