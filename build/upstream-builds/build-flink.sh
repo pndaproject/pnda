@@ -25,6 +25,12 @@ function error {
     exit -1
 }
 
+function build_error {
+    echo "Build error"
+    echo "Please determine the reason for the error, correct and re-run"
+    exit -1
+}
+
 echo -n "Java 1.8: "
 if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8"* ]]; then
     error
@@ -55,6 +61,7 @@ fi
 
 # Using apache-flink as a upstream project
 wget https://github.com/apache/flink/archive/release-${FLINK_VERSION}.tar.gz
+[[ $? -ne 0 ]] && error
 tar xzf release-${FLINK_VERSION}.tar.gz
 
 # Build upstream gobblin
@@ -71,6 +78,7 @@ if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
 fi
 
 mvn clean install -DskipTests -Pvendor-repos -Dhadoop.version="${HADOOP_VERSION}"
+[[ $? -ne 0 ]] && build_error
 
 if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
     JAR=$(<../../../upstream-builds/dependencies/upstream-flink-hdp-dependencies.txt)

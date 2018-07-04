@@ -154,9 +154,9 @@ PNDA_DIST=${BASE}/pnda-dist
 mkdir -p ${PNDA_DIST}
 mkdir -p ${PNDA_STAGE}
 
-parallel --joblog ${PNDA_STAGE}/build-log-pndarepo.txt --workdir "$BUILD_DIR" ./build-pnda-repo.sh {} ${MODE} ${bom[${repo}]} ${PNDA_DIST} ${PNDA_STAGE} ::: ${!bom[@]}
+parallel --halt now,fail=1 --joblog ${PNDA_STAGE}/build-log-pndarepo.txt --workdir "$BUILD_DIR" ./build-pnda-repo.sh {} ${MODE} ${bom[${repo}]} ${PNDA_DIST} ${PNDA_STAGE} ::: ${!bom[@]}
 [[ $? -ne 0 ]] && build_error
-parallel --joblog ${PNDA_STAGE}/build-log-upstream.txt --workdir "$BUILD_DIR" ./build-upstream.sh {} ${upstream[${project}]} ${PNDA_DIST} ${PNDA_STAGE} ${UPSTREAM_BUILDS} ::: ${!upstream[@]}
+parallel --halt now,fail=1 --joblog ${PNDA_STAGE}/build-log-upstream.txt --workdir "$BUILD_DIR" ./build-upstream.sh {} ${upstream[${project}]} ${PNDA_DIST} ${PNDA_STAGE} ${UPSTREAM_BUILDS} ::: ${!upstream[@]}
 [[ $? -ne 0 ]] && build_error
 
 cd ${BASE}

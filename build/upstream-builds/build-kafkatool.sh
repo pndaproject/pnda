@@ -18,6 +18,11 @@ function error {
     exit -1
 }
 
+function build_error {
+    echo "Build error"
+    echo "Please determine the reason for the error, correct and re-run"
+    exit -1
+}
 
 echo -n "shyaml: "
 if [[ -z $(which shyaml) ]]; then
@@ -34,6 +39,8 @@ fi
 
 echo `pwd`
 git clone https://github.com/airbnb/kafkat.git
+[[ $? -ne 0 ]] && error
+
 mkdir -p pnda-build
 mv kafkat kafka-tool-${KT_VERSION}
 cd kafka-tool-${KT_VERSION}
@@ -48,4 +55,5 @@ done
 cd ..
 tar czf kafka-tool-${KT_VERSION}.tar.gz kafka-tool-${KT_VERSION}
 mv kafka-tool-${KT_VERSION}.tar.gz pnda-build/
+[[ $? -ne 0 ]] && build_error
 sha512sum pnda-build/kafka-tool-${KT_VERSION}.tar.gz > pnda-build/kafka-tool-${KT_VERSION}.tar.gz.sha512.txt
