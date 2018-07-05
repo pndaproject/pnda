@@ -12,6 +12,9 @@ CANONICAL_PB=${PB/\\//-}
 tar zxf pnda-$CANONICAL_PB.tar.gz
 ln -s pnda-$CANONICAL_PB pnda
 
+# Update env if required
+source /tmp/mirror_env.sh
+
 # Build the mirror
 cd pnda/mirror
 sudo mkdir -p /var/www/html/

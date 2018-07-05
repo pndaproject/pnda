@@ -1,7 +1,6 @@
 {
     "username": "centos",
     "password": "centos",
-    "esxi_host": "XXX",
     "pnda_repo": "https://github.com/pndaproject/pnda",
     "pnda_branch": "develop",
     "build_mode": "BRANCH",
