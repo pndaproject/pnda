@@ -24,7 +24,7 @@ pnda/build/install-build-tools.sh << EOF
 Yes
 EOF
 
-[[ $? -ne 0 ]] && mirror_error "Problem while creating mirror"
+[[ $? -ne 0 ]] && mirror_error "Problem while installing build tools"
 
 # Build PNDA software
 source set-pnda-env.sh
@@ -32,6 +32,8 @@ cd pnda/build
 ./build-pnda.sh $BUILD_MODE $BUILD_ARG << EOF
 Yes
 EOF
+
+[[ $? -ne 0 ]] && mirror_error "Problem while building PNDA"
 
 # Stage built PNDA components on HTTP server
 echo "Before copying to http server home"
