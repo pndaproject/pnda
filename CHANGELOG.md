@@ -38,6 +38,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-4759: DRYer implentation that allows use of CentOS or RHEL
 - PNDA-4764: Adding OS_USER parameter for the mirror script on packer
 - PNDA-4708: Update OpenSSL versions for RHEL 7.5
+- PNDA-4753: Flink build failed but overall build continues
 
 ## [1.1.0] 2018-02-10
 ### Added
