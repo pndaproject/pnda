@@ -19,6 +19,12 @@ function error {
     exit -1
 }
 
+function build_error {
+    echo "Build error"
+    echo "Please determine the reason for the error, correct and re-run"
+    exit -1
+}
+
 echo -n "shyaml: "
 if [[ -z $(which shyaml) ]]; then
     error
@@ -33,6 +39,7 @@ elif [[ ${MODE} == "UPSTREAM" ]]; then
 fi
 
 wget https://www.haproxy.org/download/1.8/src/haproxy-${HA_VERSION}.tar.gz
+[[ $? -ne 0 ]] && error
 tar xzf haproxy-${HA_VERSION}.tar.gz
 
 mkdir -p pnda-build
@@ -40,6 +47,7 @@ cd haproxy-${HA_VERSION}
 make \
   TARGET=linux2628 CPU=generic CC=gcc CFLAGS="-O2 -g -fno-strict-aliasing -DTCP_USER_TIMEOUT=18" \
   USE_LINUX_TPROXY=1 USE_ZLIB=1 USE_REGPARM=1 USE_OPENSSL=1 USE_PCRE=1
+[[ $? -ne 0 ]] && build_error
 
 cd ..
 tar czf haproxy-${HA_VERSION}.tar.gz haproxy-${HA_VERSION}

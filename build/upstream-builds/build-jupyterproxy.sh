@@ -19,6 +19,12 @@ function error {
     exit -1
 }
 
+function build_error {
+    echo "Build error"
+    echo "Please determine the reason for the error, correct and re-run"
+    exit -1
+}
+
 echo -n "npm: "
 NPM_VERSION=$(npm --version 2>&1)
 if [[ ${NPM_VERSION} == "1.3"* ]] || [[ ${NPM_VERSION} == "3.5.2" ]] || [[ ${NPM_VERSION} == "3.10"* ]]; then
@@ -41,11 +47,13 @@ elif [[ ${MODE} == "UPSTREAM" ]]; then
 fi
 
 wget https://github.com/jupyterhub/configurable-http-proxy/archive/${JP_VERSION}.tar.gz
+[[ $? -ne 0 ]] && error
 tar xzf ${JP_VERSION}.tar.gz
 
 mkdir -p pnda-build
 cd configurable-http-proxy-${JP_VERSION}
 npm install
+[[ $? -ne 0 ]] && build_error
 cd ..
 tar zcf jupyterproxy-${JP_VERSION}.tar.gz configurable-http-proxy-${JP_VERSION}
 mv jupyterproxy-${JP_VERSION}.tar.gz pnda-build/

@@ -28,6 +28,12 @@ function error {
     exit -1
 }
 
+function build_error {
+    echo "Build error"
+    echo "Please determine the reason for the error, correct and re-run"
+    exit -1
+}
+
 echo -n "Java 1.8: "
 if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8"* ]]; then
     error
@@ -51,6 +57,7 @@ elif [[ ${MODE} == "UPSTREAM" ]]; then
 fi
 
 wget https://github.com/apache/incubator-gobblin/archive/gobblin_${GB_VERSION}.tar.gz
+[[ $? -ne 0 ]] && error
 tar xzf gobblin_${GB_VERSION}.tar.gz
 
 # Build upstream gobblin
@@ -82,6 +89,7 @@ do
     fi
 
     ./gradlew build -Pversion="${GB_VERSION}-${HADOOP_DISTRIBUTION}" -PhadoopVersion="${HADOOP_VERSION}" -PexcludeHadoopDeps -PexcludeHiveDeps ${EXCLUDES}
+    [[ $? -ne 0 ]] && build_error
 
     mv ./build/gobblin-distribution/distributions/gobblin-distribution-${GB_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz ../pnda-build/
     sha512sum ../pnda-build/gobblin-distribution-${GB_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz > ../pnda-build/gobblin-distribution-${GB_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz.sha512.txt
