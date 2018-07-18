@@ -26,6 +26,7 @@
         "ssh_wait_timeout": "10000s",
         "ssh_timeout": "15m",
         "vnc_disable_password": true,
+        "skip_export": true,
         "keep_registered": true,
         "http_directory": ".",
         "boot_wait": "7s",
@@ -37,8 +38,8 @@
           "ide1:0.clientDevice": "TRUE",
           "ide1:0.fileName": "emptyBackingString"
         },
-        "floppy_files": [
-          "http/ks.cfg"
+"floppy_files": [
+        "http/ks.cfg"
       ],
       "boot_command": "<tab> inst.text inst.ks=hd:fd0:/ks.cfg <enter><wait>"
       }
@@ -52,19 +53,6 @@
         "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
       }
     ],
-
-    "post-processors": [
-        {
-            "type": "vsphere-template",
-            "folder": "/packer-templates",
-            "host": "{{user `vsphere_host`}}",
-            "datacenter": "{{user `vsphere_datastore`}}",
-            "username": "{{user `vsphere_user`}}",
-            "password": "{{user `vsphere_password`}}",
-            "insecure": "true"
-        }
-    ],
-
     "variables": {
       "template_name": "{{env `PACKER_VM_NAME`}}",
       "username": "root",
@@ -78,3 +66,4 @@
       "packer_vcenter_password": "{{env `PACKER_VCENTER_PASSWORD`}}"
     }
   }
+  
