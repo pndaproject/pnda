@@ -50,27 +50,21 @@
           "scripts/open-vm-tools.sh"
         ],
         "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-      },
-      {
-        "type": "shell",
-        "scripts": [
-          "scripts/ssh_conf.sh"
-        ],
-        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-      },
-      {
-        "destination": "/tmp/",
-        "source": "./key_name.pem.pub",
-        "type": "file"
-      },
-      {
-        "type": "shell",
-        "scripts": [
-          "scripts/authorized_keys.sh"
-        ],
-        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
       }
     ],
+
+    "post-processors": [
+        {
+            "type": "vsphere-template",
+            "folder": "/packer-templates",
+            "host": "{{user `vsphere_host`}}",
+            "datacenter": "{{user `vsphere_datastore`}}",
+            "username": "{{user `vsphere_user`}}",
+            "password": "{{user `vsphere_password`}}",
+            "insecure": "true"
+        }
+    ],
+
     "variables": {
       "template_name": "{{env `PACKER_VM_NAME`}}",
       "username": "root",
