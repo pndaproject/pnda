@@ -50,6 +50,7 @@ python-carbon
 python-chardet
 python-devel
 python-kitchen
+python-kerberos
 python-six
 python2-pip
 python34-devel
