@@ -49,6 +49,7 @@ postgresql-devel
 python-carbon
 python-chardet
 python-devel
+python-kerberos
 python-kitchen
 python-six
 python2-pip
