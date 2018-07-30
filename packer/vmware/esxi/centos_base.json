@@ -66,4 +66,3 @@
       "packer_vcenter_password": "{{env `PACKER_VCENTER_PASSWORD`}}"
     }
   }
-  
