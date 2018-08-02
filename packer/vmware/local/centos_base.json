@@ -7,9 +7,8 @@
         "type": "vmware-iso",
         "communicator": "ssh",
         "ssh_pty": "true",
-        "headless": false,
+        "headless": "true",
         "disk_size": 50000,
-        "disk_additional_size": [2000,5000],
         "guest_os_type": "centos-64",
         "iso_url": "./iso/CentOS-7-x86_64-Minimal-1804.iso",
         "iso_checksum": "13675c6f74880e7ff3481b91bdaf925ce81bda8f",
@@ -27,14 +26,15 @@
         "http_directory": ".",
         "boot_wait": "7s",
         "vmx_data": {
-          "memsize": "10240",
-          "numvcpus": "4",
+          "memsize": "4096",
+          "numvcpus": "2",
           "ethernet0.networkName": "{{user `vsphere_portgroup`}}",
           "ethernet0.present": "TRUE",
           "ethernet0.startConnected": "TRUE",
           "ethernet0.virtualDev": "e1000",
           "ethernet0.addressType": "generated",
           "ethernet0.generatedAddressOffset": "0",
+          "mks.enable3d": "FALSE",
           "ethernet0.wakeOnPcktRcv": "FALSE"
   
         },
@@ -56,7 +56,16 @@
           "scripts/open-vm-tools.sh"
         ],
         "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-      }
+      },
+     {
+       "type": "file",
+       "source": "./key_name.pem.pub",
+       "destination":"/root/authorized_keys"
+     },
+    {
+       "type": "shell",
+       "inline": ["mkdir /root/.ssh","mv /root/authorized_keys .ssh/"]
+    }
     ],
     "post-processors": [
       {
