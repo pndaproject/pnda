@@ -48,8 +48,8 @@ document-root
 │   ├── Anaconda-4.0.0-el7.parcel
 │   ├── etc
 │
-├── mirror_deb
-│   ├── acl_2.2.52-1_amd64.deb
+├── mirror_rpm
+│   ├── a-rpm.rpm
 │   ├── etc
 │
 ├── etc

@@ -1,0 +1,7 @@
+iso/*
+*conf.json
+packer
+*.log
+output-*
+key_name*
+packer_cache

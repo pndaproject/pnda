@@ -28,6 +28,12 @@ function error {
     exit -1
 }
 
+function build_error {
+    echo "Build error"
+    echo "Please determine the reason for the error, correct and re-run"
+    exit -1
+}
+
 echo -n "Java 1.8: "
 if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8"* ]]; then
     error
@@ -51,6 +57,7 @@ elif [[ ${MODE} == "UPSTREAM" ]]; then
 fi
 
 wget https://github.com/apache/incubator-gobblin/archive/gobblin_${GB_VERSION}.tar.gz
+[[ $? -ne 0 ]] && error
 tar xzf gobblin_${GB_VERSION}.tar.gz
 
 # Build upstream gobblin
@@ -75,13 +82,14 @@ sed -i "$line_number"'i\'"$hdp_repo_1"'\n'"$hdp_repo_2" defaultEnvironment.gradl
 for HADOOP_DISTRIBUTION in CDH HDP
 do
     if [[ "${HADOOP_DISTRIBUTION}" == "CDH" ]]; then
-        HADOOP_VERSION=2.6.0-cdh5.9.0
+        HADOOP_VERSION=$(wget -qO- https://raw.githubusercontent.com/pndaproject/platform-salt/${ARG}/pillar/services.sls | shyaml get-value cloudera.hadoop_version)
     fi
     if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
-        HADOOP_VERSION=2.7.3.2.6.3.0-235
+        HADOOP_VERSION=$(wget -qO- https://raw.githubusercontent.com/pndaproject/platform-salt/${ARG}/pillar/services.sls | shyaml get-value hdp.hadoop_version)
     fi
 
     ./gradlew build -Pversion="${GB_VERSION}-${HADOOP_DISTRIBUTION}" -PhadoopVersion="${HADOOP_VERSION}" -PexcludeHadoopDeps -PexcludeHiveDeps ${EXCLUDES}
+    [[ $? -ne 0 ]] && build_error
 
     mv ./build/gobblin-distribution/distributions/gobblin-distribution-${GB_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz ../pnda-build/
     sha512sum ../pnda-build/gobblin-distribution-${GB_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz > ../pnda-build/gobblin-distribution-${GB_VERSION}-${HADOOP_DISTRIBUTION}.tar.gz.sha512.txt

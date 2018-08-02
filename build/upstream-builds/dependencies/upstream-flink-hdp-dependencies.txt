@@ -1,0 +1,1 @@
+http://central.maven.org/maven2/com/sun/jersey/jersey-core/1.9.1/jersey-core-1.9.1.jar

@@ -13,8 +13,7 @@
 #   under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 #   ANY KIND, either express or implied.
 #
-#   This script checks for and installs dependencies required to build PNDA on a Ubuntu 14.04 system.
-#   For other systems, please refer to the installation instructions of the respective technologies.
+#   This script checks for and installs dependencies required to build PNDA
 #
 #   JAVA_MIRROR - define this environment variable to download the Java JDK from an alternative location
 
@@ -47,10 +46,7 @@ if [ "x${DISTRO}" == "xrhel" ]; then
   esac
 fi
 
-if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
-  yum install -y wget
-fi
-
+yum install -y wget
 
 # Java 1.8.0_131
 #
@@ -58,7 +54,7 @@ echo "Dependency check: Java JDK 1.8.0_131"
 
 if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_131" ]]; then
     echo "WARN: Unable to find JDK 1.8.0_131, going to download it and set JAVA_HOME relative to ${PWD}"
-    curl -LOJ -b oraclelicense=accept-securebackup-cookie -L http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz
+    curl -LOJ -b oraclelicense=accept-securebackup-cookie "${JAVA_MIRROR:-http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz}"
     tar zxf jdk-8u131-linux-x64.tar.gz --no-same-owner
     export JAVA_HOME=${PWD}/jdk1.8.0_131
     export PATH=$JAVA_HOME/bin:${PATH}
@@ -80,54 +76,41 @@ fi
 #
 echo "Dependency check: packages"
 
-if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
+[[ -z ${RPM_EXTRAS} ]] && export RPM_EXTRAS=rhui-REGION-rhel-server-extras
+[[ -z ${RPM_OPTIONAL} ]] && export RPM_OPTIONAL=rhui-REGION-rhel-server-optional
+RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+NODE_REPO=https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
 
-    RPM_EXTRAS=rhui-REGION-rhel-server-extras
-    RPM_OPTIONAL=rhui-REGION-rhel-server-optional
-    RPM_EPEL=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    NODE_REPO=https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
+yum install -y $RPM_EPEL
+yum install -y yum-utils
+yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
 
-    yum install -y $RPM_EPEL
-    yum-config-manager --enable $RPM_EXTRAS $RPM_OPTIONAL
+RPM_TMP=$(mktemp || bail)
+wget -O ${RPM_TMP} ${NODE_REPO}
+rpm -i --nosignature --force ${RPM_TMP}
 
-    RPM_TMP=$(mktemp || bail)
-    wget -O ${RPM_TMP} ${NODE_REPO}
-    rpm -i --nosignature --force ${RPM_TMP}
-
-    yum install -y python-devel \
-                   cyrus-sasl-devel \
-                   gcc \
-                   gcc-c++ \
-                   git \
-                   nodejs \
-                   bc \
-                   curl \
-                   pam-devel \
-                   python-setuptools \
-                   python-devel \
-                   python2-pip \
-                   ruby-devel \
-                   libaio # Needed for Gobblin
-
-elif [[ "${DISTRO}" == "ubuntu" ]]; then
-
-    echo 'deb [arch=amd64] https://deb.nodesource.com/node_6.x trusty main' > /etc/apt/sources.list.d/nodesource.list
-    curl -L 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key' | apt-key add -
-
-    apt-get update -y
-    apt-get install -y python-dev \
-                   libsasl2-dev \
-                   gcc \
-                   git \
-                   nodejs \
-                   bc \
-                   curl \
-                   python-setuptools \
-                   apt-transport-https \
-                   libpam0g-dev \
-                   python-pip \
-                   ruby-dev \
-                   libaio1 # Needed for Gobblin
+(yum install -y python-devel \
+                cyrus-sasl-devel \
+                gcc \
+                gcc-c++ \
+                git \
+                nodejs \
+                bc \
+                curl \
+                openssl-devel \
+                pam-devel \
+                pcre-static \
+                pcre-devel \
+                python-setuptools \
+                python-devel \
+                python2-pip \
+                ruby-devel \
+                parallel \
+                libaio) | tee -a yum-build-deps.log; cmd_result=${PIPESTATUS[0]} && if [ ${cmd_result} != '0' ]; then exit ${cmd_result}; fi
+if grep -q 'No package .* available.' "yum-build-deps.log"; then
+    echo "missing rpm detected:"
+    echo $(cat yum-build-deps.log | grep 'No package .* available.')
+    exit -1
 fi
 
 if [ ! -f /usr/bin/node ]; then
@@ -139,23 +122,8 @@ fi
 #
 echo "Dependency check: sbt"
 
-if [ "x${DISTRO}" == "xrhel" -o "x$DISTRO" == "xcentos" ]; then
-
-    wget -qO- https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo
-    yum install sbt-0.13.9 -y
-
-elif [[ "${DISTRO}" == "ubuntu" ]]; then
-
-    if [ ! -f /etc/apt/sources.list.d/sbt.list ]; then
-        echo "WARN: Unable to find sbt, going to install it"
-        echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
-        apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
-        apt-get update -y
-        apt-get install sbt=0.13.13 -y
-    else
-        echo "sbt.list found in /etc/apt/sources.list.d"
-    fi
-fi
+wget -qO- https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo
+yum install sbt-0.13.9 -y
 
 # Maven 3.0.5
 # 
@@ -173,8 +141,23 @@ else
     echo "maven 3.0.5 found in /usr/share"
 fi
 
+# Patch mvn to always use a private .m2 directory as the .m2
+# directory is not safe for concurrent access
+cat > mvn-private-m2.sh <<'EOF'
+#!/bin/bash
+export MAVEN_OPTS="-Dmaven.repo.local=${PWD}/.m2"
+/etc/alternatives/mvn $@
+EOF
+chmod a+x mvn-private-m2.sh
+rm -rf /usr/bin/mvn
+ln -s ${PWD}/mvn-private-m2.sh /usr/bin/mvn
+
 # Python pip libraries used in builds and tests
-#
+# Firstly, bring pip and setuptools up to date
+curl -LOJf https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
+pip2 install --upgrade setuptools
+
 pip2 install spur==0.3.12
 pip2 install starbase==0.3.2
 pip2 install happybase==1.0.0
@@ -187,18 +170,18 @@ pip2 install nose==1.3.7
 pip2 install mock==2.0.0
 pip2 install pylint==1.6.4
 pip2 install python-swiftclient==3.1.0
+pip2 install tornado==4.4.2
 pip2 install tornado-cors==0.6.0
 pip2 install Tornado-JSON==1.2.2
 pip2 install boto==2.40.0
-pip2 install setuptools==28.8.0 --upgrade
 pip2 install impyla==0.13.8
 pip2 install eventlet==0.19.0
 pip2 install kazoo==2.2.1
 pip2 install avro==1.8.1
-pip2 install kafka-python==0.9.4
+pip2 install kafka-python==1.3.5
 pip2 install prettytable==0.7.2
-pip2 install pyhive==0.2.1
 pip2 install thrift_sasl==0.2.1
+pip2 install JayDeBeApi==1.1.1
 # grunt-cli needs to be installed globally
 
 [[ -e ~/tmp ]] && TMP_EXISTS=true

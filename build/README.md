@@ -5,11 +5,19 @@ In this directory you will find tools that install necessary build pre-requisite
 All scripts have been tested on the following environment -
 
 - AWS m3.large instance (2 CPUs, 7.5GB memory and 32GB SSD storage)
-- AMI: ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-20160714 (ami-ed82e39e)
+- AMI: CentOS 7 (ami-6e28b517)
 
 ## Preparing the build environment
 
 The script ```install-build-tools.sh``` installs all the necessarily build prerequisites.
+
+In case you are not in the AWS environment and you are using Redhat, you will need to override default RedHat repos by defining the following environment variables. The names should be subsituted with the appropriate names for your environment.
+
+```
+sudo su
+export RPM_OPTIONAL=rhel-7-server-optional-rpms
+export RPM_EXTRAS=rhel-7-server-extras-rpms
+```
 
 Run it with superuser privileges in the location that you wish to install your build tools.
 
@@ -23,7 +31,7 @@ cd /home/builder
 
 As well as installing all the required software, it may pause and ask the operator to carry out some configuration on the build environment, for example adjusting the contents of /etc/hosts.
 
-Once it has finished, a file called ```set-pnda-env.sh``` will be found in the working directory. This script contains the necessary environment variables and other settings needed to carry out builds. It should either be added to the end of an initialization script such as ```/etc/bash.bashrc``` so that these settings are available for new shells, or it can be invoked with each build. 
+Once it has finished, a file called ```set-pnda-env.sh``` will be found in the working directory. This script contains the necessary environment variables and other settings needed to carry out builds. It should either be added to the end of an initialization script such as ```/etc/bash.bashrc``` so that these settings are available for new shells, or it can be invoked with each build.
 
 For example
 
@@ -37,7 +45,7 @@ Your environment is now ready to build PNDA.
 
 ## Building PNDA
 
-The script ```build-pnda.sh``` is invoked as a non-privileged user. 
+The script ```build-pnda.sh``` is invoked as a non-privileged user.
 
 For example
 

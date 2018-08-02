@@ -1,0 +1,89 @@
+{
+    "builders": [
+      {
+        "name": "{{user `vm_name_kafka`}}",
+        "vm_name": "{{user `vm_name_kafka`}}",
+        "vmdk_name": "{{user `vm_name_kafka`}}",
+        "type": "vmware-iso",
+        "communicator": "ssh",
+        "ssh_pty": "true",
+        "headless": false,
+        "disk_size": 50000,
+        "disk_additional_size": [2000,5000,5000],
+        "guest_os_type": "centos-64",
+        "iso_url": "./iso/CentOS-7-x86_64-Minimal-1804.iso",
+        "iso_checksum": "13675c6f74880e7ff3481b91bdaf925ce81bda8f",
+        "iso_checksum_type": "sha1",
+        "shutdown_command": "sudo -S /usr/sbin/shutdown -h now",
+        "format": "ovf",
+        "ssh_username": "{{user `username`}}",
+        "ssh_password": "{{user `password`}}",
+        "ssh_read_write_timeout": "10m",
+        "ssh_timeout": "15m",
+        "tools_upload_flavor": "linux",
+        "vnc_disable_password": true,
+        "keep_registered": true,
+        "skip_export": true,
+        "http_directory": ".",
+        "boot_wait": "7s",
+        "vmx_data": {
+          "memsize": "10240",
+          "numvcpus": "4",
+          "ethernet0.networkName": "{{user `vsphere_portgroup`}}",
+          "ethernet0.present": "TRUE",
+          "ethernet0.startConnected": "TRUE",
+          "ethernet0.virtualDev": "e1000",
+          "ethernet0.addressType": "generated",
+          "ethernet0.generatedAddressOffset": "0",
+          "ethernet0.wakeOnPcktRcv": "FALSE"
+  
+        },
+        "vmx_data_post": {
+          "ide1:0.startConnected": "FALSE",
+          "ide1:0.clientDevice": "TRUE",
+          "ide1:0.fileName": "emptyBackingString",
+          "ethernet0.virtualDev": "vmxnet3"
+        },
+        "boot_command": [
+          "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/ks.cfg<enter><wait>"
+        ]
+      }
+    ],
+    "provisioners": [
+      {
+        "type": "shell",
+        "scripts": [
+          "scripts/open-vm-tools.sh"
+        ],
+        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+      }
+    ],
+    "post-processors": [
+        {
+            "type": "vsphere",
+            "host": "{{user `vsphere_host`}}",
+            "username": "{{user `vsphere_user`}}",
+            "password": "{{user `vsphere_password`}}",
+            "insecure": true,
+            "vm_name": "{{user `vm_name_kafka`}}",
+            "datacenter": "{{user `vsphere_dc`}}",
+            "cluster": "{{user `vsphere_cluster`}}",
+            "datastore": "{{user `vsphere_datastore`}}",
+            "disk_mode": "thin",
+            "vm_network": "{{user `vsphere_portgroup`}}",
+            "overwrite": false
+        }
+    ],
+    "variables": {
+      "template_name": "{{env `PACKER_VM_NAME`}}",
+      "username": "root",
+      "password": "{{env `ROOT_PASSWD`}}",
+      "version": "{{env `PACKER_VM_VERSION`}}",  
+      "packer_vcenter_host": "{{env `PACKER_VCENTER_HOST`}}",
+      "packer_vcenter_datacenter": "{{env `PACKER_VCENTER_DC`}}",
+      "packer_vcenter_cluster": "{{env `PACKER_VCENTER_CLUSTER`}}",
+      "packer_vcenter_datastore": "{{env `PACKER_VCENTER_DATASTORE`}}",
+      "packer_vcenter_username": "{{env `PACKER_VCENTER_USERNAME`}}",
+      "packer_vcenter_password": "{{env `PACKER_VCENTER_PASSWORD`}}"
+    }
+  }

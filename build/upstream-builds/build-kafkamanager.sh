@@ -19,8 +19,14 @@ function error {
     exit -1
 }
 
+function build_error {
+    echo "Build error"
+    echo "Please determine the reason for the error, correct and re-run"
+    exit -1
+}
+
 echo -n "sbt: "
-if [[ $(sbt about 2>&1) != *"This is sbt 0.13"* ]]; then
+if [[ $(setsid sbt about 2>&1) != *"This is sbt 0.13"* ]]; then
     error
 else
     echo "OK"
@@ -40,6 +46,7 @@ elif [[ ${MODE} == "UPSTREAM" ]]; then
 fi
     
 wget https://github.com/yahoo/kafka-manager/archive/${KM_VERSION}.tar.gz
+[[ $? -ne 0 ]] && error
 tar xzf ${KM_VERSION}.tar.gz
 
 if [ ! -f ~/.sbt/0.13/local.sbt ]; then
@@ -49,7 +56,19 @@ fi
 
 mkdir -p pnda-build
 cd kafka-manager-${KM_VERSION}
-sbt clean dist
+ATTEMPT=0
+RETRY=3
+until [[ ${ATTEMPT} -ge ${RETRY} ]]
+do
+    setsid sbt clean dist < /dev/null && break
+    ATTEMPT=$[${ATTEMPT}+1]
+    sleep 1
+done
+if [[ ${ATTEMPT} -ge ${RETRY} ]]; then
+    echo "Failed to build Kafka Manager after ${RETRY} retries"
+    exit -1
+fi
 cd ..
 mv kafka-manager-${KM_VERSION}/target/universal/kafka-manager-${KM_VERSION}.zip pnda-build/
+[[ $? -ne 0 ]] && build_error
 sha512sum pnda-build/kafka-manager-${KM_VERSION}.zip > pnda-build/kafka-manager-${KM_VERSION}.zip.sha512.txt
