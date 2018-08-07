@@ -57,7 +57,7 @@ python2-pip
 python34-devel
 python34-pip
 redhat-lsb
-redis-3.2.10-2.el7
+redis-3.2.12-1.el7
 ruby-devel
 salt-master-2015.8.11-1.el7
 salt-minion-2015.8.11-1.el7
