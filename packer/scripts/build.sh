@@ -27,7 +27,7 @@ EOF
 [[ $? -ne 0 ]] && mirror_error "Problem while installing build tools"
 
 # Build PNDA software
-source set-pnda-env.sh
+source ${PWD}/set-pnda-env.sh
 cd pnda/build
 ./build-pnda.sh $BUILD_MODE $BUILD_ARG << EOF
 Yes
