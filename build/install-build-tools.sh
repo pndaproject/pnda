@@ -186,7 +186,7 @@ pip2 install JayDeBeApi==1.1.1
 
 [[ -e ~/tmp ]] && TMP_EXISTS=true
 
-npm install -g grunt-cli
+npm install -g grunt-cli@1.2.0
 
 # The installation of grunt-cli leaves behind a ~/tmp directory owned by the invoker of the command. This is
 # used by subsequent builds using grunt. This can cause problems if the installation is run as sudo and 
