@@ -44,5 +44,3 @@ mv /home/${OS_USER}/pnda/build/pnda-dist/* /var/www/html/
 restorecon -r /var/www/html
 sudo service httpd start
 
-# cleaning up pnda
-sudo rm -rf /home/${OS_USER}/pnda*
