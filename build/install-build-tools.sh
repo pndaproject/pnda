@@ -16,6 +16,7 @@
 #   This script checks for and installs dependencies required to build PNDA
 #
 #   JAVA_MIRROR - define this environment variable to download the Java JDK from an alternative location
+set -e
 
 SPARK_VERSION='1.6.0'
 
