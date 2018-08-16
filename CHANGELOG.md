@@ -30,6 +30,9 @@ All notable changes to this project will be documented in this file.
 - PNDA-4837: Update Grafana version to 5.1.3
 
 ### Fixed
+- PNDA-4891: Pin version of grunt-cli at 1.2.0 to avoid it changing when new versions are released
+
+### Fixed
 - PNDA-4200: Fix missing matplotlib and dependencies for Jupyter python3 kernel
 - PNDA-4412: When creating the python mirror, ensure that the epel repo is enabled
 - PNDA-4413: Install yum-utils in mirror and build scripts
