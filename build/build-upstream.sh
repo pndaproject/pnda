@@ -16,6 +16,7 @@ version=$2
 output_dir=$3
 stage_dir=$4
 upstream_builds_dir=$5
+HADOOP_DISTRIBUTION=$6
 
 function build_error {
     echo "Build error"
@@ -34,7 +35,7 @@ fi
 mkdir -p build-${project}
 cp ${upstream_builds_dir}/*.sh build-${project}/
 cd build-${project}
-./build-${project}.sh ${MODE} ${VERSION} | tee ${stage_dir}/build-${project}.log
+./build-${project}.sh ${MODE} ${VERSION} ${HADOOP_DISTRIBUTION} | tee ${stage_dir}/build-${project}.log
 build_res=${PIPESTATUS[0]}
 [[ $build_res -ne 0 ]] && build_error
 mv ${stage_dir}/build-${project}/pnda-build/* ${output_dir}/

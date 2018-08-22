@@ -6,6 +6,7 @@
     "build_mode": "BRANCH",
     "build_arg": "develop",
     "ambari_repo": "",
+    "hadoop_distribution": "HDP",
 
     "vm_name_mirror": "pnda_template_mirror",
     "vm_name_mirror_build": "pnda_template_mirror_build",

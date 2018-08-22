@@ -39,6 +39,7 @@
 
 MODE=${1}
 ARG=${2}
+HADOOP_DISTRIBUTION=${3}
 export BUILD_DIR=${PWD}
 export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 if [[ "${DISTRO}" == "rhel" ]]; then
@@ -57,6 +58,8 @@ function invocation_error {
     echo "Incorrect invocation, please refer to notes at head of this script"
     exit -1
 }
+
+[[ -z ${HADOOP_DISTRIBUTION} ]] && invocation_error
 
 # List of PNDA components
 #
@@ -77,10 +80,15 @@ declare -A upstream=(
 [kafkamanager]=
 [jupyterproxy]=
 [gobblin]=
-[flink-hdp]=
-[flink-cdh]=
 [haproxy]=
 )
+
+if [[ $HADOOP_DISTRIBUTION == 'CDH' ]]; then
+  upstream[flink-cdh]=
+fi
+if [[ $HADOOP_DISTRIBUTION == 'HDP' ]]; then
+  upstream[flink-hdp]=
+fi
 
 function fill_bom {
     for repo in ${!bom[@]}
@@ -152,9 +160,9 @@ PNDA_DIST=${BASE}/pnda-dist
 mkdir -p ${PNDA_DIST}
 mkdir -p ${PNDA_STAGE}
 
-parallel --xapply --halt now,fail=1 --joblog ${PNDA_STAGE}/build-log-pndarepo.txt --workdir "$BUILD_DIR" ./build-pnda-repo.sh {1} ${MODE} {2} ${PNDA_DIST} ${PNDA_STAGE} ::: ${!bom[@]} ::: ${bom[@]}
+parallel --xapply --halt now,fail=1 --joblog ${PNDA_STAGE}/build-log-pndarepo.txt --workdir "$BUILD_DIR" ./build-pnda-repo.sh {1} ${MODE} {2} ${PNDA_DIST} ${PNDA_STAGE} ${HADOOP_DISTRIBUTION} ::: ${!bom[@]} ::: ${bom[@]}
 [[ $? -ne 0 ]] && build_error
-parallel --xapply --halt now,fail=1 --joblog ${PNDA_STAGE}/build-log-upstream.txt --workdir "$BUILD_DIR" ./build-upstream.sh {1} {2} ${PNDA_DIST} ${PNDA_STAGE} ${UPSTREAM_BUILDS} ::: ${!upstream[@]} ::: ${upstream[@]}
+parallel --xapply --halt now,fail=1 --joblog ${PNDA_STAGE}/build-log-upstream.txt --workdir "$BUILD_DIR" ./build-upstream.sh {1} {2} ${PNDA_DIST} ${PNDA_STAGE} ${UPSTREAM_BUILDS} ${HADOOP_DISTRIBUTION} ::: ${!upstream[@]} ::: ${upstream[@]}
 [[ $? -ne 0 ]] && build_error
 
 cd ${BASE}

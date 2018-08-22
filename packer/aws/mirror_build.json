@@ -44,7 +44,8 @@
           "PNDA_BRANCH={{user `pnda_branch`}}",
           "BUILD_MODE={{user `build_mode`}}",
           "BUILD_ARG={{user `build_arg`}}",
-          "OS_USER={{user `aws_ami_username`}}"
+          "OS_USER={{user `aws_ami_username`}}",
+          "HADOOP_DISTRIBUTION={{user `hadoop_distribution`}}"
         ]
       }
     ],
