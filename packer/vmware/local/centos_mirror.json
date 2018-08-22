@@ -65,7 +65,8 @@
           "BUILD_MODE={{user `build_mode`}}",
           "BUILD_ARG={{user `build_arg`}}",
           "MIRROR_ENV={{user `mirror_env`}}",
-          "AMBARI_REPO={{user `ambari_repo`}}"
+          "AMBARI_REPO={{user `ambari_repo`}}",
+          "HADOOP_DISTRIBUTION={{user `hadoop_distribution`}}"
         ]
       },
       {
@@ -76,7 +77,8 @@
           "PNDA_REPO={{user `pnda_repo`}}",
           "PNDA_BRANCH={{user `pnda_branch`}}",
           "BUILD_MODE={{user `build_mode`}}",
-          "BUILD_ARG={{user `build_arg`}}"
+          "BUILD_ARG={{user `build_arg`}}",
+          "HADOOP_DISTRIBUTION={{user `hadoop_distribution`}}"
         ]
       }
     ],

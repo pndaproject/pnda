@@ -17,7 +17,7 @@ ln -s pnda-$CANONICAL_PB pnda
 cd pnda/mirror
 sudo mkdir -p /var/www/html/
 export MIRROR_OUTPUT_DIR=/var/www/html
-./create_mirror.sh << EOF
+./create_mirror.sh $HADOOP_DISTRIBUTION << EOF
 Yes
 EOF
 
