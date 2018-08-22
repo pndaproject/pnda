@@ -99,7 +99,6 @@ setuptools==39.1.0
 simplejson==3.10.0
 singledispatch==3.4.0.3
 six==1.10.0
-sparkmagic==0.12.4
 spur==0.3.20
 sql-magic==0.0.3
 sqlparse==0.2.3

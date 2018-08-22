@@ -30,7 +30,6 @@ It is possible to use build-pnda.sh to build PNDA components & upstream projects
 |---|
 |kafkamanager|
 |jupyterproxy|
-|livy|
 |gobblin|
 |flink|
 |haproxy|
@@ -64,7 +63,6 @@ More complex BOM specifying various component versions, PNDA release versions an
        platform-testing develop
        kafkamanager UPSTREAM(1.3.2.4)
        jupyterproxy UPSTREAM(1.3.1)
-       livy UPSTREAM(0.3.0)
        gobblin UPSTREAM(0.11.0)
        flink UPSTREAM(1.4.0)
        haproxy UPSTREAM(1.8.9)
