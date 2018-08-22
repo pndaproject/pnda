@@ -76,7 +76,6 @@ declare -A bom=(
 declare -A upstream=(
 [kafkamanager]=
 [jupyterproxy]=
-[livy]=
 [gobblin]=
 [flink-hdp]=
 [flink-cdh]=
