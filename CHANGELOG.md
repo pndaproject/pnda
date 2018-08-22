@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-4818: Update Ambari to 2.7.0.0 and HDP to 2.6.5.0
 - PNDA-4837: Update Grafana version to 5.1.3
 - PNDA-4892: Remove kafkat
+- PNDA-4909: Remove livy and sparkmagic 
 
 ### Fixed
 - PNDA-4891: Pin version of grunt-cli at 1.2.0 to avoid it changing when new versions are released
