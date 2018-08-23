@@ -5,6 +5,7 @@ function mirror_error {
     exit -1
 }
 
+rm -rf $PNDA_BRANCH.tar.gz pnda
 curl -LOJ $PNDA_REPO/archive/$PNDA_BRANCH.tar.gz
 [[ $? -ne 0 ]] && mirror_error "Problem while getting $PNDA_REPO/archive/$PNDA_BRANCH.tar.gz"
 PB=$PNDA_BRANCH
