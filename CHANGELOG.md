@@ -34,12 +34,10 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - PNDA-4891: Pin version of grunt-cli at 1.2.0 to avoid it changing when new versions are released
-
-### Fixed
 - PNDA-4200: Fix missing matplotlib and dependencies for Jupyter python3 kernel
 - PNDA-4412: When creating the python mirror, ensure that the epel repo is enabled
 - PNDA-4413: Install yum-utils in mirror and build scripts
-- PNDA-4441: specify tornado version and update kafka-python version in build deps
+- PNDA-4441: Specify tornado version and update kafka-python version in build deps
 - PNDA-4217: Exit cleanly whether sourced or executed
 - PNDA-4549: Failed to build Kafka-manager
 - PNDA-4666: Account for new dir structure inside HDP-UTILS
