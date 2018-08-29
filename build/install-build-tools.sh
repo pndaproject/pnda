@@ -96,6 +96,7 @@ rpm -i --nosignature --force ${RPM_TMP}
                 git \
                 nodejs \
                 bc \
+                bzip2 \
                 curl \
                 openssl-devel \
                 pam-devel \
