@@ -6,3 +6,9 @@ platform-gobblin-modules 1.0.0rc0
 platform-libraries 0.2.0rc0
 platform-package-repository 1.0.0rc0
 platform-testing 1.0.0rc0
+kafkamanager develop
+jupyterproxy develop
+gobblin develop
+haproxy develop
+flink-cdh develop
+flink-hdp develop
