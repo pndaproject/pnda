@@ -27,7 +27,8 @@ For the mirror image, you will require these parameters:
     "pnda_repo": "https://github.com/pndaproject/pnda",
     "pnda_branch": "develop",
     "build_mode": "BRANCH",
-    "build_arg": "develop"
+    "build_arg": "develop",
+    "hadoop_distribution": "HDP"
 ...
 ```
 So on the pnda repo, you will need to put the right branch you would like to build which need to be align also to the build mode and argument.

@@ -16,6 +16,7 @@ mode=$2
 branch=$3
 output_dir=$4
 stage_dir=$5
+hadoop_flavor=$6
 
 function build_error {
     echo "Build error"
@@ -32,7 +33,7 @@ if [[ ${mode} == "RELEASE" ]]; then
 else
     VERSION=${branch}
 fi
-./build.sh ${VERSION} | tee ${stage_dir}/build-${repo}.log
+./build.sh ${VERSION} ${hadoop_flavor} | tee ${stage_dir}/build-${repo}.log
 build_res=${PIPESTATUS[0]}
 [[ $build_res -ne 0 ]] && build_error
 cd ..

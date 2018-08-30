@@ -30,7 +30,7 @@ EOF
 # Build PNDA software
 source ${PWD}/set-pnda-env.sh
 cd pnda/build
-./build-pnda.sh $BUILD_MODE $BUILD_ARG << EOF
+./build-pnda.sh $BUILD_MODE $BUILD_ARG $HADOOP_DISTRIBUTION << EOF
 Yes
 EOF
 
