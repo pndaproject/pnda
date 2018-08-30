@@ -33,6 +33,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-4837: Update Grafana version to 5.1.3
 - PNDA-4892: Remove kafkat
 - PNDA-4909: Remove livy and sparkmagic 
+- PNDA-4899: Introduce conditionality to produce build/mirror with only artefacts required
 
 ### Fixed
 - PNDA-4891: Pin version of grunt-cli at 1.2.0 to avoid it changing when new versions are released
