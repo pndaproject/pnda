@@ -47,21 +47,23 @@ Your environment is now ready to build PNDA.
 
 The script ```build-pnda.sh``` is invoked as a non-privileged user.
 
-For example
+For example to build PNDA for an Hortonworks hadoop distribution:
 
 ```sh
 cd pnda
-./build-pnda.sh RELEASE release/3.2
+./build-pnda.sh RELEASE release/3.2 HDP
 ```
 
 #### Build master PNDA components & upstream projects at release X
 - Pass "RELEASE" as first parameter
 - Pass PNDA release tag as second parameter (e.g. release/3.2)
+- Pass HDP or CDH as third parameter (HortonWorks or Cloudera distribution)
 - PNDA components are built with the version specifier set to corresponding component release (e.g. 0.1.2)
 
 #### Build latest PNDA components & upstream projects to a given branch or tag
 - Pass "BRANCH" as first parameter
 - Pass PNDA branch or tag as the second parameter (e.g. develop)
+- Pass HDP or CDH as third parameter (HortonWorks or Cloudera distribution)
 - PNDA components are built with the version specifier set to the branch or tag
 
 It is also possible to build to a specific "bill of materials", please refer to [BOM builds](docs/ADVANCED.md) for details.
