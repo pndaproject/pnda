@@ -18,7 +18,7 @@ If your target environment is set up behind a non-transparent proxy, use the [pr
 
 ## Download packages
 
-To enable offline installation, you need to build mirrors and indexes. Use the [mirror creation process](mirror/README.md) to download all the 3rd party dependencies that PNDA uses during the orchestration process. 
+To enable offline installation, you need to build mirrors and indexes. Use the [mirror creation process](mirror/README.md) to download all the 3rd party dependencies that PNDA uses during the orchestration process.
 
 These will be assembled in a directory named ```mirror-dist```.
 
@@ -70,7 +70,7 @@ Acquire the [https://github.com/pndaproject/platform-salt](https://github.com/pn
 
 #### Heat
 
-The machine on which this repository is located must have connectivity with the PNDA cluster being provisioned. 
+The machine on which this repository is located must have connectivity with the PNDA cluster being provisioned.
 
 For example, if the repository is placed on a machine called ```pnda-client``` then the PNDA cluster being provisioned must be able to access the repository using a URI such as ```ssh://user@pnda-client:/home/user/platform-salt```. Please refer to the documentation [here](https://github.com/pndaproject/pnda-heat-templates) for details of how to configure the correct SSH key for git to use during provisioning.
 
