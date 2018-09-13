@@ -77,7 +77,7 @@ if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
     HADOOP_VERSION=$(wget -qO- https://raw.githubusercontent.com/pndaproject/platform-salt/${ARG}/pillar/services.sls | shyaml get-value hdp.hadoop_version)
 fi
 
-mvn clean install -DskipTests -Pvendor-repos -Dhadoop.version="${HADOOP_VERSION}"
+mvn clean install -Dmaven.test.skip=true -DskipTests -Pvendor-repos -Dhadoop.version="${HADOOP_VERSION}"
 [[ $? -ne 0 ]] && build_error
 
 if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
