@@ -38,12 +38,12 @@ mysql-community-server-5.5.58-2.el7
 mysql-community-client-5.5.60-2.el7
 nginx
 nmap-ncat
-ntp-4.2.6p5
+ntp
 patch
 openldap-clients
-openssl-1.0.2k-12.el7
-openssl-libs-1.0.2k-12.el7
-openssl-devel-1.0.2k-12.el7
+openssl
+openssl-libs
+openssl-devel
 nss-pam-ldapd
 pam-devel
 policycoreutils-python
@@ -71,3 +71,4 @@ wget
 xfsprogs
 yum-utils
 zip
+cloud-init
