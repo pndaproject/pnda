@@ -87,7 +87,15 @@ if [[ "${HADOOP_DISTRIBUTION}" == "HDP" ]]; then
     HADOOP_VERSION=$(wget -qO- https://raw.githubusercontent.com/pndaproject/platform-salt/${ARG}/pillar/services.sls | shyaml get-value hdp.hadoop_version)
 fi
 
-./gradlew build -Pversion="${GB_VERSION}-${HADOOP_DISTRIBUTION}-${HADOOP_VERSION}" -PhadoopVersion="${HADOOP_VERSION}" -PexcludeHadoopDeps -PexcludeHiveDeps ${EXCLUDES}
+# Add PNDA flavor file, to reduce deps to bare minimum
+cat >> gobblin-distribution/gobblin-flavor-pnda.gradle << EOF
+dependencies {
+  compile project(':gobblin-modules:gobblin-kafka-08')
+  compile project(':gobblin-modules:gobblin-crypto-provider')
+}
+EOF
+
+./gradlew build -PgobblinFlavor=pnda -Pversion="${GB_VERSION}-${HADOOP_DISTRIBUTION}-${HADOOP_VERSION}" -PhadoopVersion="${HADOOP_VERSION}" -PexcludeHadoopDeps -PexcludeHiveDeps ${EXCLUDES}
 [[ $? -ne 0 ]] && build_error
 
 mv ./build/gobblin-distribution/distributions/gobblin-distribution-${GB_VERSION}-${HADOOP_DISTRIBUTION}-${HADOOP_VERSION}.tar.gz ../pnda-build/
