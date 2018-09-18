@@ -6,7 +6,19 @@
 #
 # Note: this script uses bash 4 features
 
-HADOOP_DISTRIBUTION=${1}
+build_rpm=0 # Do not build the rpm mirror by default
+
+OPTIND=1
+while getopts "rd:" opt; do
+  case "$opt" in
+        r) build_rpm=1
+           ;;
+        d) HADOOP_DISTRIBUTION=$OPTARG
+           ;;
+  esac
+done
+shift $((OPTIND-1))
+
 export DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 [[ -z ${MIRROR_BUILD_DIR} ]] && export MIRROR_BUILD_DIR=${PWD}
@@ -31,8 +43,10 @@ if [ "x$DISTRO" == "xrhel" ]; then
 	esac
 fi
 
-$MIRROR_BUILD_DIR/create_mirror_rpm.sh
-[[ $? -ne 0 ]] && mirror_error "Problem while creating os package mirror"
+if [[ $build_rpm == 1 ]]; then
+  $MIRROR_BUILD_DIR/create_mirror_rpm.sh
+  [[ $? -ne 0 ]] && mirror_error "Problem while creating os package mirror"
+fi
 
 $MIRROR_BUILD_DIR/create_mirror_misc.sh
 [[ $? -ne 0 ]] && mirror_error "Problem while creating misc package mirror"
