@@ -1,26 +1,26 @@
-FROM centos:7.5.1804
+FROM centos:7.5.1804 as build
 
-ARG OS_USER=root
-ARG PNDA_REPO="https://github.com/pndaproject/pnda"
-ENV PNDA_BRANCH=develop
+ARG PNDARELEASE=develop
 
-#Copy Files Into the Image
-WORKDIR /home/$OS_USER
-RUN yum install gettext sudo python -y
-RUN curl -LOJ $PNDA_REPO/archive/$PNDA_BRANCH.tar.gz
-RUN tar -zxvf /home/$OS_USER/pnda-$PNDA_BRANCH.tar.gz -C /home/$OS_USER
-RUN rm *.gz
+ENV YUM_ROOT=/tmp/clean-root
 
-#Alter yum.conf for slow connections
-RUN echo "timeout=300" >> /etc/yum.conf && echo "minrate=1" >> /etc/yum.conf
+RUN yum clean all && rm -rf /var/cache/yum/* && yum install gettext git -y
 
-#Create Mirror
-WORKDIR /home/$OS_USER
-RUN chmod 755 /home/$OS_USER/pnda-$PNDA_BRANCH/packer/scripts/mirror.sh
-RUN /home/$OS_USER/pnda-$PNDA_BRANCH/packer/scripts/mirror.sh
+RUN git clone -b $PNDARELEASE https://github.com/pndaproject/pnda.git
 
-RUN yum install httpd -y
+WORKDIR /pnda/mirror
+# Add the -r flag to mirror rpm packages
+RUN ./create_mirror.sh -d HDP
 
-EXPOSE 80
-RUN echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf
-ENTRYPOINT ["/usr/sbin/apachectl","-DFOREGROUND"]
+WORKDIR /pnda/build
+RUN ./install-build-tools.sh
+
+RUN yum install bzip2 make which -y
+RUN source ./set-pnda-env.sh \
+    && ./build-pnda.sh BRANCH $PNDARELEASE HDP
+
+FROM nginx:alpine
+
+COPY --from=build /pnda/mirror/mirror-dist /usr/share/nginx/html/
+COPY --from=build /pnda/build/pnda-dist /usr/share/nginx/html/
+
