@@ -1,6 +1,8 @@
 centos-release
 cloud-init
+deltarpm
 libmount
+chrony
 MySQL-python
 acl
 ambari-agent-${AMBARI_PACKAGE_VERSION}
@@ -41,7 +43,6 @@ mysql-community-server
 mysql-community-client
 nginx
 nmap-ncat
-ntp
 patch
 openldap-clients
 openssl
