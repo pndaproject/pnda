@@ -4,6 +4,7 @@ deltarpm
 libmount
 chrony
 MySQL-python
+yum-plugin-priorities
 acl
 ambari-agent-${AMBARI_PACKAGE_VERSION}
 ambari-metrics-collector-${AMBARI_PACKAGE_VERSION}
