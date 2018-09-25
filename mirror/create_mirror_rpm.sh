@@ -54,6 +54,7 @@ cd $initdir
 yum makecache
 depstree=$(repoquery --requires --resolve --recursive --exactdeps ${RPM_PACKAGE_LIST}|sort -u)
 RPM_PACKAGE_LIST_FULL="${RPM_PACKAGE_LIST} ${depstree}"
-repotrack -p $RPM_REPO_DIR $RPM_PACKAGE_LIST_FULL ambari-metrics-hadoop-sink-${AMBARI_LEGACY_PACKAGE_VERSION}
+repotrack -p $RPM_REPO_DIR $RPM_PACKAGE_LIST_FULL
+repotrack -p $RPM_REPO_DIR ambari-metrics-hadoop-sink-${AMBARI_LEGACY_PACKAGE_VERSION}
 yum install -y createrepo
 createrepo --database $RPM_REPO_DIR
