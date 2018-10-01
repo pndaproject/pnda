@@ -29,6 +29,11 @@ function invocation_error {
     exit -1
 }
 
+function mirror_error {
+    echo "ERROR: $1"
+    exit -1
+}
+
 [[ -z ${HADOOP_DISTRIBUTION} ]] && invocation_error
 
 if [ "x$DISTRO" == "xrhel" ]; then
