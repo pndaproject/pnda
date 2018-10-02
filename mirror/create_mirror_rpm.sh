@@ -52,9 +52,8 @@ curl -LOJf $AMBARI_REPO_KEY
 rpm --import *
 cd $initdir
 yum makecache
-depstree=$(repoquery --requires --resolve --recursive --exactdeps ${RPM_PACKAGE_LIST}|sort -u)
-RPM_PACKAGE_LIST_FULL="${RPM_PACKAGE_LIST} ${depstree}"
-repotrack -p $RPM_REPO_DIR $RPM_PACKAGE_LIST_FULL
-repotrack -p $RPM_REPO_DIR ambari-metrics-hadoop-sink-${AMBARI_LEGACY_PACKAGE_VERSION}
+for package in $RPM_PACKAGE_LIST; do
+    yum install -y --setopt=protected_multilib=false --releasever='7Server' --nogpg --downloadonly --downloaddir=$RPM_REPO_DIR --installroot=/tmp/installroot $package
+done
 yum install -y createrepo
 createrepo --database $RPM_REPO_DIR
