@@ -48,12 +48,19 @@ curl -LOJf $SALT_REPO_KEY
 curl -LOJf $SALT_REPO_KEY2
 curl -LOJf $AMBARI_REPO_KEY
 
+
+if [ "x$DISTRO" == "xrhel" ]; then
+    RELEASEVER="7Server"
+else
+    RELEASEVER="7"
+fi
+
 # import repo keys
 rpm --import *
 cd $initdir
 yum makecache
 for package in $RPM_PACKAGE_LIST; do
-    yum install -y --setopt=protected_multilib=false --releasever='7Server' --nogpg --downloadonly --downloaddir=$RPM_REPO_DIR --installroot=/tmp/installroot $package
+    yum install -y --setopt=protected_multilib=false --releasever=$RELEASEVER --nogpg --downloadonly --downloaddir=$RPM_REPO_DIR --installroot=/tmp/installroot $package
 done
 yum install -y createrepo
 createrepo --database $RPM_REPO_DIR

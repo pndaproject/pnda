@@ -1,4 +1,4 @@
-redhat-release
+redhat-release-server
 cloud-init
 deltarpm
 libmount
