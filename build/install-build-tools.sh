@@ -91,6 +91,7 @@ rpm -i --nosignature --force ${RPM_TMP}
 
 (yum install -y python-devel \
                 cyrus-sasl-devel \
+                bzip2 \
                 gcc \
                 gcc-c++ \
                 git \
