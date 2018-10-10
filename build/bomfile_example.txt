@@ -6,8 +6,8 @@ platform-gobblin-modules 1.0.0rc0
 platform-libraries 0.2.0rc0
 platform-package-repository 1.0.0rc0
 platform-testing 1.0.0rc1
-kafkamanager 5.0.0rc1
-jupyterproxy 5.0.0rc1
-gobblin 5.0.0rc1
-haproxy 5.0.0rc1
-flink-hdp 5.0.0rc1
+kafkamanager 5.0.0rc3
+jupyterproxy 5.0.0rc3
+gobblin 5.0.0rc3
+haproxy 5.0.0rc3
+flink-hdp 5.0.0rc3
