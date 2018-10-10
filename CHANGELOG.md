@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [2.0.0] 2018-08-28
+## [2.0.0] 2018-10-10
 ### Added
 - PNDA-3673: Added consul resources to mirror build
 - PNDA-4427: Add Flink software to PNDA build and mirror processes
