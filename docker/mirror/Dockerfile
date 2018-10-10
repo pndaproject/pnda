@@ -10,7 +10,7 @@ RUN git clone -b $PNDARELEASE https://github.com/pndaproject/pnda.git
 
 WORKDIR /pnda/mirror
 # Add the -r flag to mirror rpm packages
-RUN ./create_mirror.sh -d $HADOOPDIST
+RUN ./create_mirror.sh -d $HADOOPDIST -r
 
 WORKDIR /pnda/build
 RUN ./install-build-tools.sh
