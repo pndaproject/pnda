@@ -4,6 +4,7 @@ This repository holds release notes and other tools and information pertaining t
 
 ## Release Notes
 
+- [Release 5.0 (Mammoth Drop Bear) (October 2018)](releases/release-note-5.0.md)
 - [Release 4.0.1 (Hotfix release, June 2018)](releases/release-note-4.0.1.md)
 - [Release 4.0 (February 2018)](releases/release-note-4.0.md)
 - [Release 3.6 (December 2017)](releases/release-note-3.6.md)
