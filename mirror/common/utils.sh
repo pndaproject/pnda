@@ -11,7 +11,7 @@ function robust_curl {
     echo ${FILE}
     until [[ ${ATTEMPT} -ge ${RETRY} ]]
     do
-        curl $USE_COOKIE -LOJf ${FILE} && break
+        curl $USE_COOKIE -sS -LOJf ${FILE} && break
         ATTEMPT=$[${ATTEMPT}+1]
         sleep 10
     done

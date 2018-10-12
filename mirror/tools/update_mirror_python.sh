@@ -2,7 +2,7 @@
 echo "Usage: ./update_mirror_python.sh /path/to/mirror_python a-package [another-package ...]"
 yum install -y libffi-devel gcc
 
-curl -LOJf https://bootstrap.pypa.io/get-pip.py
+curl -sS -LOJf https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 pip2 install setuptools==34.2.0
 
