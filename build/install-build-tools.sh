@@ -65,7 +65,7 @@ if [[ $($JAVA_HOME/bin/javac -version 2>&1) != "javac 1.8.0_131" ]]; then
     echo "Please adjust these variables if required for your environment"
     echo "It's recommended that you append these lines to /etc/environment to make Java generally available"
     echo "export JAVA_HOME=${JAVA_HOME}"
-    echo 'export PATH=${JAVA_HOME}/bin:$PATH'
+    echo "export PATH=${JAVA_HOME}/bin:$PATH"
 else
     echo "Java found at ${JAVA_HOME}"
 fi
@@ -208,7 +208,7 @@ export SPARK_HOME=${PWD}/spark-${SPARK_VERSION}-bin-hadoop2.6
 echo "# Environment settings required for PNDA builds"  | tee ./set-pnda-env.sh
 echo "export JAVA_HOME=${JAVA_HOME}" | tee -a ./set-pnda-env.sh
 echo "export SPARK_HOME=${SPARK_HOME}" | tee -a ./set-pnda-env.sh
-echo 'export PATH=${JAVA_HOME}/bin:${SPARK_HOME}:${PATH}' | tee -a ./set-pnda-env.sh
+echo "export PATH=${JAVA_HOME}/bin:${SPARK_HOME}:${PATH}" | tee -a ./set-pnda-env.sh
 echo
 echo "The above has been written to set-pnda-env.sh in ${PWD}"
 chmod +x set-pnda-env.sh

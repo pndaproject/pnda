@@ -3,7 +3,7 @@ function end {
 }
 
 if [ "x$http_proxy" == "x" ] || [ "x$https_proxy" == "x" ]; then
-  echo 'System proxies ($http_proxy and $https_proxy) must first be set'
+  echo "System proxies ($http_proxy and $https_proxy) must first be set"
   end -1
 fi
 
