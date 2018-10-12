@@ -5,13 +5,14 @@ function mirror_error {
     exit -1
 }
 
-rm -rf $PNDA_BRANCH.tar.gz pnda
-curl -LOJ $PNDA_REPO/archive/$PNDA_BRANCH.tar.gz
+TARBALL=pnda.tar.gz
+
+rm -rf $TARBALL pnda
+curl -LsS -o $TARBALL $PNDA_REPO/archive/$PNDA_BRANCH.tar.gz
 [[ $? -ne 0 ]] && mirror_error "Problem while getting $PNDA_REPO/archive/$PNDA_BRANCH.tar.gz"
-PB=$PNDA_BRANCH
-CANONICAL_PB=${PB/\\//-}
-tar zxf pnda-$CANONICAL_PB.tar.gz
-ln -s pnda-$CANONICAL_PB pnda
+
+mkdir pnda
+tar zxf $TARBALL --strip-components=1 -C pnda
 
 # Build the mirror
 cd pnda/mirror
