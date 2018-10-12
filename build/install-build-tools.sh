@@ -29,7 +29,7 @@ echo "Checking system config"
 if [[ -z $(grep `hostname` /etc/hosts) ]]; then
     echo "ERROR: The host on which you perform builds must be able to properly resolve itself in order to run Hadoop unit tests"
     echo "Please add the following entry to /etc/hosts"
-    HOST=`hostname`
+    HOST=$(hostname)
     echo "127.0.1.1 ${HOST}"
     exit -1
 fi
