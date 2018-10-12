@@ -13,7 +13,7 @@ echo "$STATIC_FILE_LIST_APP" | while read STATIC_FILE
 do
     IFS=', ' read -r -a appdata <<< $STATIC_FILE
     if [ "${appdata[0]}" = "python" ] ; then
-        curl -LOJf --retry 5 --retry-max-time 0 "${appdata[1]}"
+        curl -sS -LOJf --retry 5 --retry-max-time 0 "${appdata[1]}"
         file=$(echo ${appdata[1]} | rev | cut -d/ -f1 | rev)
         tar zxf $file
         rm -f $file
@@ -25,7 +25,7 @@ do
         cd ..
         rm -rf "$filename"
     elif [ "${appdata[0]}" = "java" ] ; then
-        curl -LOJf --retry 5 --retry-max-time 0 "${appdata[1]}"
+        curl -sS -LOJf --retry 5 --retry-max-time 0 "${appdata[1]}"
     else
         echo "unknow type dependency"
         exit -1

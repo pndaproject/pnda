@@ -15,7 +15,7 @@ if grep -q 'No package .* available.' "yum-python-deps.log"; then
     exit -1
 fi
 
-curl -LOJf https://bootstrap.pypa.io/get-pip.py
+curl -sS -LOJf https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 pip2 install setuptools==39.1.0
 pip2 install github3.py==1.1.0

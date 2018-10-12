@@ -30,7 +30,7 @@ yum-config-manager --add-repo $CLOUDERA_MANAGER_REPO
 yum-config-manager --add-repo $SALT_REPO
 yum-config-manager --add-repo $AMBARI_REPO
 
-curl -LJ -o /etc/yum.repos.d/ambari-legacy.repo $AMBARI_LEGACY_REPO
+curl -sS -LJ -o /etc/yum.repos.d/ambari-legacy.repo $AMBARI_LEGACY_REPO
 
 rm -rf $RPM_REPO_DIR
 mkdir -p $RPM_REPO_DIR
@@ -42,11 +42,11 @@ if [ "x$DISTRO" == "xrhel" ]; then
 	# Not present on CentOS
 	cp /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release $RPM_REPO_DIR
 fi
-curl -LOJf $MY_SQL_REPO_KEY
-curl -LOJf $CLOUDERA_MANAGER_REPO_KEY
-curl -LOJf $SALT_REPO_KEY
-curl -LOJf $SALT_REPO_KEY2
-curl -LOJf $AMBARI_REPO_KEY
+curl -sS -LOJf $MY_SQL_REPO_KEY
+curl -sS -LOJf $CLOUDERA_MANAGER_REPO_KEY
+curl -sS -LOJf $SALT_REPO_KEY
+curl -sS -LOJf $SALT_REPO_KEY2
+curl -sS -LOJf $AMBARI_REPO_KEY
 
 
 if [ "x$DISTRO" == "xrhel" ]; then
