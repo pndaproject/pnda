@@ -21,5 +21,5 @@ http://central.maven.org/maven2/org/kitesdk/kite-tools/1.0.0/kite-tools-1.0.0-bi
 http://central.maven.org/maven2/org/kitesdk/kite-tools/1.0.0/kite-tools-1.0.0-binary.jar.sha1
 https://releases.hashicorp.com/consul/1.0.3/consul_1.0.3_linux_amd64.zip
 https://releases.hashicorp.com/consul/1.0.3/consul_1.0.3_SHA256SUMS
-http://www.apache.org/dist/knox/1.1.0/knox-1.2.0.zip
-http://www.apache.org/dist/knox/1.1.0/knox-1.2.0.zip.sha1
+http://www.apache.org/dist/knox/1.2.0/knox-1.2.0.zip
+http://www.apache.org/dist/knox/1.2.0/knox-1.2.0.zip.sha1
