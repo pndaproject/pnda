@@ -17,7 +17,7 @@ To run the entire mirror creation process for HortonWorks -
 
 ```sh
 sudo su
-./create_mirror.sh HDP
+./create_mirror.sh -d HDP
 ```
 
 In order that create_mirror.sh obtains the correct set of dependencies for the image that PNDA will be deployed on, create_mirror.sh **must** be run on a **clean instance** of the **same image** that PNDA will be deployed on.
