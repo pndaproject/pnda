@@ -7,10 +7,10 @@ if [ "x$http_proxy" == "x" ] || [ "x$https_proxy" == "x" ]; then
   end -1
 fi
 
-HTTP_PROXY_HOST=`echo $http_proxy | awk -F/ '{print $3}' | awk -F: '{print $1}'`
-HTTP_PROXY_PORT=`echo $http_proxy | awk -F/ '{print $3}' | awk -F: '{print $2}'`
-HTTPS_PROXY_HOST=`echo $https_proxy | awk -F/ '{print $3}' | awk -F: '{print $1}'`
-HTTPS_PROXY_PORT=`echo $https_proxy | awk -F/ '{print $3}' | awk -F: '{print $2}'`
+HTTP_PROXY_HOST=$(echo $http_proxy | awk -F/ '{print $3}' | awk -F: '{print $1}')
+HTTP_PROXY_PORT=$(echo $http_proxy | awk -F/ '{print $3}' | awk -F: '{print $2}')
+HTTPS_PROXY_HOST=$(echo $https_proxy | awk -F/ '{print $3}' | awk -F: '{print $1}')
+HTTPS_PROXY_PORT=$(echo $https_proxy | awk -F/ '{print $3}' | awk -F: '{print $2}')
 
 cat > ~/.setproxy.sh << EOF
 export http_proxy=http://$HTTP_PROXY_HOST:$HTTP_PROXY_PORT
