@@ -23,7 +23,7 @@ cffi==1.9.1
 click==6.7
 cm-api==14.0.0
 configparser==3.5.0
-cryptography==1.7.1
+cryptography==3.2
 debtcollector==1.10.0
 elasticsearch-curator==5.4.1
 elasticsearch==6.1.1
