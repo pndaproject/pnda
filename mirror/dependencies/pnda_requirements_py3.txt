@@ -2,7 +2,7 @@ alembic==0.8.9
 autovizwidget==0.12.4
 beautifulsoup4==4.5.3
 backports-abc==0.5
-bleach==1.5.0
+bleach==3.3.0
 decorator==4.0.10
 entrypoints==0.2.2
 hdijupyterutils==0.12.4
