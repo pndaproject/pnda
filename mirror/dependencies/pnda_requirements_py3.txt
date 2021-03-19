@@ -14,7 +14,7 @@ ipython-genutils==0.1.0
 ipython==5.1.0
 ipython-sql==0.3.8
 ipywidgets==6.0.0
-Jinja2==2.8
+Jinja2==2.11.3
 jsonschema==2.5.1
 jupyter-client==4.4.0
 jupyter-console==5.0.0
