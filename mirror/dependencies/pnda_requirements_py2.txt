@@ -29,7 +29,7 @@ elasticsearch-curator==5.4.1
 elasticsearch==6.1.1
 enum-compat==0.0.2
 enum34==1.1.6
-eventlet==0.20.0
+eventlet==0.31.0
 fastavro==0.17.9
 findspark==1.1.0
 funcsigs==1.0.2
