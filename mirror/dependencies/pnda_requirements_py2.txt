@@ -71,7 +71,7 @@ paramiko==2.1.1
 pathlib2==2.1.0
 pbr==1.10.0
 pexpect==4.2.1
-pip==9.0.1
+pip==19.2
 plotly==1.10.0
 ply==3.9
 positional==1.1.1
