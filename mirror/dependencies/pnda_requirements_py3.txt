@@ -6,7 +6,7 @@ bleach==1.5.0
 decorator==4.0.10
 entrypoints==0.2.2
 hdijupyterutils==0.12.4
-html5lib==0.9999999
+html5lib==0.999999999
 https://github.com/klyr/jupyter-spark/releases/download/0.3.0-patch/jupyter-spark-0.3.0-patch.tar.gz
 impyla==0.14.0
 ipykernel==4.5.2
