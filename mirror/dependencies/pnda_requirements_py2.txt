@@ -64,7 +64,7 @@ ordereddict==1.1
 oslo.config==3.21.0
 oslo.i18n==3.11.0
 oslo.serialization==2.15.0
-oslo.utils==3.21.0
+oslo.utils==4.10.1
 packaging==16.8
 pandas==0.20.3
 paramiko==2.1.1
